@@ -1,0 +1,622 @@
+{
+ "module": "plan",
+ "cases": {
+  "apply_plan_update": [
+   {
+    "input": [
+     [],
+     [
+      {
+       "title": "第一章"
+      },
+      {
+       "title": "第二章",
+       "status": "in_progress"
+      }
+     ],
+     null
+    ],
+    "output": [
+     {
+      "id": "p1",
+      "title": "第一章",
+      "status": "pending"
+     },
+     {
+      "id": "p2",
+      "title": "第二章",
+      "status": "in_progress"
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "title": "第一章",
+       "status": "done"
+      },
+      {
+       "id": "b",
+       "title": "第二章",
+       "status": "in_progress"
+      },
+      {
+       "id": "c",
+       "title": "第三章",
+       "status": "pending"
+      }
+     ],
+     [
+      {
+       "id": "b",
+       "status": "done"
+      },
+      {
+       "id": "c",
+       "status": "in_progress"
+      }
+     ],
+     null
+    ],
+    "output": [
+     {
+      "id": "a",
+      "title": "第一章",
+      "status": "done"
+     },
+     {
+      "id": "b",
+      "title": "第二章",
+      "status": "done"
+     },
+     {
+      "id": "c",
+      "title": "第三章",
+      "status": "in_progress"
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "title": "第一章",
+       "status": "done"
+      },
+      {
+       "id": "b",
+       "title": "第二章",
+       "status": "in_progress"
+      },
+      {
+       "id": "c",
+       "title": "第三章",
+       "status": "pending"
+      }
+     ],
+     [
+      {
+       "id": "zz",
+       "status": "done"
+      }
+     ],
+     true
+    ],
+    "output": "item \"zz\" is not in the plan; give it a title to add it, or send the whole list"
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "title": "第一章",
+       "status": "done"
+      },
+      {
+       "id": "b",
+       "title": "第二章",
+       "status": "in_progress"
+      },
+      {
+       "id": "c",
+       "title": "第三章",
+       "status": "pending"
+      }
+     ],
+     [
+      {
+       "id": "a",
+       "title": "第一章（改）",
+       "status": "completed"
+      }
+     ],
+     true
+    ],
+    "output": [
+     {
+      "id": "a",
+      "title": "第一章（改）",
+      "status": "done"
+     },
+     {
+      "id": "b",
+      "title": "第二章",
+      "status": "in_progress"
+     },
+     {
+      "id": "c",
+      "title": "第三章",
+      "status": "pending"
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "title": "第一章",
+       "status": "done"
+      },
+      {
+       "id": "b",
+       "title": "第二章",
+       "status": "in_progress"
+      },
+      {
+       "id": "c",
+       "title": "第三章",
+       "status": "pending"
+      }
+     ],
+     [
+      {
+       "title": "x"
+      },
+      {
+       "title": "x"
+      }
+     ],
+     null
+    ],
+    "output": [
+     {
+      "id": "p1",
+      "title": "x",
+      "status": "pending"
+     },
+     {
+      "id": "p2",
+      "title": "x",
+      "status": "pending"
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "title": "第一章",
+       "status": "done"
+      },
+      {
+       "id": "b",
+       "title": "第二章",
+       "status": "in_progress"
+      },
+      {
+       "id": "c",
+       "title": "第三章",
+       "status": "pending"
+      }
+     ],
+     [
+      {
+       "id": 1,
+       "title": "num",
+       "status": "cancelled"
+      },
+      {
+       "id": 1,
+       "title": "dup"
+      }
+     ],
+     null
+    ],
+    "output": "duplicate item id \"1\""
+   },
+   {
+    "input": [
+     [],
+     [],
+     null
+    ],
+    "output": "no items were given (each needs a title; a status update needs an id)"
+   },
+   {
+    "input": [
+     [],
+     [
+      {
+       "status": "done"
+      }
+     ],
+     null
+    ],
+    "output": "no items were given (each needs a title; a status update needs an id)"
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "title": "第一章",
+       "status": "done"
+      },
+      {
+       "id": "b",
+       "title": "第二章",
+       "status": "in_progress"
+      },
+      {
+       "id": "c",
+       "title": "第三章",
+       "status": "pending"
+      }
+     ],
+     "junk",
+     null
+    ],
+    "output": "no items were given (each needs a title; a status update needs an id)"
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "title": "第一章",
+       "status": "done"
+      },
+      {
+       "id": "b",
+       "title": "第二章",
+       "status": "in_progress"
+      },
+      {
+       "id": "c",
+       "title": "第三章",
+       "status": "pending"
+      }
+     ],
+     [
+      {
+       "id": "c6",
+       "title": "第六章",
+       "status": "in_progress"
+      },
+      {
+       "id": "a",
+       "status": "done"
+      }
+     ],
+     true
+    ],
+    "output": [
+     {
+      "id": "a",
+      "title": "第一章",
+      "status": "done"
+     },
+     {
+      "id": "b",
+      "title": "第二章",
+      "status": "in_progress"
+     },
+     {
+      "id": "c",
+      "title": "第三章",
+      "status": "pending"
+     },
+     {
+      "id": "c6",
+      "title": "第六章",
+      "status": "in_progress"
+     }
+    ]
+   }
+  ],
+  "previous_turn_plan": [
+   {
+    "input": [
+     [
+      {
+       "id": "u1",
+       "role": "user"
+      },
+      {
+       "id": "a1",
+       "role": "assistant",
+       "agent": {
+        "plan": [
+         {
+          "id": "a",
+          "title": "第一章",
+          "status": "done"
+         },
+         {
+          "id": "b",
+          "title": "第二章",
+          "status": "in_progress"
+         },
+         {
+          "id": "c",
+          "title": "第三章",
+          "status": "pending"
+         }
+        ]
+       }
+      },
+      {
+       "id": "u2",
+       "role": "user"
+      },
+      {
+       "id": "a2",
+       "role": "assistant"
+      }
+     ],
+     "a2"
+    ],
+    "output": [
+     {
+      "id": "a",
+      "title": "第一章",
+      "status": "done"
+     },
+     {
+      "id": "b",
+      "title": "第二章",
+      "status": "in_progress"
+     },
+     {
+      "id": "c",
+      "title": "第三章",
+      "status": "pending"
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "a1",
+       "role": "assistant",
+       "agent": {
+        "plan": [
+         {
+          "id": "x",
+          "title": "done",
+          "status": "done"
+         }
+        ]
+       }
+      },
+      {
+       "id": "a2",
+       "role": "assistant"
+      }
+     ],
+     "a2"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "a1",
+       "role": "assistant",
+       "agent": {
+        "plan": [
+         {
+          "id": "a",
+          "title": "第一章",
+          "status": "done"
+         },
+         {
+          "id": "b",
+          "title": "第二章",
+          "status": "in_progress"
+         },
+         {
+          "id": "c",
+          "title": "第三章",
+          "status": "pending"
+         }
+        ]
+       }
+      },
+      {
+       "id": "a0",
+       "role": "assistant"
+      },
+      {
+       "id": "a2",
+       "role": "assistant"
+      }
+     ],
+     "a2"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "a1",
+       "role": "assistant",
+       "agent": {
+        "plan": [
+         {
+          "id": "a",
+          "title": "第一章",
+          "status": "done"
+         },
+         {
+          "id": "b",
+          "title": "第二章",
+          "status": "in_progress"
+         },
+         {
+          "id": "c",
+          "title": "第三章",
+          "status": "pending"
+         }
+        ]
+       }
+      }
+     ],
+     "new"
+    ],
+    "output": [
+     {
+      "id": "a",
+      "title": "第一章",
+      "status": "done"
+     },
+     {
+      "id": "b",
+      "title": "第二章",
+      "status": "in_progress"
+     },
+     {
+      "id": "c",
+      "title": "第三章",
+      "status": "pending"
+     }
+    ]
+   }
+  ],
+  "render_plan": [
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "title": "第一章",
+       "status": "done"
+      },
+      {
+       "id": "b",
+       "title": "第二章",
+       "status": "in_progress"
+      },
+      {
+       "id": "c",
+       "title": "第三章",
+       "status": "pending"
+      }
+     ]
+    ],
+    "output": "PLAN (1/3 done):\n☑ 第一章\n▶ 第二章\n☐ 第三章\nNext: 第二章"
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "title": "only",
+       "status": "done"
+      }
+     ]
+    ],
+    "output": "PLAN (1/1 done):\n☑ only\nAll items are done."
+   },
+   {
+    "input": [
+     []
+    ],
+    "output": "PLAN (0/0 done):\n\nAll items are done."
+   }
+  ],
+  "next_plan_item": [
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "title": "第一章",
+       "status": "done"
+      },
+      {
+       "id": "b",
+       "title": "第二章",
+       "status": "in_progress"
+      },
+      {
+       "id": "c",
+       "title": "第三章",
+       "status": "pending"
+      }
+     ]
+    ],
+    "output": {
+     "id": "b",
+     "title": "第二章",
+     "status": "in_progress"
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "title": "x",
+       "status": "done"
+      }
+     ]
+    ],
+    "output": null
+   }
+  ],
+  "unfinished_plan_items": [
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "title": "第一章",
+       "status": "done"
+      },
+      {
+       "id": "b",
+       "title": "第二章",
+       "status": "in_progress"
+      },
+      {
+       "id": "c",
+       "title": "第三章",
+       "status": "pending"
+      }
+     ]
+    ],
+    "output": [
+     {
+      "id": "b",
+      "title": "第二章",
+      "status": "in_progress"
+     },
+     {
+      "id": "c",
+      "title": "第三章",
+      "status": "pending"
+     }
+    ]
+   }
+  ]
+ }
+}

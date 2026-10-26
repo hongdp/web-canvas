@@ -1,0 +1,48 @@
+{
+  "name": "web_canvas",
+  "private": true,
+  "version": "1.3.0",
+  "type": "module",
+  "license": "GPL-3.0",
+  "scripts": {
+    "dev": "node scripts/start-server.js",
+    "dev:debug": "node scripts/start-server.js --mode debug",
+    "build": "tsc -b && vite build",
+    "start": "python3 scripts/api_server.py --serve-dist",
+    "release": "bash scripts/release.sh",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "prepare": "git config core.hooksPath >/dev/null || git config core.hooksPath .githooks || true",
+    "parity:fixtures": "WRITE_FIXTURES=1 vitest run src/parity"
+  },
+  "dependencies": {
+    "@tiptap/extension-placeholder": "^3.23.6",
+    "@tiptap/react": "^3.23.6",
+    "@tiptap/starter-kit": "^3.23.6",
+    "lucide-react": "^1.16.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "zustand": "^5.0.13"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.12.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-basic-ssl": "^2.3.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "@vitest/coverage-v8": "^4.1.7",
+    "eslint": "^10.3.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.6.0",
+    "jsdom": "^29.1.1",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.59.2",
+    "vite": "^8.0.12",
+    "vitest": "^4.1.7"
+  }
+}

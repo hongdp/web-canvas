@@ -1,0 +1,252 @@
+{
+ "module": "tool_call_stream",
+ "cases": {
+  "partial_string_argument": [
+   {
+    "input": [
+     "{\"html\": \"<p>Hal",
+     "html"
+    ],
+    "output": "<p>Hal"
+   },
+   {
+    "input": [
+     "{\"html\":\"a\\\"b\\n\\u00e9",
+     "html"
+    ],
+    "output": "a\"b\nu00e9"
+   },
+   {
+    "input": [
+     "{\"chapter\": \"3\", \"html\": \"<p>x</p>\"}",
+     "html"
+    ],
+    "output": "<p>x</p>"
+   },
+   {
+    "input": [
+     "{\"html\": 5}",
+     "html"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "{\"other\": \"x\"}",
+     "html"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "{\"html\"",
+     "html"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "{\"html\" :\n \"tail\\",
+     "html"
+    ],
+    "output": "tail"
+   },
+   {
+    "input": [
+     "",
+     "html"
+    ],
+    "output": null
+   }
+  ],
+  "apply_tool_call_delta": [
+   {
+    "input": [
+     [
+      {
+       "index": 0,
+       "id": "c1",
+       "function": {
+        "name": "read_chapter",
+        "arguments": "{\"cha"
+       }
+      },
+      {
+       "index": 0,
+       "function": {
+        "arguments": "pter\": \"2\"}"
+       }
+      }
+     ]
+    ],
+    "output": {
+     "accumulators": {
+      "0": {
+       "argumentsText": "{\"chapter\": \"2\"}",
+       "id": "c1",
+       "name": "read_chapter"
+      }
+     },
+     "finished": [
+      {
+       "id": "c1",
+       "name": "read_chapter",
+       "args": {
+        "chapter": "2"
+       },
+       "argumentsText": "{\"chapter\": \"2\"}"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "index": 1,
+       "function": {
+        "name": "x",
+        "arguments": "junk"
+       }
+      },
+      {
+       "index": 0,
+       "id": "a",
+       "function": {
+        "name": "y"
+       }
+      }
+     ]
+    ],
+    "output": {
+     "accumulators": {
+      "0": {
+       "argumentsText": "",
+       "id": "a",
+       "name": "y"
+      },
+      "1": {
+       "argumentsText": "junk",
+       "name": "x"
+      }
+     },
+     "finished": [
+      {
+       "id": "a",
+       "name": "y",
+       "args": {},
+       "argumentsText": ""
+      },
+      {
+       "name": "x",
+       "args": null,
+       "argumentsText": "junk"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "index": 0,
+       "function": {
+        "name": "x",
+        "arguments": "{\"a\":1}"
+       }
+      },
+      {
+       "index": 0,
+       "function": {
+        "arguments": "{\"a\":2}"
+       },
+       "replace": true
+      }
+     ]
+    ],
+    "output": {
+     "accumulators": {
+      "0": {
+       "argumentsText": "{\"a\":2}",
+       "name": "x"
+      }
+     },
+     "finished": [
+      {
+       "name": "x",
+       "args": {
+        "a": 2
+       },
+       "argumentsText": "{\"a\":2}"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "function": {
+        "name": "n",
+        "arguments": "{}"
+       },
+       "signature": "sig"
+      },
+      {
+       "index": 0,
+       "function": {
+        "arguments": ""
+       }
+      }
+     ]
+    ],
+    "output": {
+     "accumulators": {
+      "0": {
+       "argumentsText": "{}",
+       "name": "n",
+       "signature": "sig"
+      }
+     },
+     "finished": [
+      {
+       "name": "n",
+       "args": {},
+       "argumentsText": "{}",
+       "signature": "sig"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "index": 0,
+       "function": {
+        "arguments": "{\"no\":\"name\"}"
+       }
+      }
+     ]
+    ],
+    "output": {
+     "accumulators": {
+      "0": {
+       "argumentsText": "{\"no\":\"name\"}"
+      }
+     },
+     "finished": []
+    }
+   },
+   {
+    "input": [
+     []
+    ],
+    "output": {
+     "accumulators": {},
+     "finished": []
+    }
+   }
+  ]
+ }
+}

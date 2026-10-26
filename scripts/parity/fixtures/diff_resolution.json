@@ -1,0 +1,42 @@
+{
+ "module": "diff_resolution",
+ "cases": {
+  "resolve_diff_markup_in_html": [
+   {
+    "input": [
+     "<p>before <ins class=\"diff-addition\" data-diff-id=\"diff-a\">added</ins> after</p><p><del class=\"diff-deletion\" data-diff-id=\"diff-b\">gone</del>kept text</p><p><ins class=\"diff-addition\" data-diff-id=\"diff-c\">whole new paragraph</ins></p><ul><li><ins class=\"diff-addition\" data-diff-id=\"diff-d\">new item</ins></li></ul><p>old <del class=\"diff-deletion\" data-diff-id=\"diff-e\">word</del><ins data-diff-id=\"diff-e\" class=\"diff-addition\">term</ins> here</p><p><ins class=\"diff-addition\" data-diff-id=\"diff-f\">X </ins>A<ins class=\"diff-addition\" data-diff-id=\"diff-f\"> Y</ins></p>",
+     "accept"
+    ],
+    "output": "<p>before added after</p><p>kept text</p><p>whole new paragraph</p><ul><li>new item</li></ul><p>old term here</p><p>X A Y</p>"
+   },
+   {
+    "input": [
+     "<p>before <ins class=\"diff-addition\" data-diff-id=\"diff-a\">added</ins> after</p><p><del class=\"diff-deletion\" data-diff-id=\"diff-b\">gone</del>kept text</p><p><ins class=\"diff-addition\" data-diff-id=\"diff-c\">whole new paragraph</ins></p><ul><li><ins class=\"diff-addition\" data-diff-id=\"diff-d\">new item</ins></li></ul><p>old <del class=\"diff-deletion\" data-diff-id=\"diff-e\">word</del><ins data-diff-id=\"diff-e\" class=\"diff-addition\">term</ins> here</p><p><ins class=\"diff-addition\" data-diff-id=\"diff-f\">X </ins>A<ins class=\"diff-addition\" data-diff-id=\"diff-f\"> Y</ins></p>",
+     "reject"
+    ],
+    "output": "<p>before  after</p><p>gonekept text</p><p>old word here</p><p>A</p>"
+   },
+   {
+    "input": [
+     "<p>plain</p>",
+     "accept"
+    ],
+    "output": "<p>plain</p>"
+   },
+   {
+    "input": [
+     "<blockquote><p><ins class=\"diff-addition\" data-diff-id=\"d\">q</ins></p></blockquote><p>after</p>",
+     "reject"
+    ],
+    "output": "<p>after</p>"
+   },
+   {
+    "input": [
+     "<ul><li><p><del class=\"diff-deletion\" data-diff-id=\"d\">gone</del></p></li></ul>",
+     "accept"
+    ],
+    "output": ""
+   }
+  ]
+ }
+}

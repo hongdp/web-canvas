@@ -1,0 +1,356 @@
+/* Chapters Sidebar Styles */
+.chapters-sidebar {
+  /* Desktop width is user-adjustable (drag handle on the right edge) and
+     persisted. Phone layouts override width with their own overlay rules
+     below/in responsive.css, so the variable only affects desktop. */
+  width: var(--chapters-width, 240px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  height: 100%;
+  transition: width var(--transition-md), opacity var(--transition-md);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Problem: dragging the resize handle, the sidebar trailed the cursor and
+   kept growing after the pointer stopped — every pointermove started a new
+   width transition. Fix: no transition while a drag is in progress; the
+   collapse/expand animation keeps it. */
+.chapters-sidebar.resizing {
+  transition: none;
+}
+
+.chapters-sidebar.collapsed {
+  width: 0;
+  opacity: 0;
+  border-right: none;
+}
+
+.sidebar-header {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.sidebar-header h2 {
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.chapters-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.chapter-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.6rem;
+  border-radius: 6px;
+  margin: 0.15rem 0.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: background-color var(--transition-fast), color var(--transition-fast), border var(--transition-fast), opacity var(--transition-fast);
+  border: 1px solid transparent;
+  gap: 0.4rem;
+  user-select: none;
+  position: relative;
+}
+
+.chapter-item:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.chapter-item.active {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color-hover);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Dragging & Drag Over States */
+.chapter-item.dragging {
+  opacity: 0.4;
+  background-color: var(--bg-tertiary);
+  border: 1px dashed var(--border-color-hover) !important;
+}
+
+.chapter-item.drag-over-above {
+  border-top: 2px solid var(--accent) !important;
+}
+
+.chapter-item.drag-over-below {
+  border-bottom: 2px solid var(--accent) !important;
+}
+
+.chapter-grip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  cursor: grab;
+  padding: 0.1rem;
+  opacity: 0.3;
+  transition: opacity var(--transition-fast), color var(--transition-fast);
+}
+
+.chapter-grip:active {
+  cursor: grabbing;
+}
+
+.chapter-item:hover .chapter-grip {
+  opacity: 0.8;
+  color: var(--text-secondary);
+}
+
+.chapter-title {
+  font-size: 0.85rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  flex: 1;
+}
+
+.chapter-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.chapter-item:hover .chapter-actions {
+  opacity: 1;
+}
+
+.chapter-action-btn {
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast), background-color var(--transition-fast), opacity var(--transition-fast);
+  cursor: pointer;
+}
+
+.chapter-action-btn:hover:not(:disabled) {
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+}
+
+.chapter-action-btn.delete:hover:not(:disabled) {
+  color: var(--diff-remove-text);
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.chapter-action-btn:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.msg-attachment-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.animate-spin {
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+  border: 3px solid var(--border-color, #333);
+  border-top-color: var(--accent-color, #646cff);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+/* Summary queue feedback strip — the buttons are fire-and-forget, so this is
+   the only place the user learns that work was queued, finished, or failed. */
+.summary-status-strip {
+  padding: 0.35rem 1rem;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  background-color: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+.sidebar-resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+  touch-action: none;
+  z-index: 5;
+}
+.sidebar-resize-handle:hover,
+.sidebar-resize-handle.active {
+  background-color: var(--accent);
+  opacity: 0.35;
+}
+/* Phone layouts: the sidebar is a fixed-width overlay there. */
+.layout-portrait .sidebar-resize-handle,
+.layout-landscape .sidebar-resize-handle,
+.layout-tablet-square .sidebar-resize-handle {
+  display: none;
+}
+
+/* Attachments: the book's reference files (attachments_and_web.md §1). */
+.attachments-section {
+  border-top: 1px solid var(--border-color);
+  padding: 0.4rem 0.5rem 0.5rem;
+  max-height: 40%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.attachments-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+}
+
+.attachments-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.1rem;
+  cursor: pointer;
+}
+
+.attachments-toggle:hover {
+  color: var(--text-primary);
+}
+
+.attachments-list {
+  overflow-y: auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-top: 0.2rem;
+}
+
+.attachments-note {
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  padding: 0.2rem 0.3rem;
+}
+
+.attachments-error {
+  color: var(--diff-remove-text);
+}
+
+.attachment-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.4rem;
+  border-radius: 6px;
+  color: var(--text-secondary);
+}
+
+.attachment-item:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.attachment-ref {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--accent);
+  border: 1px solid var(--border-color-hover);
+  border-radius: 4px;
+  padding: 0 0.3rem;
+  flex-shrink: 0;
+}
+
+.attachment-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.attachment-name {
+  font-size: 0.82rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.attachment-meta {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+/* A pinned chapter rides along on every agent turn (pinned_context.md). */
+.chapter-pin-mark {
+  display: flex;
+  align-items: center;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.chapter-action-btn.pinned {
+  color: var(--accent);
+}

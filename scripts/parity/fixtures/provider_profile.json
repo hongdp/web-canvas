@@ -1,0 +1,236 @@
+{
+ "module": "provider_profile",
+ "cases": {
+  "get_cache_profile": [
+   {
+    "input": [
+     "grok"
+    ],
+    "output": {
+     "mode": "automatic",
+     "maxBreakpoints": 0,
+     "routing": {
+      "kind": "header",
+      "name": "x-grok-conv-id"
+     },
+     "longContextThreshold": 200000,
+     "cachedTokensPath": [
+      "prompt_tokens_details",
+      "cached_tokens"
+     ],
+     "exclusiveCache": false,
+     "windowDiscovered": false
+    }
+   },
+   {
+    "input": [
+     "ollama"
+    ],
+    "output": {
+     "mode": "automatic",
+     "maxBreakpoints": 0,
+     "exclusiveCache": true,
+     "windowDiscovered": true
+    }
+   },
+   {
+    "input": [
+     "anthropic"
+    ],
+    "output": {
+     "mode": "explicit",
+     "maxBreakpoints": 4,
+     "cachedTokensPath": [
+      "cache_read_input_tokens"
+     ],
+     "exclusiveCache": false,
+     "windowDiscovered": false
+    }
+   },
+   {
+    "input": [
+     "openai"
+    ],
+    "output": {
+     "mode": "automatic",
+     "maxBreakpoints": 0,
+     "routing": {
+      "kind": "header",
+      "name": "prompt-cache-key"
+     },
+     "cachedTokensPath": [
+      "prompt_tokens_details",
+      "cached_tokens"
+     ],
+     "exclusiveCache": false,
+     "windowDiscovered": false
+    }
+   },
+   {
+    "input": [
+     "gemini"
+    ],
+    "output": {
+     "mode": "automatic",
+     "maxBreakpoints": 0,
+     "cachedTokensPath": [
+      "cachedContentTokenCount"
+     ],
+     "exclusiveCache": false,
+     "windowDiscovered": false
+    }
+   },
+   {
+    "input": [
+     "runpod"
+    ],
+    "output": {
+     "mode": "none",
+     "maxBreakpoints": 0,
+     "exclusiveCache": false,
+     "windowDiscovered": false
+    }
+   },
+   {
+    "input": [
+     "nope"
+    ],
+    "output": {
+     "mode": "none",
+     "maxBreakpoints": 0,
+     "exclusiveCache": false,
+     "windowDiscovered": false
+    }
+   },
+   {
+    "input": [
+     "moonshot"
+    ],
+    "output": {
+     "mode": "automatic",
+     "maxBreakpoints": 0,
+     "cachedTokensPath": [
+      "prompt_tokens_details",
+      "cached_tokens"
+     ],
+     "exclusiveCache": false,
+     "windowDiscovered": false
+    }
+   }
+  ],
+  "target_prompt_tokens": [
+   {
+    "input": [
+     {
+      "mode": "automatic",
+      "maxBreakpoints": 0,
+      "routing": {
+       "kind": "header",
+       "name": "x-grok-conv-id"
+      },
+      "longContextThreshold": 200000,
+      "cachedTokensPath": [
+       "prompt_tokens_details",
+       "cached_tokens"
+      ],
+      "exclusiveCache": false,
+      "windowDiscovered": false
+     },
+     256000
+    ],
+    "output": 200000
+   },
+   {
+    "input": [
+     {
+      "mode": "automatic",
+      "maxBreakpoints": 0,
+      "routing": {
+       "kind": "header",
+       "name": "x-grok-conv-id"
+      },
+      "longContextThreshold": 200000,
+      "cachedTokensPath": [
+       "prompt_tokens_details",
+       "cached_tokens"
+      ],
+      "exclusiveCache": false,
+      "windowDiscovered": false
+     },
+     131072
+    ],
+    "output": 131072
+   },
+   {
+    "input": [
+     {
+      "mode": "automatic",
+      "maxBreakpoints": 0,
+      "exclusiveCache": true,
+      "windowDiscovered": true
+     },
+     262144
+    ],
+    "output": 262144
+   }
+  ],
+  "uses_responses_api": [
+   {
+    "input": [
+     "grok",
+     ""
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "openai",
+     "https://api.openai.com/v1"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "openai",
+     "https://API.openai.com"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "openai",
+     "https://api.openai.com.evil.example/v1"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "openai",
+     "http://127.0.0.1:8090/v1"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "openai",
+     ""
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "ollama",
+     "https://api.openai.com/v1"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "anthropic",
+     "https://api.anthropic.com/v1"
+    ],
+    "output": false
+   }
+  ]
+ }
+}

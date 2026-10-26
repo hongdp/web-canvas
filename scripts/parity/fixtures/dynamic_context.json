@@ -1,0 +1,1255 @@
+{
+ "module": "dynamic_context",
+ "cases": {
+  "render_ledger_chapter": [
+   {
+    "input": [
+     "T",
+     "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>",
+     20000
+    ],
+    "output": "--- DOCUMENT: T ---\n第三章 风起\n阿青推开门，风从巷口灌进来。\n她想：&ldquo;该走了。&rdquo;\n门外无人。\n\n- 一\n- 二 & 三\n\n{{IMAGE_PLACEHOLDER_0}}\n\n   loose text here\na b\nc\n"
+   },
+   {
+    "input": [
+     "T",
+     "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>",
+     10
+    ],
+    "output": "--- DOCUMENT: T ---\n第三章 风起\n阿青推\n…[truncated: showing first 10 of 113 characters]\n"
+   },
+   {
+    "input": [
+     "",
+     "",
+     5
+    ],
+    "output": "--- DOCUMENT:  ---\n\n"
+   }
+  ],
+  "ledger_block": [
+   {
+    "input": [
+     {
+      "id": "d2",
+      "title": "第一章 启程",
+      "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+     }
+    ],
+    "output": "--- DOCUMENT: 第一章 启程 ---\n第三章 风起\n阿青推开门，风从巷口灌进来。\n她想：&ldquo;该走了。&rdquo;\n门外无人。\n\n- 一\n- 二 & 三\n\n{{IMAGE_PLACEHOLDER_0}}\n\n   loose text here\na b\nc\n"
+   },
+   {
+    "input": [
+     {
+      "id": "d2",
+      "title": "第一章 启程",
+      "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+     },
+     "update"
+    ],
+    "output": "--- DOCUMENT: 第一章 启程 (UPDATED — this version replaces the earlier copy of this chapter above; disregard that one) ---\n第三章 风起\n阿青推开门，风从巷口灌进来。\n她想：&ldquo;该走了。&rdquo;\n门外无人。\n\n- 一\n- 二 & 三\n\n{{IMAGE_PLACEHOLDER_0}}\n\n   loose text here\na b\nc\n"
+   },
+   {
+    "input": [
+     {
+      "id": "d2",
+      "title": "第一章 启程",
+      "content": "<p>before <ins class=\"diff-addition\" data-diff-id=\"diff-a\">added</ins> after</p><p><del class=\"diff-deletion\" data-diff-id=\"diff-b\">gone</del>kept text</p><p><ins class=\"diff-addition\" data-diff-id=\"diff-c\">whole new paragraph</ins></p><ul><li><ins class=\"diff-addition\" data-diff-id=\"diff-d\">new item</ins></li></ul><p>old <del class=\"diff-deletion\" data-diff-id=\"diff-e\">word</del><ins data-diff-id=\"diff-e\" class=\"diff-addition\">term</ins> here</p><p><ins class=\"diff-addition\" data-diff-id=\"diff-f\">X </ins>A<ins class=\"diff-addition\" data-diff-id=\"diff-f\"> Y</ins></p>"
+     },
+     "fresh",
+     30
+    ],
+    "output": "--- DOCUMENT: 第一章 启程 ---\nbefore added after\nkept text\nw\n…[truncated: showing first 30 of 79 characters]\n"
+   }
+  ],
+  "build_ledger_messages": [
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     [
+      "d1",
+      "d3"
+     ]
+    ],
+    "output": [
+     {
+      "role": "user",
+      "content": "REFERENCED CHAPTERS (read-only; use them for details and consistency, never edit them):\n\n--- DOCUMENT: 大纲 ---\n大纲\n全书 outline 简述。\n\n--- DOCUMENT: Chapter 3: The Cat ---\nTitle\nThe cat sat on the mat.\nIt was warm, and <quiet> \"outside\" 'then'.\n",
+      "cacheHint": true
+     },
+     {
+      "role": "assistant",
+      "content": "Understood. I have read these chapters and will use them as reference."
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     []
+    ],
+    "output": []
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     [
+      "zz"
+     ]
+    ],
+    "output": []
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     [
+      {
+       "id": "d1",
+       "text": "FROZEN\n"
+      },
+      "d3",
+      {
+       "id": "d4"
+      }
+     ],
+     50,
+     {
+      "agentTools": true
+     }
+    ],
+    "output": [
+     {
+      "role": "user",
+      "content": "REFERENCED CHAPTERS (full text, as plain text, for details and consistency; to change one, read its HTML with read and name it in your write):\n\nFROZEN\n\n--- DOCUMENT: Chapter 3: The Cat ---\nTitle\nThe cat sat on the mat.\nIt was warm, and <qu\n…[truncated: showing first 50 of 72 characters]\n\n--- DOCUMENT: 空章节 ---\n\n",
+      "cacheHint": true
+     },
+     {
+      "role": "assistant",
+      "content": "Understood. I have read these chapters and will use them as reference."
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     [
+      "d5"
+     ],
+     20
+    ],
+    "output": [
+     {
+      "role": "user",
+      "content": "REFERENCED CHAPTERS (read-only; use them for details and consistency, never edit them):\n\n--- DOCUMENT: Long ---\nxxxxxxxxxxxxxxxxxxxx\n…[truncated: showing first 20 of 600 characters]\n",
+      "cacheHint": true
+     },
+     {
+      "role": "assistant",
+      "content": "Understood. I have read these chapters and will use them as reference."
+     }
+    ]
+   }
+  ],
+  "build_volatile_tail": [
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     "d2",
+     ""
+    ],
+    "output": "Here is the current state of my document.\nCHAPTER INDEX (all chapters in this book, by position — #4 is the fourth chapter whatever its title says; full text NOT included unless it appears in REFERENCED DOCUMENT CONTEXTS or is the active document):\n#1 \"大纲\"\n#2 \"第一章 启程\" [ACTIVE — this is the document you can edit]\n#3 \"Chapter 3: The Cat\"\n#4 \"空章节\"\n#5 \"Long\"\n\n\nCURRENT ACTIVE DOCUMENT CONTENT (This is the ONLY document you can update):\n\"\"\"\n<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p>{{IMAGE_PLACEHOLDER_0}}</p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>\n\"\"\""
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     "d2",
+     "<p>选中 <img src=\"s\"> 文本</p>",
+     {
+      "agentTools": true,
+      "markers": {
+       "d1": "in context"
+      }
+     }
+    ],
+    "output": "I have selected the following text in the document. I want you to focus your action on this specific text.\nCHAPTER INDEX (all chapters in this book, by position — #4 is the fourth chapter whatever its title says; full text NOT included unless it appears in REFERENCED DOCUMENT CONTEXTS or is the active document):\n#1 \"大纲\" [in context]\n#2 \"第一章 启程\" [ACTIVE — open in the editor; writes go here unless you name another chapter]\n#3 \"Chapter 3: The Cat\"\n#4 \"空章节\"\n#5 \"Long\"\n\n\nCURRENT SELECTED TEXT:\n\"\"\"\n<p>选中 {{IMAGE_PLACEHOLDER_1}} 文本</p>\n\"\"\"\n\nCURRENT ACTIVE DOCUMENT CONTENT (For context):\n\"\"\"\n<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p>{{IMAGE_PLACEHOLDER_0}}</p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>\n\"\"\""
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      }
+     ],
+     "d2",
+     ""
+    ],
+    "output": "Here is the current state of my document.\n\nCURRENT ACTIVE DOCUMENT CONTENT (This is the ONLY document you can update):\n\"\"\"\n<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p>{{IMAGE_PLACEHOLDER_0}}</p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>\n\"\"\""
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     "zz",
+     ""
+    ],
+    "output": "Here is the current state of my document.\nCHAPTER INDEX (all chapters in this book, by position — #4 is the fourth chapter whatever its title says; full text NOT included unless it appears in REFERENCED DOCUMENT CONTEXTS or is the active document):\n#1 \"大纲\"\n#2 \"第一章 启程\"\n#3 \"Chapter 3: The Cat\"\n#4 \"空章节\"\n#5 \"Long\"\n\n\nCURRENT ACTIVE DOCUMENT CONTENT (This is the ONLY document you can update):\n\"\"\"\n\n\"\"\""
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<p>before <ins class=\"diff-addition\" data-diff-id=\"diff-a\">added</ins> after</p><p><del class=\"diff-deletion\" data-diff-id=\"diff-b\">gone</del>kept text</p><p><ins class=\"diff-addition\" data-diff-id=\"diff-c\">whole new paragraph</ins></p><ul><li><ins class=\"diff-addition\" data-diff-id=\"diff-d\">new item</ins></li></ul><p>old <del class=\"diff-deletion\" data-diff-id=\"diff-e\">word</del><ins data-diff-id=\"diff-e\" class=\"diff-addition\">term</ins> here</p><p><ins class=\"diff-addition\" data-diff-id=\"diff-f\">X </ins>A<ins class=\"diff-addition\" data-diff-id=\"diff-f\"> Y</ins></p>"
+      },
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      }
+     ],
+     "d2",
+     "",
+     {
+      "agentTools": true
+     }
+    ],
+    "output": "Here is the current state of my document.\nCHAPTER INDEX (all chapters in this book, by position — #4 is the fourth chapter whatever its title says; full text NOT included unless it appears in REFERENCED DOCUMENT CONTEXTS or is the active document):\n#1 \"第一章 启程\" [ACTIVE — open in the editor; writes go here unless you name another chapter]\n#2 \"大纲\"\n\n\nCURRENT ACTIVE DOCUMENT CONTENT (Your writes change this chapter unless you name another):\n\"\"\"\n<p>before added after</p><p>kept text</p><p>whole new paragraph</p><ul><li>new item</li></ul><p>old term here</p><p>X A Y</p>\n\"\"\"\n\nPENDING CHANGES IN THIS CHAPTER — earlier edits the user has NOT accepted yet. The content above shows them as if accepted; the user can still accept or reject each one.\n1. now: \"before added after\"\n   was: \"before  after\"\n2. now: \"kept text\"\n   was: \"gonekept text\"\n3. now: \"whole new paragraph\"\n   was: (added by the change)\n4. now: \"new item\"\n   was: (added by the change)\n5. now: \"old term here\"\n   was: \"old word here\"\n6. now: \"X A Y\"\n   was: \"A\"\nIf the user wants part of the earlier version back, change ONLY that part: replace its \"now\" text with its \"was\" text, and leave every other pending change as it is."
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     "d3",
+     "sel only"
+    ],
+    "output": "I have selected the following text in the document. I want you to focus your action on this specific text.\nCHAPTER INDEX (all chapters in this book, by position — #4 is the fourth chapter whatever its title says; full text NOT included unless it appears in REFERENCED DOCUMENT CONTEXTS or is the active document):\n#1 \"大纲\"\n#2 \"第一章 启程\"\n#3 \"Chapter 3: The Cat\" [ACTIVE — this is the document you can edit]\n#4 \"空章节\"\n#5 \"Long\"\n\n\nCURRENT SELECTED TEXT:\n\"\"\"\nsel only\n\"\"\"\n\nCURRENT ACTIVE DOCUMENT CONTENT (For context):\n\"\"\"\n<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>\n\"\"\""
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     "d2",
+     "",
+     {
+      "agentTools": true,
+      "activeCopyOlder": true
+     }
+    ],
+    "output": "Here is the current state of my document.\nCHAPTER INDEX (all chapters in this book, by position — #4 is the fourth chapter whatever its title says; full text NOT included unless it appears in REFERENCED DOCUMENT CONTEXTS or is the active document):\n#1 \"大纲\"\n#2 \"第一章 启程\" [ACTIVE — open in the editor; writes go here unless you name another chapter]\n#3 \"Chapter 3: The Cat\"\n#4 \"空章节\"\n#5 \"Long\"\n\n\nCURRENT ACTIVE DOCUMENT CONTENT (Your writes change this chapter unless you name another. Its copy under REFERENCED CHAPTERS is older: this is its current text):\n\"\"\"\n<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p>{{IMAGE_PLACEHOLDER_0}}</p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>\n\"\"\""
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     "d2",
+     "",
+     {
+      "activeCopyOlder": true
+     }
+    ],
+    "output": "Here is the current state of my document.\nCHAPTER INDEX (all chapters in this book, by position — #4 is the fourth chapter whatever its title says; full text NOT included unless it appears in REFERENCED DOCUMENT CONTEXTS or is the active document):\n#1 \"大纲\"\n#2 \"第一章 启程\" [ACTIVE — this is the document you can edit]\n#3 \"Chapter 3: The Cat\"\n#4 \"空章节\"\n#5 \"Long\"\n\n\nCURRENT ACTIVE DOCUMENT CONTENT (This is the ONLY document you can update):\n\"\"\"\n<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p>{{IMAGE_PLACEHOLDER_0}}</p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>\n\"\"\""
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     "d2",
+     "",
+     {
+      "agentTools": true,
+      "indexOverride": "CHAPTER INDEX: unchanged",
+      "activeOverride": "ACTIVE LINE",
+      "pinnedBlock": "PINS"
+     }
+    ],
+    "output": "Here is the current state of my document.\nCHAPTER INDEX: unchanged\n\nPINS\n\n\nACTIVE LINE"
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     "d2",
+     "sel",
+     {
+      "agentTools": true,
+      "indexOverride": "",
+      "activeOverride": "ignored",
+      "pinnedBlock": "PINS"
+     }
+    ],
+    "output": "I have selected the following text in the document. I want you to focus your action on this specific text.\nPINS\n\n\nCURRENT SELECTED TEXT:\n\"\"\"\nsel\n\"\"\"\n\nCURRENT ACTIVE DOCUMENT CONTENT (For context):\n\"\"\"\n<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p>{{IMAGE_PLACEHOLDER_0}}</p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>\n\"\"\""
+   }
+  ],
+  "diff_tail_parts": [
+   {
+    "input": [
+     {
+      "index": "CHAPTER INDEX:\n#1 A",
+      "attachments": "ATTACHMENTS:\nA1 x.txt",
+      "active": {
+       "id": "d2",
+       "number": 2,
+       "title": "第二章",
+       "hash": "h2"
+      }
+     },
+     null,
+     [],
+     "t2"
+    ],
+    "output": {
+     "index": "CHAPTER INDEX:\n#1 A",
+     "attachments": "ATTACHMENTS:\nA1 x.txt",
+     "active": null,
+     "sent": {
+      "index": {
+       "hash": "16pcuv9-19",
+       "turn": "t2"
+      },
+      "attachments": {
+       "hash": "14l9jz9-21",
+       "turn": "t2"
+      },
+      "active": {
+       "id": "d2",
+       "hash": "h2",
+       "turn": "t2"
+      }
+     }
+    }
+   },
+   {
+    "input": [
+     {
+      "index": "CHAPTER INDEX:\n#1 A",
+      "attachments": "ATTACHMENTS:\nA1 x.txt",
+      "active": {
+       "id": "d2",
+       "number": 2,
+       "title": "第二章",
+       "hash": "h2"
+      }
+     },
+     {
+      "index": {
+       "hash": "16pcuv9-19",
+       "turn": "t1"
+      },
+      "attachments": {
+       "hash": "14l9jz9-21",
+       "turn": "t1"
+      },
+      "active": {
+       "id": "d2",
+       "hash": "h2",
+       "turn": "t1"
+      }
+     },
+     [
+      "t1"
+     ],
+     "t2"
+    ],
+    "output": {
+     "index": "CHAPTER INDEX: unchanged since your last turn (the copy earlier in this conversation is current).",
+     "attachments": "ATTACHMENTS: unchanged since your last turn (the list earlier in this conversation is current).",
+     "active": "CURRENT ACTIVE DOCUMENT: #2 \"第二章\" — unchanged since your last turn; its text is earlier in this conversation. Your writes change this chapter unless you name another.",
+     "sent": {
+      "index": {
+       "hash": "16pcuv9-19",
+       "turn": "t1"
+      },
+      "attachments": {
+       "hash": "14l9jz9-21",
+       "turn": "t1"
+      },
+      "active": {
+       "id": "d2",
+       "hash": "h2",
+       "turn": "t1"
+      }
+     }
+    }
+   },
+   {
+    "input": [
+     {
+      "index": "CHAPTER INDEX:\n#1 A",
+      "attachments": "ATTACHMENTS:\nA1 x.txt",
+      "active": {
+       "id": "d2",
+       "number": 2,
+       "title": "第二章",
+       "hash": "h2"
+      }
+     },
+     {
+      "index": {
+       "hash": "16pcuv9-19",
+       "turn": "t1"
+      },
+      "attachments": {
+       "hash": "14l9jz9-21",
+       "turn": "t1"
+      },
+      "active": {
+       "id": "d2",
+       "hash": "h2",
+       "turn": "t1"
+      }
+     },
+     [],
+     "t2"
+    ],
+    "output": {
+     "index": "CHAPTER INDEX:\n#1 A",
+     "attachments": "ATTACHMENTS:\nA1 x.txt",
+     "active": null,
+     "sent": {
+      "index": {
+       "hash": "16pcuv9-19",
+       "turn": "t2"
+      },
+      "attachments": {
+       "hash": "14l9jz9-21",
+       "turn": "t2"
+      },
+      "active": {
+       "id": "d2",
+       "hash": "h2",
+       "turn": "t2"
+      }
+     }
+    }
+   },
+   {
+    "input": [
+     {
+      "index": "CHAPTER INDEX:\n#1 B",
+      "attachments": "ATTACHMENTS:\nA1 x.txt",
+      "active": {
+       "id": "d2",
+       "number": 2,
+       "title": "第二章",
+       "hash": "h2"
+      }
+     },
+     {
+      "index": {
+       "hash": "16pcuv9-19",
+       "turn": "t1"
+      },
+      "attachments": {
+       "hash": "14l9jz9-21",
+       "turn": "t1"
+      },
+      "active": {
+       "id": "d2",
+       "hash": "h2",
+       "turn": "t1"
+      }
+     },
+     [
+      "t1"
+     ],
+     "t2"
+    ],
+    "output": {
+     "index": "CHAPTER INDEX:\n#1 B",
+     "attachments": "ATTACHMENTS: unchanged since your last turn (the list earlier in this conversation is current).",
+     "active": "CURRENT ACTIVE DOCUMENT: #2 \"第二章\" — unchanged since your last turn; its text is earlier in this conversation. Your writes change this chapter unless you name another.",
+     "sent": {
+      "index": {
+       "hash": "15ve1sc-19",
+       "turn": "t2"
+      },
+      "attachments": {
+       "hash": "14l9jz9-21",
+       "turn": "t1"
+      },
+      "active": {
+       "id": "d2",
+       "hash": "h2",
+       "turn": "t1"
+      }
+     }
+    }
+   },
+   {
+    "input": [
+     {
+      "index": "CHAPTER INDEX:\n#1 A",
+      "attachments": "ATTACHMENTS:\nA1 x.txt",
+      "active": {
+       "id": "d2",
+       "number": 2,
+       "title": "第二章",
+       "hash": "h2b"
+      }
+     },
+     {
+      "index": {
+       "hash": "16pcuv9-19",
+       "turn": "t1"
+      },
+      "attachments": {
+       "hash": "14l9jz9-21",
+       "turn": "t1"
+      },
+      "active": {
+       "id": "d2",
+       "hash": "h2",
+       "turn": "t1"
+      }
+     },
+     [
+      "t1"
+     ],
+     "t2"
+    ],
+    "output": {
+     "index": "CHAPTER INDEX: unchanged since your last turn (the copy earlier in this conversation is current).",
+     "attachments": "ATTACHMENTS: unchanged since your last turn (the list earlier in this conversation is current).",
+     "active": null,
+     "sent": {
+      "index": {
+       "hash": "16pcuv9-19",
+       "turn": "t1"
+      },
+      "attachments": {
+       "hash": "14l9jz9-21",
+       "turn": "t1"
+      },
+      "active": {
+       "id": "d2",
+       "hash": "h2b",
+       "turn": "t2"
+      }
+     }
+    }
+   },
+   {
+    "input": [
+     {
+      "index": "CHAPTER INDEX:\n#1 A",
+      "attachments": "ATTACHMENTS:\nA1 x.txt",
+      "active": {
+       "id": "d3",
+       "number": 2,
+       "title": "第二章",
+       "hash": "h2"
+      }
+     },
+     {
+      "index": {
+       "hash": "16pcuv9-19",
+       "turn": "t1"
+      },
+      "attachments": {
+       "hash": "14l9jz9-21",
+       "turn": "t1"
+      },
+      "active": {
+       "id": "d2",
+       "hash": "h2",
+       "turn": "t1"
+      }
+     },
+     [
+      "t1"
+     ],
+     "t2"
+    ],
+    "output": {
+     "index": "CHAPTER INDEX: unchanged since your last turn (the copy earlier in this conversation is current).",
+     "attachments": "ATTACHMENTS: unchanged since your last turn (the list earlier in this conversation is current).",
+     "active": null,
+     "sent": {
+      "index": {
+       "hash": "16pcuv9-19",
+       "turn": "t1"
+      },
+      "attachments": {
+       "hash": "14l9jz9-21",
+       "turn": "t1"
+      },
+      "active": {
+       "id": "d3",
+       "hash": "h2",
+       "turn": "t2"
+      }
+     }
+    }
+   },
+   {
+    "input": [
+     {
+      "index": "",
+      "attachments": "",
+      "active": null
+     },
+     {
+      "index": {
+       "hash": "16pcuv9-19",
+       "turn": "t1"
+      },
+      "attachments": {
+       "hash": "14l9jz9-21",
+       "turn": "t1"
+      },
+      "active": {
+       "id": "d2",
+       "hash": "h2",
+       "turn": "t1"
+      }
+     },
+     [
+      "t1"
+     ],
+     "t2"
+    ],
+    "output": {
+     "index": "",
+     "attachments": "",
+     "active": null,
+     "sent": {}
+    }
+   }
+  ],
+  "pinned_updates": [
+   {
+    "input": [
+     [
+      {
+       "id": "p1",
+       "number": 1,
+       "title": "Ch1",
+       "content": "<p>one</p>",
+       "hash": "13am6jk-10"
+      }
+     ],
+     [
+      {
+       "id": "p1",
+       "hash": "13am6jk-10"
+      }
+     ],
+     null,
+     [],
+     "t2",
+     {},
+     []
+    ],
+    "output": {
+     "block": "",
+     "sent": {}
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "p1",
+       "number": 1,
+       "title": "Ch1",
+       "content": "<p>one, edited</p>",
+       "hash": "1h6oo71-18"
+      }
+     ],
+     [
+      {
+       "id": "p1",
+       "hash": "13am6jk-10"
+      }
+     ],
+     null,
+     [],
+     "t2",
+     {},
+     []
+    ],
+    "output": {
+     "block": "PINNED CHAPTERS — changed or pinned since the copy you have (each replaces any earlier copy):\n\n--- DOCUMENT: #1 Ch1 (UPDATED — this version replaces the earlier copy of this chapter above; disregard that one) ---\none, edited\n",
+     "sent": {
+      "p1": {
+       "hash": "1h6oo71-18",
+       "turn": "t2"
+      }
+     }
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "p1",
+       "number": 1,
+       "title": "Ch1",
+       "content": "<p>one, edited</p>",
+       "hash": "1h6oo71-18"
+      }
+     ],
+     [
+      {
+       "id": "p1",
+       "hash": "13am6jk-10"
+      }
+     ],
+     {
+      "p1": {
+       "hash": "1h6oo71-18",
+       "turn": "t1"
+      }
+     },
+     [
+      "t1"
+     ],
+     "t2",
+     {},
+     []
+    ],
+    "output": {
+     "block": "",
+     "sent": {
+      "p1": {
+       "hash": "1h6oo71-18",
+       "turn": "t1"
+      }
+     }
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "p1",
+       "number": 1,
+       "title": "Ch1",
+       "content": "<p>one, edited</p>",
+       "hash": "1h6oo71-18"
+      }
+     ],
+     [
+      {
+       "id": "p1",
+       "hash": "13am6jk-10"
+      }
+     ],
+     {
+      "p1": {
+       "hash": "1h6oo71-18",
+       "turn": "t1"
+      }
+     },
+     [],
+     "t2",
+     {},
+     []
+    ],
+    "output": {
+     "block": "PINNED CHAPTERS — changed or pinned since the copy you have (each replaces any earlier copy):\n\n--- DOCUMENT: #1 Ch1 (UPDATED — this version replaces the earlier copy of this chapter above; disregard that one) ---\none, edited\n",
+     "sent": {
+      "p1": {
+       "hash": "1h6oo71-18",
+       "turn": "t2"
+      }
+     }
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "p3",
+       "number": 3,
+       "title": "Ch3",
+       "content": "<p>new pin</p>",
+       "hash": "12h3ycp-14"
+      }
+     ],
+     [
+      {
+       "id": "p1",
+       "hash": "h"
+      },
+      {
+       "id": "p2",
+       "hash": "h"
+      }
+     ],
+     null,
+     [],
+     "t2",
+     {
+      "p1": "#1 \"Ch1\""
+     },
+     [
+      "p2"
+     ]
+    ],
+    "output": {
+     "block": "PINNED CHAPTERS — changed or pinned since the copy you have (each replaces any earlier copy):\n\n--- DOCUMENT: #3 Ch3 ---\nnew pin\n\n\nNo longer pinned — disregard the earlier copies of: #1 \"Ch1\" (read them again if you need them).",
+     "sent": {
+      "p3": {
+       "hash": "12h3ycp-14",
+       "turn": "t2"
+      },
+      "p1": {
+       "hash": "unpinned",
+       "turn": "t2"
+      }
+     }
+    }
+   },
+   {
+    "input": [
+     [],
+     [
+      {
+       "id": "p1",
+       "hash": "h"
+      }
+     ],
+     {
+      "p1": {
+       "hash": "unpinned",
+       "turn": "t1"
+      }
+     },
+     [
+      "t1"
+     ],
+     "t2",
+     {
+      "p1": "#1 \"Ch1\""
+     },
+     []
+    ],
+    "output": {
+     "block": "",
+     "sent": {
+      "p1": {
+       "hash": "unpinned",
+       "turn": "t1"
+      }
+     }
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "p1",
+       "number": 1,
+       "title": "Ch1",
+       "content": "<p>one</p>",
+       "hash": "13am6jk-10"
+      }
+     ],
+     [
+      {
+       "id": "p1",
+       "hash": "13am6jk-10"
+      }
+     ],
+     {
+      "p1": {
+       "hash": "unpinned",
+       "turn": "t1"
+      }
+     },
+     [
+      "t1"
+     ],
+     "t2",
+     {},
+     []
+    ],
+    "output": {
+     "block": "PINNED CHAPTERS — changed or pinned since the copy you have (each replaces any earlier copy):\n\n--- DOCUMENT: #1 Ch1 (UPDATED — this version replaces the earlier copy of this chapter above; disregard that one) ---\none\n",
+     "sent": {
+      "p1": {
+       "hash": "13am6jk-10",
+       "turn": "t2"
+      }
+     }
+    }
+   },
+   {
+    "input": [
+     [],
+     [],
+     {
+      "p5": {
+       "hash": "x",
+       "turn": "t1"
+      }
+     },
+     [
+      "t1"
+     ],
+     "t2",
+     {},
+     []
+    ],
+    "output": {
+     "block": "No longer pinned — disregard the earlier copies of: p5 (read them again if you need them).",
+     "sent": {
+      "p5": {
+       "hash": "unpinned",
+       "turn": "t2"
+      }
+     }
+    }
+   }
+  ]
+ }
+}

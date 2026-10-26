@@ -1,0 +1,623 @@
+{
+ "module": "invocations",
+ "cases": {
+  "plan_done_attributes": [
+   {
+    "input": [
+     "<canvas chapter=\"2\" plan_done=\"ch2, ch3\">x</canvas><edit plan_done='ch3，ch4'>"
+    ],
+    "output": [
+     "ch2",
+     "ch3",
+     "ch4"
+    ]
+   },
+   {
+    "input": [
+     "<canvas>no</canvas>"
+    ],
+    "output": []
+   },
+   {
+    "input": [
+     "<CANVAS PLAN_DONE=\"a\">"
+    ],
+    "output": [
+     "a"
+    ]
+   },
+   {
+    "input": [
+     "<p plan_done=\"x\">"
+    ],
+    "output": []
+   }
+  ],
+  "collect_step": [
+   {
+    "input": [
+     "Just chat",
+     [],
+     0
+    ],
+    "output": {
+     "invocations": [],
+     "chatText": "Just chat",
+     "strayMarkup": 0,
+     "unknownCalls": 0,
+     "markupKind": "chat"
+    }
+   },
+   {
+    "input": [
+     "Sure.\n<canvas>\n<h1>T</h1><p>a</p>\n</canvas>\n<doc_status>updated</doc_status>",
+     [],
+     1
+    ],
+    "output": {
+     "invocations": [
+      {
+       "id": "markup_1_0",
+       "name": "update_document",
+       "args": {
+        "html": "\n<h1>T</h1><p>a</p>\n"
+       },
+       "source": "markup",
+       "unclosed": false
+      }
+     ],
+     "chatText": "Sure.",
+     "strayMarkup": 0,
+     "unknownCalls": 0,
+     "markupKind": "canvas"
+    }
+   },
+   {
+    "input": [
+     "<edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit><edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>c</p>\n=======\n\n>>>>>>> REPLACE\n</edit>",
+     [],
+     2
+    ],
+    "output": {
+     "invocations": [
+      {
+       "id": "markup_2_0",
+       "name": "edit_document",
+       "args": {
+        "chapter": "2",
+        "edits": [
+         {
+          "search": "<p>a</p>",
+          "replace": "<p>b</p>"
+         },
+         {
+          "search": "<p>c</p>",
+          "replace": ""
+         }
+        ]
+       },
+       "source": "markup"
+      }
+     ],
+     "chatText": "",
+     "strayMarkup": 0,
+     "unknownCalls": 0,
+     "markupKind": "edits"
+    }
+   },
+   {
+    "input": [
+     "<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>\n<selection_replace>sel</selection_replace>",
+     [],
+     3
+    ],
+    "output": {
+     "invocations": [
+      {
+       "id": "markup_3_0",
+       "name": "replace_selection",
+       "args": {
+        "html": "sel"
+       },
+       "source": "markup"
+      },
+      {
+       "id": "markup_3_1",
+       "name": "edit_document",
+       "args": {
+        "edits": [
+         {
+          "search": "<p>x</p>",
+          "replace": "<p>y</p>"
+         }
+        ]
+       },
+       "source": "markup"
+      }
+     ],
+     "chatText": "",
+     "strayMarkup": 0,
+     "unknownCalls": 0,
+     "markupKind": "selection"
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>one</p></canvas><canvas chapter=\"4\"><p>four</p></canvas><canvas new_chapter=\"五\"><p>五</p></canvas>",
+     [],
+     4
+    ],
+    "output": {
+     "invocations": [
+      {
+       "id": "markup_4_0",
+       "name": "update_document",
+       "args": {
+        "html": "<p>one</p>"
+       },
+       "source": "markup",
+       "unclosed": false
+      },
+      {
+       "id": "markup_4_1",
+       "name": "update_document",
+       "args": {
+        "html": "<p>four</p>",
+        "chapter": "4"
+       },
+       "source": "markup",
+       "unclosed": false
+      },
+      {
+       "id": "markup_4_2",
+       "name": "update_document",
+       "args": {
+        "html": "<p>五</p>",
+        "new_chapter": "五"
+       },
+       "source": "markup",
+       "unclosed": false
+      }
+     ],
+     "chatText": "",
+     "strayMarkup": 0,
+     "unknownCalls": 0,
+     "markupKind": "canvas"
+    }
+   },
+   {
+    "input": [
+     "Reading.",
+     [
+      {
+       "id": "c1",
+       "name": "read_chapter",
+       "args": {
+        "chapters": [
+         "2"
+        ]
+       },
+       "argumentsText": "{\"chapters\":[\"2\"]}"
+      },
+      {
+       "name": "nope",
+       "args": null,
+       "argumentsText": "{bad"
+      }
+     ],
+     5
+    ],
+    "output": {
+     "invocations": [
+      {
+       "id": "c1",
+       "name": "read_chapter",
+       "args": {
+        "chapters": [
+         "2"
+        ]
+       },
+       "source": "native",
+       "argumentsText": "{\"chapters\":[\"2\"]}"
+      },
+      {
+       "id": "call_5_1",
+       "name": "nope",
+       "args": null,
+       "source": "native",
+       "argumentsText": "{bad"
+      }
+     ],
+     "chatText": "Reading.",
+     "strayMarkup": 0,
+     "unknownCalls": 1,
+     "markupKind": "chat"
+    }
+   },
+   {
+    "input": [
+     "With tags beside a native write.\n<canvas><p>tag</p></canvas>",
+     [
+      {
+       "id": "w1",
+       "name": "update_document",
+       "args": {
+        "html": "<p>native</p>"
+       },
+       "argumentsText": "{\"html\":\"<p>native</p>\"}"
+      }
+     ],
+     6
+    ],
+    "output": {
+     "invocations": [
+      {
+       "id": "w1",
+       "name": "update_document",
+       "args": {
+        "html": "<p>native</p>"
+       },
+       "source": "native",
+       "argumentsText": "{\"html\":\"<p>native</p>\"}"
+      }
+     ],
+     "chatText": "With tags beside a native write.",
+     "strayMarkup": 1,
+     "unknownCalls": 0,
+     "markupKind": null
+    }
+   },
+   {
+    "input": [
+     "With tags beside a native write.\n<canvas><p>tag</p></canvas>",
+     [
+      {
+       "id": "w1",
+       "name": "update_document",
+       "args": {
+        "html": "<p>native</p>"
+       },
+       "argumentsText": "{\"html\":\"<p>native</p>\"}"
+      }
+     ],
+     7,
+     {
+      "markupProtocol": true
+     }
+    ],
+    "output": {
+     "invocations": [
+      {
+       "id": "w1",
+       "name": "update_document",
+       "args": {
+        "html": "<p>native</p>"
+       },
+       "source": "native",
+       "argumentsText": "{\"html\":\"<p>native</p>\"}"
+      },
+      {
+       "id": "markup_7_0",
+       "name": "update_document",
+       "args": {
+        "html": "<p>tag</p>"
+       },
+       "source": "markup",
+       "unclosed": false
+      }
+     ],
+     "chatText": "With tags beside a native write.",
+     "strayMarkup": 0,
+     "unknownCalls": 0,
+     "markupKind": "canvas"
+    }
+   },
+   {
+    "input": [
+     "Polish and tags.\n<canvas chapter=\"2\"><p>tag</p></canvas>",
+     [
+      {
+       "id": "p1",
+       "name": "polish_chapter",
+       "args": {
+        "chapter": "1"
+       },
+       "argumentsText": "{\"chapter\":\"1\"}"
+      }
+     ],
+     8
+    ],
+    "output": {
+     "invocations": [
+      {
+       "id": "p1",
+       "name": "polish_chapter",
+       "args": {
+        "chapter": "1"
+       },
+       "source": "native",
+       "argumentsText": "{\"chapter\":\"1\"}"
+      },
+      {
+       "id": "markup_8_0",
+       "name": "update_document",
+       "args": {
+        "html": "<p>tag</p>",
+        "chapter": "2"
+       },
+       "source": "markup",
+       "unclosed": false
+      }
+     ],
+     "chatText": "Polish and tags.",
+     "strayMarkup": 0,
+     "unknownCalls": 0,
+     "markupKind": "canvas"
+    }
+   },
+   {
+    "input": [
+     "",
+     [
+      {
+       "name": "read_chapter",
+       "args": {
+        "chapters": [
+         "1"
+        ]
+       },
+       "argumentsText": "{\"chapters\":[\"1\"]}",
+       "signature": "sig"
+      }
+     ],
+     9
+    ],
+    "output": {
+     "invocations": [
+      {
+       "id": "call_9_0",
+       "name": "read_chapter",
+       "args": {
+        "chapters": [
+         "1"
+        ]
+       },
+       "source": "native",
+       "argumentsText": "{\"chapters\":[\"1\"]}",
+       "signature": "sig"
+      }
+     ],
+     "chatText": "",
+     "strayMarkup": 0,
+     "unknownCalls": 0,
+     "markupKind": "chat"
+    }
+   },
+   {
+    "input": [
+     "Done one.\n<canvas chapter=\"2\" plan_done=\"ch2\">text</canvas>\n<doc_status>updated</doc_status>",
+     [],
+     10,
+     {
+      "markupProtocol": true
+     }
+    ],
+    "output": {
+     "invocations": [
+      {
+       "id": "markup_10_0",
+       "name": "update_document",
+       "args": {
+        "html": "text",
+        "chapter": "2",
+        "plan_done": [
+         "ch2"
+        ]
+       },
+       "source": "markup",
+       "unclosed": false
+      }
+     ],
+     "chatText": "Done one.",
+     "strayMarkup": 0,
+     "unknownCalls": 0,
+     "markupKind": "canvas"
+    }
+   },
+   {
+    "input": [
+     "Two.\n<edit plan_done=\"a\">\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit>\n<canvas chapter=\"3\" plan_done=\"b,a\">t</canvas>",
+     [],
+     11,
+     {
+      "markupProtocol": true
+     }
+    ],
+    "output": {
+     "invocations": [
+      {
+       "id": "markup_11_0",
+       "name": "edit_document",
+       "args": {
+        "edits": [
+         {
+          "search": "<p>a</p>",
+          "replace": "<p>b</p>"
+         }
+        ]
+       },
+       "source": "markup"
+      },
+      {
+       "id": "markup_11_1",
+       "name": "update_document",
+       "args": {
+        "html": "t",
+        "chapter": "3",
+        "plan_done": [
+         "a",
+         "b"
+        ]
+       },
+       "source": "markup",
+       "unclosed": false
+      }
+     ],
+     "chatText": "Two.",
+     "strayMarkup": 0,
+     "unknownCalls": 0,
+     "markupKind": "edits"
+    }
+   }
+  ],
+  "plan_writes": [
+   {
+    "input": [
+     [
+      {
+       "id": "update_document",
+       "name": "update_document",
+       "args": {
+        "html": "a"
+       },
+       "source": "native"
+      },
+      {
+       "id": "edit_document",
+       "name": "edit_document",
+       "args": {
+        "edits": []
+       },
+       "source": "native"
+      }
+     ]
+    ],
+    "output": {
+     "run": [
+      {
+       "id": "update_document",
+       "name": "update_document",
+       "args": {
+        "html": "a"
+       },
+       "source": "native"
+      },
+      {
+       "id": "edit_document",
+       "name": "edit_document",
+       "args": {
+        "edits": []
+       },
+       "source": "native"
+      }
+     ],
+     "dropped": 0
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "update_document",
+       "name": "update_document",
+       "args": {
+        "html": "a"
+       },
+       "source": "native"
+      },
+      {
+       "id": "replace_selection",
+       "name": "replace_selection",
+       "args": {
+        "html": "s"
+       },
+       "source": "native"
+      },
+      {
+       "id": "edit_document",
+       "name": "edit_document",
+       "args": {
+        "edits": []
+       },
+       "source": "native"
+      },
+      {
+       "id": "update_document",
+       "name": "update_document",
+       "args": {
+        "html": "b",
+        "chapter": "3"
+       },
+       "source": "native"
+      },
+      {
+       "id": "update_document",
+       "name": "update_document",
+       "args": {
+        "html": "c",
+        "new_chapter": "T"
+       },
+       "source": "native"
+      },
+      {
+       "id": "polish_chapter",
+       "name": "polish_chapter",
+       "args": {
+        "chapter": "1"
+       },
+       "source": "native"
+      }
+     ]
+    ],
+    "output": {
+     "run": [
+      {
+       "id": "replace_selection",
+       "name": "replace_selection",
+       "args": {
+        "html": "s"
+       },
+       "source": "native"
+      },
+      {
+       "id": "edit_document",
+       "name": "edit_document",
+       "args": {
+        "edits": []
+       },
+       "source": "native"
+      },
+      {
+       "id": "update_document",
+       "name": "update_document",
+       "args": {
+        "html": "b",
+        "chapter": "3"
+       },
+       "source": "native"
+      },
+      {
+       "id": "update_document",
+       "name": "update_document",
+       "args": {
+        "html": "c",
+        "new_chapter": "T"
+       },
+       "source": "native"
+      }
+     ],
+     "dropped": 2
+    }
+   },
+   {
+    "input": [
+     []
+    ],
+    "output": {
+     "run": [],
+     "dropped": 0
+    }
+   }
+  ]
+ }
+}

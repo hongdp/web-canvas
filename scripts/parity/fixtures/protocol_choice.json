@@ -1,0 +1,63 @@
+{
+ "module": "protocol_choice",
+ "cases": {
+  "resolve_document_protocol": [
+   {
+    "input": [
+     "grok",
+     null
+    ],
+    "output": "markup"
+   },
+   {
+    "input": [
+     "grok",
+     "tools"
+    ],
+    "output": "tools"
+   },
+   {
+    "input": [
+     "ollama",
+     "auto"
+    ],
+    "output": "tools"
+   },
+   {
+    "input": [
+     "runpod",
+     "markup"
+    ],
+    "output": "markup"
+   },
+   {
+    "input": [
+     "openai",
+     null
+    ],
+    "output": "markup"
+   },
+   {
+    "input": [
+     "gemini",
+     "auto"
+    ],
+    "output": "markup"
+   },
+   {
+    "input": [
+     "weird",
+     null
+    ],
+    "output": "markup"
+   },
+   {
+    "input": [
+     "moonshot",
+     null
+    ],
+    "output": "markup"
+   }
+  ]
+ }
+}

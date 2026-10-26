@@ -1,0 +1,180 @@
+{
+ "module": "diff",
+ "cases": {
+  "diff_html": [
+   {
+    "input": [
+     "<p>Hello</p>",
+     "<p>Hello</p>"
+    ],
+    "output": "<p>Hello</p>"
+   },
+   {
+    "input": [
+     "<p>Hello</p>",
+     "<p>Hello world</p>"
+    ],
+    "output": "<p>Hello<ins class=\"diff-addition\" data-diff-id=\"diff-1\"> world</ins></p>"
+   },
+   {
+    "input": [
+     "<p>Hello world</p>",
+     "<p>Hello</p>"
+    ],
+    "output": "<p>Hello<del class=\"diff-deletion\" data-diff-id=\"diff-1\"> world</del></p>"
+   },
+   {
+    "input": [
+     "<p>foo bar</p>",
+     "<p>foo baz</p>"
+    ],
+    "output": "<p>foo <del class=\"diff-deletion\" data-diff-id=\"diff-1\">bar</del><ins class=\"diff-addition\" data-diff-id=\"diff-1\">baz</ins></p>"
+   },
+   {
+    "input": [
+     "",
+     "<p>Hello</p>"
+    ],
+    "output": "<p><ins class=\"diff-addition\" data-diff-id=\"diff-1\">Hello</ins></p>"
+   },
+   {
+    "input": [
+     "<p>Hello</p>",
+     ""
+    ],
+    "output": "<del class=\"diff-deletion\" data-diff-id=\"diff-1\">Hello</del>"
+   },
+   {
+    "input": [
+     "",
+     ""
+    ],
+    "output": ""
+   },
+   {
+    "input": [
+     "<p>old</p>",
+     "<p>new</p>"
+    ],
+    "output": "<p><del class=\"diff-deletion\" data-diff-id=\"diff-1\">old</del><ins class=\"diff-addition\" data-diff-id=\"diff-1\">new</ins></p>"
+   },
+   {
+    "input": [
+     "<p>a b</p>",
+     "<p>a  b</p>"
+    ],
+    "output": "<p>a<del class=\"diff-deletion\" data-diff-id=\"diff-1\"> </del><ins class=\"diff-addition\" data-diff-id=\"diff-1\">  </ins>b</p>"
+   },
+   {
+    "input": [
+     "<p>你好世界</p>",
+     "<p>你好中国</p>"
+    ],
+    "output": "<p><del class=\"diff-deletion\" data-diff-id=\"diff-1\">你好世界</del><ins class=\"diff-addition\" data-diff-id=\"diff-1\">你好中国</ins></p>"
+   },
+   {
+    "input": [
+     "<p>AAA BBB CCC</p>",
+     "<p>AAA ZZZ CCC</p>"
+    ],
+    "output": "<p>AAA <del class=\"diff-deletion\" data-diff-id=\"diff-1\">BBB</del><ins class=\"diff-addition\" data-diff-id=\"diff-1\">ZZZ</ins> CCC</p>"
+   },
+   {
+    "input": [
+     "<p>one</p><p>two</p><p>three</p>",
+     "<p>one</p><p>TWO</p><p>three</p>"
+    ],
+    "output": "<p>one</p><p><del class=\"diff-deletion\" data-diff-id=\"diff-1\">two</del><ins class=\"diff-addition\" data-diff-id=\"diff-1\">TWO</ins></p><p>three</p>"
+   },
+   {
+    "input": [
+     "<p>one</p><p>two</p>",
+     "<p>one</p><p>new</p><p>two</p>"
+    ],
+    "output": "<p>one</p><p><ins class=\"diff-addition\" data-diff-id=\"diff-1\">new</ins></p><p>two</p>"
+   },
+   {
+    "input": [
+     "<p>one</p><p>two</p><p>three</p>",
+     "<p>one</p><p>three</p>"
+    ],
+    "output": "<p>one</p><del class=\"diff-deletion\" data-diff-id=\"diff-1\">two</del><p>three</p>"
+   },
+   {
+    "input": [
+     "<p>Paragraph 0 same text that goes on for a while to make tokens.</p><p>Paragraph 1 same text that goes on for a while to make tokens.</p><p>Paragraph 2 same text that goes on for a while to make tokens.</p><p>Paragraph 3 same text that goes on for a while to make tokens.</p><p>Paragraph 4 same text that goes on for a while to make tokens.</p><p>Paragraph 5 same text that goes on for a while to make tokens.</p><p>Paragraph 6 same text that goes on for a while to make tokens.</p><p>Paragraph 7 same text that goes on for a while to make tokens.</p><p>Paragraph 8 same text that goes on for a while to make tokens.</p><p>Paragraph 9 same text that goes on for a while to make tokens.</p><p>Paragraph 10 same text that goes on for a while to make tokens.</p><p>Paragraph 11 same text that goes on for a while to make tokens.</p><p>Paragraph 12 same text that goes on for a while to make tokens.</p><p>Paragraph 13 same text that goes on for a while to make tokens.</p><p>Paragraph 14 same text that goes on for a while to make tokens.</p><p>Paragraph 15 same text that goes on for a while to make tokens.</p><p>Paragraph 16 same text that goes on for a while to make tokens.</p><p>Paragraph 17 same text that goes on for a while to make tokens.</p><p>Paragraph 18 same text that goes on for a while to make tokens.</p><p>Paragraph 19 same text that goes on for a while to make tokens.</p><p>Paragraph 20 same text that goes on for a while to make tokens.</p><p>Paragraph 21 same text that goes on for a while to make tokens.</p><p>Paragraph 22 same text that goes on for a while to make tokens.</p><p>Paragraph 23 same text that goes on for a while to make tokens.</p><p>Paragraph 24 same text that goes on for a while to make tokens.</p><p>Paragraph 25 same text that goes on for a while to make tokens.</p><p>Paragraph 26 same text that goes on for a while to make tokens.</p><p>Paragraph 27 same text that goes on for a while to make tokens.</p><p>Paragraph 28 same text that goes on for a while to make tokens.</p><p>Paragraph 29 same text that goes on for a while to make tokens.</p><p>Paragraph 30 same text that goes on for a while to make tokens.</p><p>Paragraph 31 same text that goes on for a while to make tokens.</p><p>Paragraph 32 same text that goes on for a while to make tokens.</p><p>Paragraph 33 same text that goes on for a while to make tokens.</p><p>Paragraph 34 same text that goes on for a while to make tokens.</p><p>Paragraph 35 same text that goes on for a while to make tokens.</p><p>Paragraph 36 same text that goes on for a while to make tokens.</p><p>Paragraph 37 same text that goes on for a while to make tokens.</p><p>Paragraph 38 same text that goes on for a while to make tokens.</p><p>Paragraph 39 same text that goes on for a while to make tokens.</p>",
+     "<p>Paragraph 0 same text that goes on for a while to make tokens.</p><p>Paragraph 1 same text that goes on for a while to make tokens.</p><p>Paragraph 2 same text that goes on for a while to make tokens.</p><p>Paragraph 3 same text that goes on for a while to make tokens.</p><p>Paragraph 4 same text that goes on for a while to make tokens.</p><p>Paragraph 5 same text that goes on for a while to make tokens.</p><p>Paragraph 6 same text that goes on for a while to make tokens.</p><p>Paragraph 7 same text that goes on for a while to make tokens.</p><p>Paragraph 8 same text that goes on for a while to make tokens.</p><p>Paragraph 9 same text that goes on for a while to make tokens.</p><p>Paragraph 10 same text that goes on for a while to make tokens.</p><p>Paragraph 11 same text that goes on for a while to make tokens.</p><p>Paragraph 12 same text that goes on for a while to make tokens.</p><p>Paragraph 13 same text that goes on for a while to make tokens.</p><p>Paragraph 14 same text that goes on for a while to make tokens.</p><p>Paragraph 15 same text that goes on for a while to make tokens.</p><p>Paragraph 16 same text that goes on for a while to make tokens.</p><p>Paragraph 17 same text that goes on for a while to make tokens.</p><p>Paragraph 18 same text that goes on for a while to make tokens.</p><p>Paragraph 19 same text that goes on for a while to make tokens.</p><p>Paragraph 20 CHANGED text that goes on for a while to make tokens.</p><p>Paragraph 21 same text that goes on for a while to make tokens.</p><p>Paragraph 22 same text that goes on for a while to make tokens.</p><p>Paragraph 23 same text that goes on for a while to make tokens.</p><p>Paragraph 24 same text that goes on for a while to make tokens.</p><p>Paragraph 25 same text that goes on for a while to make tokens.</p><p>Paragraph 26 same text that goes on for a while to make tokens.</p><p>Paragraph 27 same text that goes on for a while to make tokens.</p><p>Paragraph 28 same text that goes on for a while to make tokens.</p><p>Paragraph 29 same text that goes on for a while to make tokens.</p><p>Paragraph 30 same text that goes on for a while to make tokens.</p><p>Paragraph 31 same text that goes on for a while to make tokens.</p><p>Paragraph 32 same text that goes on for a while to make tokens.</p><p>Paragraph 33 same text that goes on for a while to make tokens.</p><p>Paragraph 34 same text that goes on for a while to make tokens.</p><p>Paragraph 35 same text that goes on for a while to make tokens.</p><p>Paragraph 36 same text that goes on for a while to make tokens.</p><p>Paragraph 37 same text that goes on for a while to make tokens.</p><p>Paragraph 38 same text that goes on for a while to make tokens.</p><p>Paragraph 39 same text that goes on for a while to make tokens.</p>"
+    ],
+    "output": "<p>Paragraph 0 same text that goes on for a while to make tokens.</p><p>Paragraph 1 same text that goes on for a while to make tokens.</p><p>Paragraph 2 same text that goes on for a while to make tokens.</p><p>Paragraph 3 same text that goes on for a while to make tokens.</p><p>Paragraph 4 same text that goes on for a while to make tokens.</p><p>Paragraph 5 same text that goes on for a while to make tokens.</p><p>Paragraph 6 same text that goes on for a while to make tokens.</p><p>Paragraph 7 same text that goes on for a while to make tokens.</p><p>Paragraph 8 same text that goes on for a while to make tokens.</p><p>Paragraph 9 same text that goes on for a while to make tokens.</p><p>Paragraph 10 same text that goes on for a while to make tokens.</p><p>Paragraph 11 same text that goes on for a while to make tokens.</p><p>Paragraph 12 same text that goes on for a while to make tokens.</p><p>Paragraph 13 same text that goes on for a while to make tokens.</p><p>Paragraph 14 same text that goes on for a while to make tokens.</p><p>Paragraph 15 same text that goes on for a while to make tokens.</p><p>Paragraph 16 same text that goes on for a while to make tokens.</p><p>Paragraph 17 same text that goes on for a while to make tokens.</p><p>Paragraph 18 same text that goes on for a while to make tokens.</p><p>Paragraph 19 same text that goes on for a while to make tokens.</p><p>Paragraph 20 <del class=\"diff-deletion\" data-diff-id=\"diff-1\">same</del><ins class=\"diff-addition\" data-diff-id=\"diff-1\">CHANGED</ins> text that goes on for a while to make tokens.</p><p>Paragraph 21 same text that goes on for a while to make tokens.</p><p>Paragraph 22 same text that goes on for a while to make tokens.</p><p>Paragraph 23 same text that goes on for a while to make tokens.</p><p>Paragraph 24 same text that goes on for a while to make tokens.</p><p>Paragraph 25 same text that goes on for a while to make tokens.</p><p>Paragraph 26 same text that goes on for a while to make tokens.</p><p>Paragraph 27 same text that goes on for a while to make tokens.</p><p>Paragraph 28 same text that goes on for a while to make tokens.</p><p>Paragraph 29 same text that goes on for a while to make tokens.</p><p>Paragraph 30 same text that goes on for a while to make tokens.</p><p>Paragraph 31 same text that goes on for a while to make tokens.</p><p>Paragraph 32 same text that goes on for a while to make tokens.</p><p>Paragraph 33 same text that goes on for a while to make tokens.</p><p>Paragraph 34 same text that goes on for a while to make tokens.</p><p>Paragraph 35 same text that goes on for a while to make tokens.</p><p>Paragraph 36 same text that goes on for a while to make tokens.</p><p>Paragraph 37 same text that goes on for a while to make tokens.</p><p>Paragraph 38 same text that goes on for a while to make tokens.</p><p>Paragraph 39 same text that goes on for a while to make tokens.</p>"
+   },
+   {
+    "input": [
+     "<p>one</p>",
+     "<p>one</p><p><img src=\"https://p/1.jpg\"></p><p>two</p>"
+    ],
+    "output": "<p>one</p><p><ins class=\"diff-addition\" data-diff-id=\"diff-1\"><img src=\"https://p/1.jpg\"></ins></p><p><ins class=\"diff-addition\" data-diff-id=\"diff-1\">two</ins></p>"
+   },
+   {
+    "input": [
+     "<p>a <img src=\"x\"> b</p>",
+     "<p>a b</p>"
+    ],
+    "output": "<p>a <del class=\"diff-deletion\" data-diff-id=\"diff-1\"><img src=\"x\"> </del>b</p>"
+   },
+   {
+    "input": [
+     "<p><img src=\"x\"></p><p>t</p>",
+     "<p>t</p><p><img src=\"x\" alt=\"m\"></p>"
+    ],
+    "output": "<del class=\"diff-deletion\" data-diff-id=\"diff-1\"><img src=\"x\"></del><p>t</p><p><ins class=\"diff-addition\" data-diff-id=\"diff-2\"><img src=\"x\" alt=\"m\"></ins></p>"
+   },
+   {
+    "input": [
+     "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>",
+     "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>壹</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+    ],
+    "output": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li><del class=\"diff-deletion\" data-diff-id=\"diff-1\">一</del><ins class=\"diff-addition\" data-diff-id=\"diff-1\">壹</ins></li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+   },
+   {
+    "input": [
+     "<h1>T</h1><p>x</p>",
+     "<h2>T</h2><p>x</p>"
+    ],
+    "output": "<h2>T</h2><p>x</p>"
+   },
+   {
+    "input": [
+     "<p>a</p>",
+     "<p>a</p><ul><li>b</li></ul>"
+    ],
+    "output": "<p>a</p><ul><li><ins class=\"diff-addition\" data-diff-id=\"diff-1\">b</ins></li></ul>"
+   }
+  ],
+  "strip_diff_markup": [
+   {
+    "input": [
+     "<p>before <ins class=\"diff-addition\" data-diff-id=\"diff-a\">added</ins> after</p><p><del class=\"diff-deletion\" data-diff-id=\"diff-b\">gone</del>kept text</p><p><ins class=\"diff-addition\" data-diff-id=\"diff-c\">whole new paragraph</ins></p><ul><li><ins class=\"diff-addition\" data-diff-id=\"diff-d\">new item</ins></li></ul><p>old <del class=\"diff-deletion\" data-diff-id=\"diff-e\">word</del><ins data-diff-id=\"diff-e\" class=\"diff-addition\">term</ins> here</p><p><ins class=\"diff-addition\" data-diff-id=\"diff-f\">X </ins>A<ins class=\"diff-addition\" data-diff-id=\"diff-f\"> Y</ins></p>"
+    ],
+    "output": "<p>before added after</p><p>kept text</p><p>whole new paragraph</p><ul><li>new item</li></ul><p>old term here</p><p>X A Y</p>"
+   },
+   {
+    "input": [
+     "<p>plain</p>"
+    ],
+    "output": "<p>plain</p>"
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": ""
+   },
+   {
+    "input": [
+     "<p><ins>not a diff</ins> <del>either</del></p>"
+    ],
+    "output": "<p><ins>not a diff</ins> <del>either</del></p>"
+   }
+  ]
+ }
+}

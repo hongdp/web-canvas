@@ -1,0 +1,240 @@
+{
+ "module": "image_preservation",
+ "cases": {
+  "replace_images_with_placeholders": [
+   {
+    "input": [
+     "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>",
+     [
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_0}}",
+       "tag": "<img src=\"data:image/png;base64,AAAA\" alt=\"x\">"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p>{{IMAGE_PLACEHOLDER_0}}</p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>",
+     "registry": [
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_0}}",
+       "tag": "<img src=\"data:image/png;base64,AAAA\" alt=\"x\">"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     "<p><img src=\"a\"><img src=\"b\"><img src=\"a\"></p>",
+     [
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_0}}",
+       "tag": "<img src=\"b\">"
+      },
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_1}}",
+       "tag": "<img src=\"a\">"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>{{IMAGE_PLACEHOLDER_1}}{{IMAGE_PLACEHOLDER_0}}{{IMAGE_PLACEHOLDER_1}}</p>",
+     "registry": [
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_0}}",
+       "tag": "<img src=\"b\">"
+      },
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_1}}",
+       "tag": "<img src=\"a\">"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     "<p>none</p>",
+     []
+    ],
+    "output": {
+     "html": "<p>none</p>",
+     "registry": []
+    }
+   }
+  ],
+  "register_image": [
+   {
+    "input": [
+     [
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_0}}",
+       "tag": "<img src=\"data:image/jpeg;base64,AAAA\" alt=\"封面 &quot;A&quot; &lt;b&gt;&amp;\">"
+      }
+     ],
+     "data:image/jpeg;base64,AAAA",
+     "封面 \"A\" <b>&"
+    ],
+    "output": {
+     "placeholder": "{{IMAGE_PLACEHOLDER_0}}",
+     "registry": [
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_0}}",
+       "tag": "<img src=\"data:image/jpeg;base64,AAAA\" alt=\"封面 &quot;A&quot; &lt;b&gt;&amp;\">"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_0}}",
+       "tag": "<img src=\"x\">"
+      },
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_1}}",
+       "tag": "<img src=\"data:image/jpeg;base64,BBBB\">"
+      }
+     ],
+     "data:image/jpeg;base64,BBBB",
+     ""
+    ],
+    "output": {
+     "placeholder": "{{IMAGE_PLACEHOLDER_1}}",
+     "registry": [
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_0}}",
+       "tag": "<img src=\"x\">"
+      },
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_1}}",
+       "tag": "<img src=\"data:image/jpeg;base64,BBBB\">"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_0}}",
+       "tag": "<img src=\"data:image/jpeg;base64,BBBB\">"
+      }
+     ],
+     "data:image/jpeg;base64,BBBB",
+     ""
+    ],
+    "output": {
+     "placeholder": "{{IMAGE_PLACEHOLDER_0}}",
+     "registry": [
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_0}}",
+       "tag": "<img src=\"data:image/jpeg;base64,BBBB\">"
+      }
+     ]
+    }
+   }
+  ],
+  "restore_image_placeholders": [
+   {
+    "input": [
+     "<p>{{IMAGE_PLACEHOLDER_0}} and {{ IMAGE_PLACEHOLDER_1 }} and {IMAGE-PLACEHOLDER-0} and image_placeholder 1</p>",
+     [
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_0}}",
+       "tag": "<img src=\"a\">"
+      },
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_1}}",
+       "tag": "<img src=\"b\">"
+      }
+     ]
+    ],
+    "output": "<p><img src=\"a\"> and <img src=\"b\"> and <img src=\"a\"> and<img src=\"b\"></p>"
+   },
+   {
+    "input": [
+     "<p><img src=\"{{IMAGE_PLACEHOLDER_0}}\" alt=\"x\"> {{IMAGE_PLACEHOLDER_9}}</p>",
+     [
+      {
+       "placeholder": "{{IMAGE_PLACEHOLDER_0}}",
+       "tag": "<img src=\"a\">"
+      }
+     ]
+    ],
+    "output": "<p><img src=\"a\"> </p>"
+   }
+  ],
+  "reinsert_missing_images": [
+   {
+    "input": [
+     "<p>Intro paragraph text, edited.</p><p>Second paragraph.</p><p>Third.</p>",
+     "<p>Intro paragraph text.</p><p><img src=\"a.png\" alt=\"A\"></p><p>Second paragraph.</p><img src=\"b.png\"><p>Third.</p>"
+    ],
+    "output": {
+     "html": "<p>Intro paragraph text, edited.</p><p>Second paragraph.</p><img src=\"b.png\"><img src=\"a.png\" alt=\"A\"><p>Third.</p>",
+     "reinserted": 2
+    }
+   },
+   {
+    "input": [
+     "<p>Intro paragraph text.</p><p><img src=\"a.png\" alt=\"A\"></p><p>Nothing matches here.</p><p>Nor here.</p>",
+     "<p>Intro paragraph text.</p><p><img src=\"a.png\" alt=\"A\"></p><p>Second paragraph.</p><img src=\"b.png\"><p>Third.</p>"
+    ],
+    "output": {
+     "html": "<p>Intro paragraph text.</p><p><img src=\"a.png\" alt=\"A\"></p><p>Nothing matches here.</p><img src=\"b.png\"><p>Nor here.</p>",
+     "reinserted": 1
+    }
+   },
+   {
+    "input": [
+     "<p>All new text.</p>",
+     "<img src=\"first.png\"><p>one</p><p>two</p><p>three</p><p><img src=\"late.png\"></p>"
+    ],
+    "output": {
+     "html": "<img src=\"first.png\"><p>All new text.</p><img src=\"late.png\">",
+     "reinserted": 2
+    }
+   },
+   {
+    "input": [
+     "<p>No images &ldquo;here&rdquo; <br/></p>",
+     "<p>plain original</p>"
+    ],
+    "output": {
+     "html": "<p>No images &ldquo;here&rdquo; <br/></p>",
+     "reinserted": 0
+    }
+   },
+   {
+    "input": [
+     "",
+     "<p>t</p><p><img src=\"only.png\"></p>"
+    ],
+    "output": {
+     "html": "<img src=\"only.png\">",
+     "reinserted": 1
+    }
+   },
+   {
+    "input": [
+     "<p class='x'>a &amp; b &ldquo;q&rdquo;</p><p>second &nbsp; para</p>",
+     "<p>a &amp; b “q”</p><p><img src=\"k.png\"></p><p>second   para</p>"
+    ],
+    "output": {
+     "html": "<p class=\"x\">a &amp; b “q”</p><img src=\"k.png\"><p>second &nbsp; para</p>",
+     "reinserted": 1
+    }
+   },
+   {
+    "input": [
+     "<p>kept</p><img src=\"same.png\"><p>after</p>",
+     "<p>kept</p><img src=\"same.png\"><p>after</p><img src=\"\">"
+    ],
+    "output": {
+     "html": "<p>kept</p><img src=\"same.png\"><p>after</p>",
+     "reinserted": 0
+    }
+   }
+  ]
+ }
+}

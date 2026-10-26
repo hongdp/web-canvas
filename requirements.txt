@@ -1,0 +1,14 @@
+# Web Canvas API server (Python 3.10+). Install with: pip install -r requirements.txt
+fastapi>=0.115
+uvicorn>=0.30
+httpx>=0.27
+# Seals a running agent turn's provider key at rest (server_secrets).
+cryptography>=42
+# Reading web pages (server_web).
+beautifulsoup4>=4.12
+# Shrinks the images web_images brings into a chapter (without it: ffmpeg, else raw under 1.5 MB).
+Pillow>=10
+
+# Optional — the model's web_search / web_read tools run a headless browser:
+#   pip install playwright && python -m playwright install chromium
+# Without it those two tools are simply not offered.

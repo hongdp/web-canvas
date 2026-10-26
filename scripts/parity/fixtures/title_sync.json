@@ -1,0 +1,94 @@
+{
+ "module": "title_sync",
+ "cases": {
+  "leading_h1_text": [
+   {
+    "input": [
+     "<h1>第一章 启程</h1><p>x</p>"
+    ],
+    "output": "第一章 启程"
+   },
+   {
+    "input": [
+     "  <h1 class=\"t\">A &amp; <em>B</em><del>gone</del></h1>"
+    ],
+    "output": "A & B"
+   },
+   {
+    "input": [
+     "<p>no heading</p><h1>late</h1>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<h1>   </h1>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<h1>unclosed"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": null
+   }
+  ],
+  "content_with_renamed_heading": [
+   {
+    "input": [
+     "<h1>Old</h1><p>x</p>",
+     "New & <Better>"
+    ],
+    "output": "<h1>New &amp; &lt;Better&gt;</h1><p>x</p>"
+   },
+   {
+    "input": [
+     "<h1>Same</h1>",
+     "Same"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<p>none</p>",
+     "T"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<h1>Old</h1>",
+     "   "
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<h1><ins class=\"diff-addition\" data-diff-id=\"d\">Old</ins></h1>",
+     "New"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<h1>Old $& $1</h1>",
+     "N$&"
+    ],
+    "output": "<h1>NOld $& $1amp;</h1>"
+   },
+   {
+    "input": [
+     "\n  <h1 id=\"h\">Old</h1><h1>Old</h1>",
+     "New"
+    ],
+    "output": "\n  <h1 id=\"h\">New</h1><h1>Old</h1>"
+   }
+  ]
+ }
+}

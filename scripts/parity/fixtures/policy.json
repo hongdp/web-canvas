@@ -1,0 +1,660 @@
+{
+ "module": "policy",
+ "cases": {
+  "default_max_steps": [
+   {
+    "input": [
+     "grok"
+    ],
+    "output": 6
+   },
+   {
+    "input": [
+     "ollama"
+    ],
+    "output": 10
+   },
+   {
+    "input": [
+     "runpod"
+    ],
+    "output": 10
+   },
+   {
+    "input": [
+     "openai"
+    ],
+    "output": 6
+   }
+  ],
+  "resolve_run_settings": [
+   {
+    "input": [
+     "grok",
+     null
+    ],
+    "output": {
+     "agentTools": true,
+     "budgets": {
+      "maxSteps": 6,
+      "maxCorrective": 3
+     },
+     "policy": {
+      "continueAfterWrites": true,
+      "feedBackFailedWrites": true
+     }
+    }
+   },
+   {
+    "input": [
+     "grok",
+     {
+      "agentTools": false
+     }
+    ],
+    "output": {
+     "agentTools": false,
+     "budgets": {
+      "maxSteps": 6,
+      "maxCorrective": 3
+     },
+     "policy": {
+      "continueAfterWrites": false,
+      "feedBackFailedWrites": false
+     }
+    }
+   },
+   {
+    "input": [
+     "ollama",
+     {
+      "agentMaxSteps": 0
+     }
+    ],
+    "output": {
+     "agentTools": true,
+     "budgets": {
+      "maxSteps": 0,
+      "maxCorrective": 3
+     },
+     "policy": {
+      "continueAfterWrites": true,
+      "feedBackFailedWrites": true
+     }
+    }
+   },
+   {
+    "input": [
+     "grok",
+     {
+      "agentMaxSteps": 2.7,
+      "continueAfterWrites": false
+     }
+    ],
+    "output": {
+     "agentTools": true,
+     "budgets": {
+      "maxSteps": 2,
+      "maxCorrective": 3
+     },
+     "policy": {
+      "continueAfterWrites": false,
+      "feedBackFailedWrites": true
+     }
+    }
+   },
+   {
+    "input": [
+     "grok",
+     {
+      "agentMaxSteps": -1
+     }
+    ],
+    "output": {
+     "agentTools": true,
+     "budgets": {
+      "maxSteps": 6,
+      "maxCorrective": 3
+     },
+     "policy": {
+      "continueAfterWrites": true,
+      "feedBackFailedWrites": true
+     }
+    }
+   },
+   {
+    "input": [
+     "grok",
+     {
+      "agentMaxSteps": 4
+     },
+     false
+    ],
+    "output": {
+     "agentTools": true,
+     "budgets": {
+      "maxSteps": 1,
+      "maxCorrective": 3
+     },
+     "policy": {
+      "continueAfterWrites": false,
+      "feedBackFailedWrites": true
+     }
+    }
+   },
+   {
+    "input": [
+     "openai",
+     {
+      "agentTools": true,
+      "continueAfterWrites": true
+     }
+    ],
+    "output": {
+     "agentTools": true,
+     "budgets": {
+      "maxSteps": 6,
+      "maxCorrective": 3
+     },
+     "policy": {
+      "continueAfterWrites": true,
+      "feedBackFailedWrites": true
+     }
+    }
+   }
+  ],
+  "detect_step_failure": [
+   {
+    "input": [
+     {
+      "text": "chat only",
+      "writeProtocol": "markup",
+      "hadNativeCalls": false,
+      "markupKind": "chat"
+     }
+    ],
+    "output": "undeclared"
+   },
+   {
+    "input": [
+     {
+      "text": "chat only",
+      "writeProtocol": "tools",
+      "hadNativeCalls": false,
+      "markupKind": "chat"
+     }
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     {
+      "text": "x",
+      "writeProtocol": "markup",
+      "hadNativeCalls": true,
+      "markupKind": "chat"
+     }
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     {
+      "text": "x",
+      "writeProtocol": "markup",
+      "hadNativeCalls": false,
+      "markupKind": "canvas"
+     }
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     {
+      "text": "Done.\n<doc_status>updated</doc_status>",
+      "writeProtocol": "markup",
+      "hadNativeCalls": false,
+      "markupKind": "chat"
+     }
+    ],
+    "output": "claimed"
+   },
+   {
+    "input": [
+     {
+      "text": "Done.\n<doc_status>updated</doc_status>",
+      "writeProtocol": "markup",
+      "hadNativeCalls": false,
+      "markupKind": "chat",
+      "wroteThisRun": true
+     }
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     {
+      "text": "<edit>broken",
+      "writeProtocol": "markup",
+      "hadNativeCalls": false,
+      "markupKind": "chat",
+      "wroteThisRun": true
+     }
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     {
+      "text": "我已经写好了。\n<doc_status>unchanged</doc_status>",
+      "writeProtocol": "markup",
+      "hadNativeCalls": false,
+      "markupKind": "chat"
+     }
+    ],
+    "output": "claimed"
+   }
+  ],
+  "decide_after_step": [
+   {
+    "input": [
+     [],
+     1,
+     0,
+     {
+      "maxSteps": 6,
+      "maxCorrective": 3
+     },
+     {
+      "continueAfterWrites": true,
+      "feedBackFailedWrites": true
+     }
+    ],
+    "output": {
+     "action": "end",
+     "reason": "answered"
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "kind": "read",
+       "result": {
+        "ok": true,
+        "content": "done",
+        "trace": "t"
+       }
+      }
+     ],
+     1,
+     0,
+     {
+      "maxSteps": 6,
+      "maxCorrective": 3
+     },
+     {
+      "continueAfterWrites": true,
+      "feedBackFailedWrites": true
+     }
+    ],
+    "output": {
+     "action": "continue",
+     "corrective": false,
+     "final": false
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "kind": "read",
+       "result": {
+        "ok": true,
+        "content": "done",
+        "trace": "t"
+       }
+      }
+     ],
+     6,
+     0,
+     {
+      "maxSteps": 6,
+      "maxCorrective": 3
+     },
+     {
+      "continueAfterWrites": true,
+      "feedBackFailedWrites": true
+     }
+    ],
+    "output": {
+     "action": "end",
+     "reason": "step_limit"
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "kind": "read",
+       "result": {
+        "ok": true,
+        "content": "done",
+        "trace": "t"
+       }
+      }
+     ],
+     5,
+     0,
+     {
+      "maxSteps": 6,
+      "maxCorrective": 3
+     },
+     {
+      "continueAfterWrites": true,
+      "feedBackFailedWrites": true
+     }
+    ],
+    "output": {
+     "action": "continue",
+     "corrective": false,
+     "final": true
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "kind": "write",
+       "result": {
+        "ok": true,
+        "content": "done",
+        "trace": "t"
+       }
+      }
+     ],
+     1,
+     0,
+     {
+      "maxSteps": 6,
+      "maxCorrective": 3
+     },
+     {
+      "continueAfterWrites": true,
+      "feedBackFailedWrites": true
+     }
+    ],
+    "output": {
+     "action": "continue",
+     "corrective": false,
+     "final": false
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "kind": "write",
+       "result": {
+        "ok": true,
+        "content": "done",
+        "trace": "t"
+       }
+      }
+     ],
+     1,
+     0,
+     {
+      "maxSteps": 6,
+      "maxCorrective": 3
+     },
+     {
+      "continueAfterWrites": false,
+      "feedBackFailedWrites": true
+     }
+    ],
+    "output": {
+     "action": "end",
+     "reason": "writes_done"
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "kind": "write",
+       "result": {
+        "ok": false,
+        "content": "failed",
+        "trace": "t"
+       }
+      }
+     ],
+     1,
+     0,
+     {
+      "maxSteps": 6,
+      "maxCorrective": 3
+     },
+     {
+      "continueAfterWrites": true,
+      "feedBackFailedWrites": true
+     }
+    ],
+    "output": {
+     "action": "continue",
+     "corrective": true,
+     "final": false
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "kind": "write",
+       "result": {
+        "ok": false,
+        "content": "failed",
+        "trace": "t"
+       }
+      }
+     ],
+     1,
+     3,
+     {
+      "maxSteps": 6,
+      "maxCorrective": 3
+     },
+     {
+      "continueAfterWrites": true,
+      "feedBackFailedWrites": true
+     }
+    ],
+    "output": {
+     "action": "end",
+     "reason": "corrective_exhausted"
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "kind": "write",
+       "result": {
+        "ok": false,
+        "content": "failed",
+        "trace": "t",
+        "retryable": false
+       }
+      }
+     ],
+     1,
+     0,
+     {
+      "maxSteps": 6,
+      "maxCorrective": 3
+     },
+     {
+      "continueAfterWrites": true,
+      "feedBackFailedWrites": true
+     }
+    ],
+    "output": {
+     "action": "continue",
+     "corrective": false,
+     "final": false
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "kind": "write",
+       "result": {
+        "ok": false,
+        "content": "failed",
+        "trace": "t"
+       }
+      }
+     ],
+     1,
+     0,
+     {
+      "maxSteps": 6,
+      "maxCorrective": 3
+     },
+     {
+      "continueAfterWrites": true,
+      "feedBackFailedWrites": false
+     }
+    ],
+    "output": {
+     "action": "end",
+     "reason": "writes_done"
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "kind": "write",
+       "result": {
+        "ok": false,
+        "content": "failed",
+        "trace": "t"
+       }
+      }
+     ],
+     6,
+     0,
+     {
+      "maxSteps": 6,
+      "maxCorrective": 3
+     },
+     {
+      "continueAfterWrites": true,
+      "feedBackFailedWrites": true
+     }
+    ],
+    "output": {
+     "action": "end",
+     "reason": "step_limit"
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "kind": "write",
+       "result": {
+        "ok": true,
+        "content": "done",
+        "trace": "t"
+       }
+      }
+     ],
+     6,
+     0,
+     {
+      "maxSteps": 6,
+      "maxCorrective": 3
+     },
+     {
+      "continueAfterWrites": true,
+      "feedBackFailedWrites": true
+     }
+    ],
+    "output": {
+     "action": "end",
+     "reason": "writes_done"
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "kind": "navigate",
+       "result": {
+        "ok": true,
+        "content": "done",
+        "trace": "t"
+       }
+      },
+      {
+       "kind": "write",
+       "result": {
+        "ok": false,
+        "content": "failed",
+        "trace": "t"
+       }
+      }
+     ],
+     2,
+     0,
+     {
+      "maxSteps": 0,
+      "maxCorrective": 3
+     },
+     {
+      "continueAfterWrites": true,
+      "feedBackFailedWrites": true
+     }
+    ],
+    "output": {
+     "action": "continue",
+     "corrective": false,
+     "final": false
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "kind": "read",
+       "result": {
+        "ok": true,
+        "content": "done",
+        "trace": "t"
+       }
+      }
+     ],
+     99,
+     0,
+     {
+      "maxSteps": 0,
+      "maxCorrective": 3
+     },
+     {
+      "continueAfterWrites": false,
+      "feedBackFailedWrites": false
+     }
+    ],
+    "output": {
+     "action": "continue",
+     "corrective": false,
+     "final": false
+    }
+   }
+  ]
+ }
+}

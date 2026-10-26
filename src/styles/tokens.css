@@ -1,0 +1,70 @@
+:root {
+  /* Color Palette - Minimal Monochrome Dark (Open WebUI inspired) */
+  --bg-primary: #0d0d0d;
+  --bg-secondary: #171717;
+  --bg-tertiary: #262626;
+  --bg-glass: rgba(23, 23, 23, 0.72);
+  --bg-glass-hover: rgba(38, 38, 38, 0.85);
+
+  --text-primary: #ececec;
+  --text-secondary: #b4b4b4;
+  --text-muted: #7b7b7b;
+
+  --accent: #dde1e8; /* Soft cool-gray accent (slight blue undertone) */
+  --accent-hover: #eef0f4;
+  --accent-text: #1b1e24; /* Text/icon color on top of an accent fill */
+  --accent-glow: rgba(180, 190, 210, 0.1);
+  --accent-border: rgba(190, 200, 215, 0.24);
+
+  --border-color: #2a2a2a;
+  --border-color-hover: #404040;
+
+  --diff-add-bg: rgba(16, 185, 129, 0.15); /* Soft emerald green for addition */
+  --diff-add-text: #34d399;
+  --diff-remove-bg: rgba(239, 68, 68, 0.15); /* Soft rose red for deletion */
+  --diff-remove-text: #f87171;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 2px 8px -2px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 32px -8px rgba(0, 0, 0, 0.6);
+
+  /* Fonts */
+  --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-editor: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-md: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light Theme Variables (when [data-theme="light"] is active) */
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9f9f9;
+  --bg-tertiary: #ececec;
+  --bg-glass: rgba(255, 255, 255, 0.85);
+  --bg-glass-hover: rgba(236, 236, 236, 0.92);
+
+  --text-primary: #1a1a1a;
+  --text-secondary: #5a5a5a;
+  --text-muted: #9b9b9b;
+
+  --accent: #2b303b; /* Soft cool-slate accent (slight blue undertone) */
+  --accent-hover: #1b1f27;
+  --accent-text: #ffffff; /* Text/icon color on top of an accent fill */
+  --accent-glow: rgba(43, 48, 59, 0.08);
+  --accent-border: rgba(43, 48, 59, 0.2);
+
+  --border-color: #e5e5e5;
+  --border-color-hover: #d4d4d4;
+
+  --diff-add-bg: rgba(16, 185, 129, 0.1);
+  --diff-add-text: #059669;
+  --diff-remove-bg: rgba(225, 29, 72, 0.1);
+  --diff-remove-text: #e11d48;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 2px 8px -2px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 32px -8px rgba(0, 0, 0, 0.12);
+}

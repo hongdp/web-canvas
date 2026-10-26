@@ -1,0 +1,265 @@
+{
+ "module": "freshness",
+ "cases": {
+  "accepted_hash": [
+   {
+    "input": [
+     "<p>beta <ins class=\"diff-addition\" data-diff-id=\"x\">new</ins></p>"
+    ],
+    "output": "1l87h96-15"
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": "ztntfp-0"
+   },
+   {
+    "input": [
+     "<p>x</p>"
+    ],
+    "output": "keeiu0-8"
+   }
+  ],
+  "freshness_markers": [
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "content": "<p>alpha</p>"
+      },
+      {
+       "id": "b",
+       "content": "<p>beta <ins class=\"diff-addition\" data-diff-id=\"x\">new</ins></p>"
+      },
+      {
+       "id": "c",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d",
+       "content": "<p>delta</p>"
+      },
+      {
+       "id": "e",
+       "content": "<p>eps</p>"
+      }
+     ],
+     "a",
+     [
+      "b"
+     ],
+     {},
+     1
+    ],
+    "output": {
+     "markers": {
+      "b": "in context"
+     },
+     "seen": {
+      "a": {
+       "hash": "1w0v0uc-12",
+       "turn": 1
+      },
+      "b": {
+       "hash": "1l87h96-15",
+       "turn": 1
+      }
+     }
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "content": "<p>alpha</p>"
+      },
+      {
+       "id": "b",
+       "content": "<p>beta <ins class=\"diff-addition\" data-diff-id=\"x\">new</ins></p>"
+      },
+      {
+       "id": "c",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d",
+       "content": "<p>delta</p>"
+      },
+      {
+       "id": "e",
+       "content": "<p>eps</p>"
+      }
+     ],
+     "a",
+     [
+      "b",
+      "c"
+     ],
+     {
+      "b": {
+       "hash": "old",
+       "turn": 0
+      },
+      "c": {
+       "hash": "old",
+       "turn": 0
+      },
+      "d": {
+       "hash": "lri4be-12",
+       "turn": 0
+      },
+      "e": {
+       "hash": "old",
+       "turn": 0
+      }
+     },
+     2
+    ],
+    "output": {
+     "markers": {
+      "b": "in context — CHANGED since you last saw it; the text here replaces the earlier one",
+      "c": "in context",
+      "d": "read earlier, not in context",
+      "e": "changed since you read it"
+     },
+     "seen": {
+      "b": {
+       "hash": "1l87h96-15",
+       "turn": 2
+      },
+      "c": {
+       "hash": "ztntfp-0",
+       "turn": 2
+      },
+      "d": {
+       "hash": "lri4be-12",
+       "turn": 0
+      },
+      "e": {
+       "hash": "old",
+       "turn": 0
+      },
+      "a": {
+       "hash": "1w0v0uc-12",
+       "turn": 2
+      }
+     }
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "content": "<p>alpha</p>"
+      },
+      {
+       "id": "b",
+       "content": "<p>beta <ins class=\"diff-addition\" data-diff-id=\"x\">new</ins></p>"
+      },
+      {
+       "id": "c",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d",
+       "content": "<p>delta</p>"
+      },
+      {
+       "id": "e",
+       "content": "<p>eps</p>"
+      }
+     ],
+     null,
+     [],
+     {
+      "c": {
+       "hash": "x",
+       "turn": 0
+      },
+      "a": {
+       "hash": "1w0v0uc-12",
+       "turn": 0
+      }
+     },
+     3
+    ],
+    "output": {
+     "markers": {
+      "a": "read earlier, not in context",
+      "c": "read earlier, not in context"
+     },
+     "seen": {
+      "c": {
+       "hash": "x",
+       "turn": 0
+      },
+      "a": {
+       "hash": "1w0v0uc-12",
+       "turn": 0
+      }
+     }
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "content": "<p>alpha</p>"
+      },
+      {
+       "id": "b",
+       "content": "<p>beta <ins class=\"diff-addition\" data-diff-id=\"x\">new</ins></p>"
+      },
+      {
+       "id": "c",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d",
+       "content": "<p>delta</p>"
+      },
+      {
+       "id": "e",
+       "content": "<p>eps</p>"
+      }
+     ],
+     "a",
+     [
+      "b"
+     ],
+     {
+      "b": {
+       "hash": "1l87h96-15",
+       "turn": 0
+      }
+     },
+     4
+    ],
+    "output": {
+     "markers": {
+      "b": "in context"
+     },
+     "seen": {
+      "b": {
+       "hash": "1l87h96-15",
+       "turn": 4
+      },
+      "a": {
+       "hash": "1w0v0uc-12",
+       "turn": 4
+      }
+     }
+    }
+   }
+  ]
+ }
+}

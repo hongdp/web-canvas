@@ -1,0 +1,898 @@
+{
+ "module": "reasoning_effort",
+ "cases": {
+  "supported_reasoning_efforts": [
+   {
+    "input": [
+     "grok",
+     "grok-4.20-0309-reasoning"
+    ],
+    "output": [
+     "default"
+    ]
+   },
+   {
+    "input": [
+     "grok",
+     "grok-4.7"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high",
+     "xhigh"
+    ]
+   },
+   {
+    "input": [
+     "grok",
+     "grok-4.5"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "grok",
+     "grok-3-mini"
+    ],
+    "output": [
+     "default",
+     "low",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "grok",
+     "grok-3"
+    ],
+    "output": [
+     "default"
+    ]
+   },
+   {
+    "input": [
+     "moonshot",
+     "kimi-k3"
+    ],
+    "output": [
+     "default",
+     "low",
+     "high",
+     "xhigh"
+    ]
+   },
+   {
+    "input": [
+     "moonshot",
+     "kimi-k2.6"
+    ],
+    "output": [
+     "default"
+    ]
+   },
+   {
+    "input": [
+     "moonshot",
+     "kimi-k2.7-code"
+    ],
+    "output": [
+     "default"
+    ]
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-5"
+    ],
+    "output": [
+     "default",
+     "minimal",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-5-mini"
+    ],
+    "output": [
+     "default",
+     "minimal",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-5-2025-08-07"
+    ],
+    "output": [
+     "default",
+     "minimal",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-5-codex"
+    ],
+    "output": [
+     "default"
+    ]
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-5.1"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-5.1-codex"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-5.10"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high",
+     "xhigh"
+    ]
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-5.2"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high",
+     "xhigh"
+    ]
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-5.6-luna"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high",
+     "xhigh"
+    ]
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-6.1-sol"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high",
+     "xhigh"
+    ]
+   },
+   {
+    "input": [
+     "openai",
+     "o3"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "openai",
+     "o4-mini"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-4o"
+    ],
+    "output": [
+     "default"
+    ]
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-4.1"
+    ],
+    "output": [
+     "default"
+    ]
+   },
+   {
+    "input": [
+     "gemini",
+     "gemini-2.5-flash"
+    ],
+    "output": [
+     "default",
+     "minimal",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "gemini",
+     "gemini-1.5-pro"
+    ],
+    "output": [
+     "default"
+    ]
+   },
+   {
+    "input": [
+     "gemini",
+     "gemini-3.8-flash"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "gemini",
+     "gemini-3.1-pro-preview"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "gemini",
+     "gemini-flash-latest"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "gemini",
+     "gemini-10-flash"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "gemini",
+     "gemma-4-31b-it"
+    ],
+    "output": [
+     "default"
+    ]
+   },
+   {
+    "input": [
+     "ollama",
+     "x"
+    ],
+    "output": [
+     "default"
+    ]
+   },
+   {
+    "input": [
+     "nope",
+     "y"
+    ],
+    "output": [
+     "default"
+    ]
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-sonnet-5-5"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high",
+     "xhigh"
+    ]
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-haiku-5-5"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high",
+     "xhigh"
+    ]
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-opus-5"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high",
+     "xhigh"
+    ]
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-fable-5-1"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high",
+     "xhigh"
+    ]
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-opus-4-8"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high",
+     "xhigh"
+    ]
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-opus-4-7"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high",
+     "xhigh"
+    ]
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-opus-4-6"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-sonnet-4-6"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-opus-4-5-20251101"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-haiku-4-5-20251001"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-3-7-sonnet-latest"
+    ],
+    "output": [
+     "default",
+     "low",
+     "medium",
+     "high"
+    ]
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-3-5-sonnet"
+    ],
+    "output": [
+     "default"
+    ]
+   }
+  ],
+  "resolve_reasoning_effort": [
+   {
+    "input": [
+     "anthropic",
+     "claude-sonnet-5-5",
+     null
+    ],
+    "output": "low"
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-sonnet-5-5",
+     "default"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-sonnet-5-5",
+     "xhigh"
+    ],
+    "output": "xhigh"
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-opus-4-6",
+     "xhigh"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-3-5-sonnet",
+     "high"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "grok",
+     "grok-4.7",
+     "minimal"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-5",
+     "minimal"
+    ],
+    "output": "minimal"
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-5.1",
+     "minimal"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-6.1-sol",
+     "xhigh"
+    ],
+    "output": "xhigh"
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-4o",
+     "low"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "moonshot",
+     "kimi-k3",
+     null
+    ],
+    "output": "low"
+   },
+   {
+    "input": [
+     "moonshot",
+     "kimi-k3",
+     "xhigh"
+    ],
+    "output": "xhigh"
+   },
+   {
+    "input": [
+     "moonshot",
+     "kimi-k3",
+     "medium"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "moonshot",
+     "kimi-k2.6",
+     "high"
+    ],
+    "output": null
+   }
+  ],
+  "moonshot_thinking": [
+   {
+    "input": [
+     "kimi-k3",
+     "low"
+    ],
+    "output": {
+     "reasoning_effort": "low"
+    }
+   },
+   {
+    "input": [
+     "kimi-k3",
+     "xhigh"
+    ],
+    "output": {
+     "reasoning_effort": "max"
+    }
+   },
+   {
+    "input": [
+     "kimi-k3",
+     null
+    ],
+    "output": {}
+   },
+   {
+    "input": [
+     "kimi-k2.6",
+     null
+    ],
+    "output": {
+     "thinking": {
+      "type": "enabled",
+      "keep": "all"
+     }
+    }
+   },
+   {
+    "input": [
+     "kimi-k2.6",
+     "high"
+    ],
+    "output": {
+     "thinking": {
+      "type": "enabled",
+      "keep": "all"
+     }
+    }
+   },
+   {
+    "input": [
+     "kimi-k2.7-code",
+     null
+    ],
+    "output": {}
+   },
+   {
+    "input": [
+     "moonshot-v1-8k",
+     "low"
+    ],
+    "output": {}
+   }
+  ],
+  "gemini_thinking": [
+   {
+    "input": [
+     "gemini-3.8-flash",
+     null
+    ],
+    "output": {
+     "includeThoughts": true
+    }
+   },
+   {
+    "input": [
+     "gemini-3.8-flash",
+     "low"
+    ],
+    "output": {
+     "thinkingLevel": "low",
+     "includeThoughts": true
+    }
+   },
+   {
+    "input": [
+     "gemini-pro-latest",
+     "high"
+    ],
+    "output": {
+     "thinkingLevel": "high",
+     "includeThoughts": true
+    }
+   },
+   {
+    "input": [
+     "gemini-2.5-pro",
+     "medium"
+    ],
+    "output": {
+     "thinkingBudget": 4096,
+     "includeThoughts": true
+    }
+   },
+   {
+    "input": [
+     "gemini-2.5-flash",
+     "minimal"
+    ],
+    "output": {
+     "thinkingBudget": 512,
+     "includeThoughts": true
+    }
+   },
+   {
+    "input": [
+     "gemini-1.5-pro",
+     "low"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "gemma-4-31b-it",
+     "low"
+    ],
+    "output": null
+   }
+  ],
+  "reasoning_budget_tokens": [
+   {
+    "input": [
+     "minimal"
+    ],
+    "output": 512
+   },
+   {
+    "input": [
+     "low"
+    ],
+    "output": 1024
+   },
+   {
+    "input": [
+     "medium"
+    ],
+    "output": 4096
+   },
+   {
+    "input": [
+     "high"
+    ],
+    "output": 16384
+   },
+   {
+    "input": [
+     "xhigh"
+    ],
+    "output": 32768
+   }
+  ],
+  "anthropic_thinking": [
+   {
+    "input": [
+     "claude-sonnet-5-5",
+     null,
+     16384
+    ],
+    "output": {}
+   },
+   {
+    "input": [
+     "claude-sonnet-5-5",
+     "low",
+     16384
+    ],
+    "output": {
+     "thinking": {
+      "type": "adaptive",
+      "display": "summarized"
+     },
+     "output_config": {
+      "effort": "low"
+     }
+    }
+   },
+   {
+    "input": [
+     "claude-opus-4-7",
+     "xhigh",
+     16384
+    ],
+    "output": {
+     "thinking": {
+      "type": "adaptive",
+      "display": "summarized"
+     },
+     "output_config": {
+      "effort": "xhigh"
+     }
+    }
+   },
+   {
+    "input": [
+     "claude-opus-4-6",
+     "minimal",
+     16384
+    ],
+    "output": {
+     "thinking": {
+      "type": "adaptive",
+      "display": "summarized"
+     },
+     "output_config": {
+      "effort": "low"
+     }
+    }
+   },
+   {
+    "input": [
+     "claude-sonnet-4-6",
+     "high",
+     16384
+    ],
+    "output": {
+     "thinking": {
+      "type": "adaptive",
+      "display": "summarized"
+     },
+     "output_config": {
+      "effort": "high"
+     }
+    }
+   },
+   {
+    "input": [
+     "claude-haiku-4-5-20251001",
+     "high",
+     16384
+    ],
+    "output": {
+     "thinking": {
+      "type": "enabled",
+      "budget_tokens": 8192
+     }
+    }
+   },
+   {
+    "input": [
+     "claude-haiku-4-5-20251001",
+     "high",
+     3000
+    ],
+    "output": {
+     "thinking": {
+      "type": "enabled",
+      "budget_tokens": 1500
+     }
+    }
+   },
+   {
+    "input": [
+     "claude-sonnet-4-5-20250929",
+     "low",
+     2000
+    ],
+    "output": {}
+   },
+   {
+    "input": [
+     "claude-3-7-sonnet-latest",
+     "medium",
+     8192
+    ],
+    "output": {
+     "thinking": {
+      "type": "enabled",
+      "budget_tokens": 4096
+     }
+    }
+   }
+  ]
+ }
+}

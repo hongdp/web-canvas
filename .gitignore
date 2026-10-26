@@ -1,0 +1,56 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+# local env files
+.env
+.env.*
+!.env.example
+*.local
+
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local storage directories
+storage/
+test_storage_dir/
+tmp/
+
+# Local private configuration
+public/sensitive_words.json
+
+# Python artifacts
+__pycache__/
+*.pyc
+
+# Local SQLite database (not on network mounts)
+.local_db/
+
+# Local self-signed dev TLS cert (regenerate via certs/san.cnf)
+certs/dev-key.pem
+
+# Local agent worktrees and session state
+.claude/
+
+# Release archives (npm run release)
+release/
+
+# Local TLS material (the dev cert is generated per machine; see docs/deployment.md)
+certs/*.pem

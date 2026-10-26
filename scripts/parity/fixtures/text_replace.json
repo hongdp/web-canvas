@@ -1,0 +1,225 @@
+{
+ "module": "text_replace",
+ "cases": {
+  "escape_html_text": [
+   {
+    "input": [
+     "a<b>&c"
+    ],
+    "output": "a&lt;b&gt;&amp;c"
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": ""
+   }
+  ],
+  "expand_replacement": [
+   {
+    "input": [
+     "[$1]",
+     "ab",
+     [
+      "a"
+     ]
+    ],
+    "output": "[a]"
+   },
+   {
+    "input": [
+     "$&-$&",
+     "x",
+     []
+    ],
+    "output": "x-x"
+   },
+   {
+    "input": [
+     "$$1",
+     "x",
+     [
+      "y"
+     ]
+    ],
+    "output": "$1"
+   },
+   {
+    "input": [
+     "$12",
+     "x",
+     [
+      "a"
+     ]
+    ],
+    "output": "a2"
+   },
+   {
+    "input": [
+     "$12",
+     "x",
+     [
+      "g1",
+      "g2",
+      "g3",
+      "g4",
+      "g5",
+      "g6",
+      "g7",
+      "g8",
+      "g9",
+      "g10",
+      "g11",
+      "g12"
+     ]
+    ],
+    "output": "g12"
+   },
+   {
+    "input": [
+     "$2",
+     "x",
+     [
+      "a"
+     ]
+    ],
+    "output": "$2"
+   },
+   {
+    "input": [
+     "end$",
+     "x",
+     []
+    ],
+    "output": "end$"
+   }
+  ],
+  "replace_in_html_text": [
+   {
+    "input": [
+     "<p>阿禾走了。阿禾回来。</p><p class=\"阿禾\"><img alt=\"阿禾\" src=\"阿禾.png\">阿禾</p>",
+     "阿禾",
+     "阿棠"
+    ],
+    "output": {
+     "html": "<p>阿棠走了。阿棠回来。</p><p class=\"阿禾\"><img alt=\"阿禾\" src=\"阿禾.png\">阿棠</p>",
+     "count": 3,
+     "samples": [
+      "…[阿禾→阿棠]走了。阿禾回来。…",
+      "…阿禾走了。[阿禾→阿棠]回来。…",
+      "…[阿禾→阿棠]…"
+     ]
+    }
+   },
+   {
+    "input": [
+     "<p>a & b</p>",
+     "&",
+     "and"
+    ],
+    "output": {
+     "html": "<p>a & b</p>",
+     "count": 0,
+     "samples": []
+    }
+   },
+   {
+    "input": [
+     "<p>x</p>",
+     "y",
+     "z"
+    ],
+    "output": {
+     "html": "<p>x</p>",
+     "count": 0,
+     "samples": []
+    }
+   },
+   {
+    "input": [
+     "<p>王小明和王小红</p>",
+     "王(小.)",
+     "李$1",
+     true
+    ],
+    "output": {
+     "html": "<p>李小明和李小红</p>",
+     "count": 2,
+     "samples": [
+      "…[王小明→李小明]和王小红…",
+      "…王小明和[王小红→李小红]…"
+     ]
+    }
+   },
+   {
+    "input": [
+     "<p>abc</p>",
+     "b*",
+     "x",
+     true
+    ],
+    "output": {
+     "html": "<p>abc</p>",
+     "count": 0,
+     "samples": [],
+     "error": "the pattern matches empty text; it would insert the replacement everywhere"
+    }
+   },
+   {
+    "input": [
+     "<p>abc</p>",
+     "(",
+     "x",
+     true
+    ],
+    "output": {
+     "html": "<p>abc</p>",
+     "count": 0,
+     "samples": [],
+     "error": "invalid regular expression (check brackets, parentheses and escapes)"
+    }
+   },
+   {
+    "input": [
+     "<p>abc</p>",
+     "",
+     "x"
+    ],
+    "output": {
+     "html": "<p>abc</p>",
+     "count": 0,
+     "samples": [],
+     "error": "find was empty"
+    }
+   },
+   {
+    "input": [
+     "<p>前前前前前前前前前前前前前前前前前前前前阿禾后后后后后后后后后后后后后后后后后后后后阿禾阿禾阿禾</p>",
+     "阿禾",
+     "阿棠"
+    ],
+    "output": {
+     "html": "<p>前前前前前前前前前前前前前前前前前前前前阿棠后后后后后后后后后后后后后后后后后后后后阿棠阿棠阿棠</p>",
+     "count": 4,
+     "samples": [
+      "…前前前前前前前前前前前前[阿禾→阿棠]后后后后后后后后后后后后…",
+      "…后后后后后后后后后后后后[阿禾→阿棠]阿禾阿禾…",
+      "…后后后后后后后后后后阿禾[阿禾→阿棠]阿禾…"
+     ]
+    }
+   },
+   {
+    "input": [
+     "<p>老王<strong>家</strong>的</p>",
+     "王家",
+     "李家"
+    ],
+    "output": {
+     "html": "<p>老王<strong>家</strong>的</p>",
+     "count": 0,
+     "samples": []
+    }
+   }
+  ]
+ }
+}

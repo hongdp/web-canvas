@@ -1,0 +1,1445 @@
+{
+ "module": "context_ledger",
+ "cases": {
+  "hash_content": [
+   {
+    "input": [
+     ""
+    ],
+    "output": "ztntfp-0"
+   },
+   {
+    "input": [
+     "abc"
+    ],
+    "output": "7aigaz-3"
+   },
+   {
+    "input": [
+     "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+    ],
+    "output": "1nkb88s-288"
+   },
+   {
+    "input": [
+     "😀 emoji"
+    ],
+    "output": "vhhzna-8"
+   },
+   {
+    "input": [
+     "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    ],
+    "output": "r0nrad-5000"
+   }
+  ],
+  "plan_ledger_turn": [
+   {
+    "input": [
+     {
+      "entries": []
+     },
+     [
+      "d1",
+      "d2"
+     ],
+     [
+      {
+       "id": "d1",
+       "chars": 100,
+       "hash": "h1"
+      },
+      {
+       "id": "d2",
+       "chars": 2000,
+       "hash": "h2"
+      },
+      {
+       "id": "d3",
+       "chars": 300,
+       "hash": "h3"
+      },
+      {
+       "id": "d4",
+       "chars": 400,
+       "hash": "h4"
+      }
+     ],
+     "d3"
+    ],
+    "output": {
+     "ledger": {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       },
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000
+       }
+      ]
+     },
+     "cachedPrefixCount": 0,
+     "cachedPrefixChars": 0,
+     "resentIds": [],
+     "appendedIds": [
+      "d1",
+      "d2"
+     ],
+     "drops": [],
+     "resendChars": 2100,
+     "updatedIds": [],
+     "staleChars": 0
+    }
+   },
+   {
+    "input": [
+     {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       },
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       }
+      ]
+     },
+     [
+      "d1",
+      "d2",
+      "d3"
+     ],
+     [
+      {
+       "id": "d1",
+       "chars": 100,
+       "hash": "h1"
+      },
+      {
+       "id": "d2",
+       "chars": 2000,
+       "hash": "h2"
+      },
+      {
+       "id": "d3",
+       "chars": 300,
+       "hash": "h3"
+      },
+      {
+       "id": "d4",
+       "chars": 400,
+       "hash": "h4"
+      }
+     ],
+     null
+    ],
+    "output": {
+     "ledger": {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       },
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       }
+      ]
+     },
+     "cachedPrefixCount": 3,
+     "cachedPrefixChars": 2400,
+     "resentIds": [],
+     "appendedIds": [],
+     "drops": [],
+     "resendChars": 0,
+     "updatedIds": [],
+     "staleChars": 0
+    }
+   },
+   {
+    "input": [
+     {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       },
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       }
+      ]
+     },
+     [
+      "d1",
+      "d3"
+     ],
+     [
+      {
+       "id": "d1",
+       "chars": 100,
+       "hash": "h1"
+      },
+      {
+       "id": "d2",
+       "chars": 2000,
+       "hash": "h2"
+      },
+      {
+       "id": "d3",
+       "chars": 300,
+       "hash": "h3"
+      },
+      {
+       "id": "d4",
+       "chars": 400,
+       "hash": "h4"
+      }
+     ],
+     null
+    ],
+    "output": {
+     "ledger": {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       }
+      ]
+     },
+     "cachedPrefixCount": 1,
+     "cachedPrefixChars": 100,
+     "resentIds": [
+      "d3"
+     ],
+     "appendedIds": [],
+     "drops": [
+      {
+       "id": "d2",
+       "reason": "user-removed"
+      }
+     ],
+     "resendChars": 300,
+     "updatedIds": [],
+     "staleChars": 0
+    }
+   },
+   {
+    "input": [
+     {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "old",
+        "chars": 100
+       },
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       }
+      ]
+     },
+     [
+      "d1",
+      "d2",
+      "d3"
+     ],
+     [
+      {
+       "id": "d1",
+       "chars": 100,
+       "hash": "h1"
+      },
+      {
+       "id": "d2",
+       "chars": 2000,
+       "hash": "h2"
+      },
+      {
+       "id": "d3",
+       "chars": 300,
+       "hash": "h3"
+      },
+      {
+       "id": "d4",
+       "chars": 400,
+       "hash": "h4"
+      }
+     ],
+     null
+    ],
+    "output": {
+     "ledger": {
+      "entries": [
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       },
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       }
+      ]
+     },
+     "cachedPrefixCount": 0,
+     "cachedPrefixChars": 0,
+     "resentIds": [
+      "d2",
+      "d3"
+     ],
+     "appendedIds": [
+      "d1"
+     ],
+     "drops": [
+      {
+       "id": "d1",
+       "reason": "edited"
+      }
+     ],
+     "resendChars": 2400,
+     "updatedIds": [],
+     "staleChars": 0
+    }
+   },
+   {
+    "input": [
+     {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "old",
+        "chars": 100
+       },
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       }
+      ]
+     },
+     [
+      "d1",
+      "d2",
+      "d3"
+     ],
+     [
+      {
+       "id": "d1",
+       "chars": 100,
+       "hash": "h1"
+      },
+      {
+       "id": "d2",
+       "chars": 2000,
+       "hash": "h2"
+      },
+      {
+       "id": "d3",
+       "chars": 300,
+       "hash": "h3"
+      },
+      {
+       "id": "d4",
+       "chars": 400,
+       "hash": "h4"
+      }
+     ],
+     null,
+     {
+      "render": true
+     }
+    ],
+    "output": {
+     "ledger": {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "old",
+        "chars": 100,
+        "stale": true
+       },
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       },
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100,
+        "text": "[update:d1]"
+       }
+      ]
+     },
+     "cachedPrefixCount": 3,
+     "cachedPrefixChars": 2400,
+     "resentIds": [],
+     "appendedIds": [],
+     "drops": [],
+     "resendChars": 100,
+     "updatedIds": [
+      "d1"
+     ],
+     "staleChars": 100
+    }
+   },
+   {
+    "input": [
+     {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       },
+       {
+        "id": "d2",
+        "hash": "old",
+        "chars": 2000
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       }
+      ]
+     },
+     [
+      "d1",
+      "d2",
+      "d3"
+     ],
+     [
+      {
+       "id": "d1",
+       "chars": 100,
+       "hash": "h1"
+      },
+      {
+       "id": "d2",
+       "chars": 2000,
+       "hash": "h2"
+      },
+      {
+       "id": "d3",
+       "chars": 300,
+       "hash": "h3"
+      },
+      {
+       "id": "d4",
+       "chars": 400,
+       "hash": "h4"
+      }
+     ],
+     null,
+     {
+      "render": true
+     }
+    ],
+    "output": {
+     "ledger": {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300,
+        "text": "[fresh:d3]"
+       },
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000,
+        "text": "[fresh:d2]"
+       }
+      ]
+     },
+     "cachedPrefixCount": 1,
+     "cachedPrefixChars": 100,
+     "resentIds": [
+      "d3"
+     ],
+     "appendedIds": [
+      "d2"
+     ],
+     "drops": [
+      {
+       "id": "d2",
+       "reason": "edited"
+      }
+     ],
+     "resendChars": 2300,
+     "updatedIds": [],
+     "staleChars": 0
+    }
+   },
+   {
+    "input": [
+     {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       },
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       }
+      ]
+     },
+     [
+      "d1",
+      "d2",
+      "d3"
+     ],
+     [
+      {
+       "id": "d1",
+       "chars": 100,
+       "hash": "h1"
+      },
+      {
+       "id": "d2",
+       "chars": 2000,
+       "hash": "h2"
+      },
+      {
+       "id": "d3",
+       "chars": 300,
+       "hash": "h3"
+      },
+      {
+       "id": "d4",
+       "chars": 400,
+       "hash": "h4"
+      }
+     ],
+     "d2",
+     {
+      "render": true
+     }
+    ],
+    "output": {
+     "ledger": {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300,
+        "text": "[fresh:d3]"
+       }
+      ]
+     },
+     "cachedPrefixCount": 1,
+     "cachedPrefixChars": 100,
+     "resentIds": [
+      "d3"
+     ],
+     "appendedIds": [],
+     "drops": [
+      {
+       "id": "d2",
+       "reason": "now-active"
+      }
+     ],
+     "resendChars": 300,
+     "updatedIds": [],
+     "staleChars": 0
+    }
+   },
+   {
+    "input": [
+     {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "old",
+        "chars": 100,
+        "stale": true
+       },
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000
+       },
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100,
+        "text": "[update:d1]"
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       }
+      ]
+     },
+     [
+      "d1",
+      "d2",
+      "d3",
+      "d4"
+     ],
+     [
+      {
+       "id": "d1",
+       "chars": 100,
+       "hash": "h1"
+      },
+      {
+       "id": "d2",
+       "chars": 2000,
+       "hash": "h2"
+      },
+      {
+       "id": "d3",
+       "chars": 300,
+       "hash": "h3"
+      },
+      {
+       "id": "d4",
+       "chars": 400,
+       "hash": "h4"
+      }
+     ],
+     null,
+     {
+      "render": true,
+      "maxStaleChars": 50
+     }
+    ],
+    "output": {
+     "ledger": {
+      "entries": [
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000,
+        "text": "[fresh:d2]"
+       },
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100,
+        "text": "[fresh:d1]"
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300,
+        "text": "[fresh:d3]"
+       },
+       {
+        "id": "d4",
+        "hash": "h4",
+        "chars": 400,
+        "text": "[fresh:d4]"
+       }
+      ]
+     },
+     "cachedPrefixCount": 0,
+     "cachedPrefixChars": 0,
+     "resentIds": [
+      "d2",
+      "d1",
+      "d3"
+     ],
+     "appendedIds": [
+      "d4"
+     ],
+     "drops": [],
+     "resendChars": 2800,
+     "updatedIds": [],
+     "staleChars": 0
+    }
+   },
+   {
+    "input": [
+     {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "old",
+        "chars": 100,
+        "stale": true
+       },
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000
+       },
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100,
+        "text": "[update:d1]"
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       }
+      ]
+     },
+     [
+      "d1",
+      "d2",
+      "d3",
+      "d4"
+     ],
+     [
+      {
+       "id": "d1",
+       "chars": 100,
+       "hash": "h1"
+      },
+      {
+       "id": "d2",
+       "chars": 2000,
+       "hash": "h2"
+      },
+      {
+       "id": "d3",
+       "chars": 300,
+       "hash": "h3"
+      },
+      {
+       "id": "d4",
+       "chars": 400,
+       "hash": "h4"
+      }
+     ],
+     null,
+     {
+      "render": true
+     }
+    ],
+    "output": {
+     "ledger": {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "old",
+        "chars": 100,
+        "stale": true
+       },
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000
+       },
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100,
+        "text": "[update:d1]"
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       },
+       {
+        "id": "d4",
+        "hash": "h4",
+        "chars": 400,
+        "text": "[fresh:d4]"
+       }
+      ]
+     },
+     "cachedPrefixCount": 4,
+     "cachedPrefixChars": 2500,
+     "resentIds": [],
+     "appendedIds": [
+      "d4"
+     ],
+     "drops": [],
+     "resendChars": 400,
+     "updatedIds": [],
+     "staleChars": 100
+    }
+   },
+   {
+    "input": [
+     {
+      "entries": [
+       {
+        "id": "gone",
+        "hash": "g",
+        "chars": 10
+       },
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000
+       }
+      ]
+     },
+     [
+      "d2",
+      "d2",
+      "d4",
+      "nope"
+     ],
+     [
+      {
+       "id": "d1",
+       "chars": 100,
+       "hash": "h1"
+      },
+      {
+       "id": "d2",
+       "chars": 2000,
+       "hash": "h2"
+      },
+      {
+       "id": "d3",
+       "chars": 300,
+       "hash": "h3"
+      },
+      {
+       "id": "d4",
+       "chars": 400,
+       "hash": "h4"
+      }
+     ],
+     "d4"
+    ],
+    "output": {
+     "ledger": {
+      "entries": [
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000
+       }
+      ]
+     },
+     "cachedPrefixCount": 0,
+     "cachedPrefixChars": 0,
+     "resentIds": [
+      "d2"
+     ],
+     "appendedIds": [],
+     "drops": [
+      {
+       "id": "gone",
+       "reason": "user-removed"
+      }
+     ],
+     "resendChars": 2000,
+     "updatedIds": [],
+     "staleChars": 0
+    }
+   },
+   {
+    "input": [
+     {
+      "entries": [
+       {
+        "id": "d2",
+        "hash": "old",
+        "chars": 2000
+       },
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       }
+      ]
+     },
+     [
+      "d1",
+      "d2"
+     ],
+     [
+      {
+       "id": "d1",
+       "chars": 100,
+       "hash": "h1"
+      },
+      {
+       "id": "d2",
+       "chars": 2000,
+       "hash": "h2"
+      },
+      {
+       "id": "d3",
+       "chars": 300,
+       "hash": "h3"
+      },
+      {
+       "id": "d4",
+       "chars": 400,
+       "hash": "h4"
+      }
+     ],
+     null,
+     {
+      "render": true
+     }
+    ],
+    "output": {
+     "ledger": {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100,
+        "text": "[fresh:d1]"
+       },
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000,
+        "text": "[fresh:d2]"
+       }
+      ]
+     },
+     "cachedPrefixCount": 0,
+     "cachedPrefixChars": 0,
+     "resentIds": [
+      "d1"
+     ],
+     "appendedIds": [
+      "d2"
+     ],
+     "drops": [
+      {
+       "id": "d2",
+       "reason": "edited"
+      }
+     ],
+     "resendChars": 2100,
+     "updatedIds": [],
+     "staleChars": 0
+    }
+   },
+   {
+    "input": [
+     {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       },
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       }
+      ]
+     },
+     [
+      "d1",
+      "d3"
+     ],
+     [
+      {
+       "id": "d1",
+       "chars": 100,
+       "hash": "h1"
+      },
+      {
+       "id": "d2",
+       "chars": 2000,
+       "hash": "h2"
+      },
+      {
+       "id": "d3",
+       "chars": 300,
+       "hash": "h3"
+      },
+      {
+       "id": "d4",
+       "chars": 400,
+       "hash": "h4"
+      }
+     ],
+     "d2",
+     {
+      "render": true,
+      "keepIds": [
+       "d2"
+      ]
+     }
+    ],
+    "output": {
+     "ledger": {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       },
+       {
+        "id": "d2",
+        "hash": "h2",
+        "chars": 2000
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       }
+      ]
+     },
+     "cachedPrefixCount": 3,
+     "cachedPrefixChars": 2400,
+     "resentIds": [],
+     "appendedIds": [],
+     "drops": [],
+     "resendChars": 0,
+     "updatedIds": [],
+     "staleChars": 0
+    }
+   },
+   {
+    "input": [
+     {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       },
+       {
+        "id": "d2",
+        "hash": "old",
+        "chars": 2000
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       }
+      ]
+     },
+     [
+      "d1",
+      "d3"
+     ],
+     [
+      {
+       "id": "d1",
+       "chars": 100,
+       "hash": "h1"
+      },
+      {
+       "id": "d2",
+       "chars": 2000,
+       "hash": "h2"
+      },
+      {
+       "id": "d3",
+       "chars": 300,
+       "hash": "h3"
+      },
+      {
+       "id": "d4",
+       "chars": 400,
+       "hash": "h4"
+      }
+     ],
+     "d2",
+     {
+      "render": true,
+      "keepIds": [
+       "d2"
+      ]
+     }
+    ],
+    "output": {
+     "ledger": {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       },
+       {
+        "id": "d2",
+        "hash": "old",
+        "chars": 2000
+       },
+       {
+        "id": "d3",
+        "hash": "h3",
+        "chars": 300
+       }
+      ]
+     },
+     "cachedPrefixCount": 3,
+     "cachedPrefixChars": 2400,
+     "resentIds": [],
+     "appendedIds": [],
+     "drops": [],
+     "resendChars": 0,
+     "updatedIds": [],
+     "staleChars": 0
+    }
+   },
+   {
+    "input": [
+     {
+      "entries": [
+       {
+        "id": "gone",
+        "hash": "g",
+        "chars": 10
+       },
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       }
+      ]
+     },
+     [
+      "d1"
+     ],
+     [
+      {
+       "id": "d1",
+       "chars": 100,
+       "hash": "h1"
+      },
+      {
+       "id": "d2",
+       "chars": 2000,
+       "hash": "h2"
+      },
+      {
+       "id": "d3",
+       "chars": 300,
+       "hash": "h3"
+      },
+      {
+       "id": "d4",
+       "chars": 400,
+       "hash": "h4"
+      }
+     ],
+     "gone",
+     {
+      "keepIds": [
+       "gone"
+      ]
+     }
+    ],
+    "output": {
+     "ledger": {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100
+       }
+      ]
+     },
+     "cachedPrefixCount": 0,
+     "cachedPrefixChars": 0,
+     "resentIds": [
+      "d1"
+     ],
+     "appendedIds": [],
+     "drops": [
+      {
+       "id": "gone",
+       "reason": "now-active"
+      }
+     ],
+     "resendChars": 100,
+     "updatedIds": [],
+     "staleChars": 0
+    }
+   },
+   {
+    "input": [
+     {
+      "entries": []
+     },
+     [
+      "d1"
+     ],
+     [
+      {
+       "id": "d1",
+       "chars": 100,
+       "hash": "h1"
+      },
+      {
+       "id": "d2",
+       "chars": 2000,
+       "hash": "h2"
+      },
+      {
+       "id": "d3",
+       "chars": 300,
+       "hash": "h3"
+      },
+      {
+       "id": "d4",
+       "chars": 400,
+       "hash": "h4"
+      }
+     ],
+     "d2",
+     {
+      "render": true,
+      "keepIds": [
+       "d2"
+      ]
+     }
+    ],
+    "output": {
+     "ledger": {
+      "entries": [
+       {
+        "id": "d1",
+        "hash": "h1",
+        "chars": 100,
+        "text": "[fresh:d1]"
+       }
+      ]
+     },
+     "cachedPrefixCount": 0,
+     "cachedPrefixChars": 0,
+     "resentIds": [],
+     "appendedIds": [
+      "d1"
+     ],
+     "drops": [],
+     "resendChars": 100,
+     "updatedIds": [],
+     "staleChars": 0
+    }
+   }
+  ],
+  "ledger_chapter_ids": [
+   {
+    "input": [
+     {
+      "entries": [
+       {
+        "id": "a",
+        "hash": "",
+        "chars": 1
+       },
+       {
+        "id": "b",
+        "hash": "",
+        "chars": 1
+       },
+       {
+        "id": "a",
+        "hash": "",
+        "chars": 1
+       }
+      ]
+     }
+    ],
+    "output": [
+     "a",
+     "b"
+    ]
+   },
+   {
+    "input": [
+     {
+      "entries": []
+     }
+    ],
+    "output": []
+   }
+  ],
+  "order_admissions_by_stability": [
+   {
+    "input": [
+     [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     [
+      {
+       "id": "a",
+       "updatedAt": "2026-01-05T00:00:00.000Z"
+      },
+      {
+       "id": "b",
+       "updatedAt": "2025-12-01T00:00:00Z"
+      },
+      {
+       "id": "c"
+      },
+      {
+       "id": "d",
+       "updatedAt": "2025-12-01T00:00:00Z"
+      }
+     ],
+     [
+      "c",
+      "d",
+      "b",
+      "a"
+     ],
+     "c"
+    ],
+    "output": [
+     "c",
+     "b",
+     "d",
+     "a"
+    ]
+   },
+   {
+    "input": [
+     [
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     [
+      {
+       "id": "a",
+       "updatedAt": "2026-01-05T00:00:00.000Z"
+      },
+      {
+       "id": "b",
+       "updatedAt": "not-a-date"
+      },
+      {
+       "id": "c",
+       "updatedAt": "2025-06-01"
+      },
+      {
+       "id": "d",
+       "updatedAt": "2025-12-01T00:00:00Z"
+      }
+     ],
+     [
+      "c",
+      "d",
+      "b",
+      "a"
+     ],
+     null
+    ],
+    "output": [
+     "b",
+     "c",
+     "d",
+     "a"
+    ]
+   },
+   {
+    "input": [
+     [
+      "x",
+      "y"
+     ],
+     [],
+     [
+      "y",
+      "x"
+     ],
+     "x"
+    ],
+    "output": [
+     "y",
+     "x"
+    ]
+   },
+   {
+    "input": [
+     [],
+     [],
+     [],
+     null
+    ],
+    "output": []
+   }
+  ]
+ }
+}

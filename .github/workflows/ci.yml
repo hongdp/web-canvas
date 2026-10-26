@@ -1,0 +1,46 @@
+# The two suites the pre-push hook runs, on GitHub — the required checks for
+# merging into master (the "protect master" ruleset). Keep the job names:
+# they are the check contexts the ruleset names.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    name: frontend
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npx tsc -b
+      - run: npm test
+      - run: npx vite build
+
+  backend:
+    name: backend
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements-dev.txt
+      # The TypeScript↔Python parity suite reads the committed fixtures; the
+      # web tools' live paths are skipped without a browser.
+      - run: python -m pytest -q
+        working-directory: scripts

@@ -1,0 +1,1670 @@
+{
+ "module": "paragraphs",
+ "cases": {
+  "rewrite_loss": [
+   {
+    "input": [
+     "<p>甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲</p>",
+     "<p>甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲</p>"
+    ],
+    "output": {
+     "before": 300,
+     "after": 250,
+     "lostHeadings": 0,
+     "lostItems": 0
+    }
+   },
+   {
+    "input": [
+     "<p>甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲</p>",
+     "<p>甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲甲</p>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<h2>A</h2><ul><li>一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一</li><li>二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二</li><li>三</li></ul>",
+     "<h2>A</h2><ul><li>一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一一</li></ul>"
+    ],
+    "output": {
+     "before": 202,
+     "after": 251,
+     "lostHeadings": 0,
+     "lostItems": 2
+    }
+   },
+   {
+    "input": [
+     "<h1>T</h1><h2>A</h2><p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>",
+     "<h1>T</h1><p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+    ],
+    "output": {
+     "before": 302,
+     "after": 321,
+     "lostHeadings": 1,
+     "lostItems": 0
+    }
+   },
+   {
+    "input": [
+     "<p>short</p>",
+     ""
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>",
+     "<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>"
+    ],
+    "output": null
+   }
+  ],
+  "rewrite_loss_note": [
+   {
+    "input": [
+     "#3 \"时间线\"",
+     {
+      "before": 4000,
+      "after": 3000,
+      "lostHeadings": 0,
+      "lostItems": 12
+     }
+    ],
+    "output": "The rewrite of #3 \"时间线\" was NOT applied: it would take the chapter from 4000 to 3000 characters (−25%), dropping 12 list items. A whole rewrite replaces everything, so whatever it leaves out is deleted. To add to the chapter or bring it up to date, keep its text and change only what changes: edit_paragraphs (by ¶ number) or edit_document / <edit> blocks. If the user asked for it to be shorter, or its text moved to other chapters, send the same rewrite again and it will be applied."
+   },
+   {
+    "input": [
+     "#1 \"x\"",
+     {
+      "before": 300,
+      "after": 300,
+      "lostHeadings": 1,
+      "lostItems": 0
+     }
+    ],
+    "output": "The rewrite of #1 \"x\" was NOT applied: it would take the chapter from 300 to 300 characters, dropping 1 heading. A whole rewrite replaces everything, so whatever it leaves out is deleted. To add to the chapter or bring it up to date, keep its text and change only what changes: edit_paragraphs (by ¶ number) or edit_document / <edit> blocks. If the user asked for it to be shorter, or its text moved to other chapters, send the same rewrite again and it will be applied."
+   },
+   {
+    "input": [
+     "#2 \"y\"",
+     {
+      "before": 1000,
+      "after": 995,
+      "lostHeadings": 2,
+      "lostItems": 3
+     }
+    ],
+    "output": "The rewrite of #2 \"y\" was NOT applied: it would take the chapter from 1000 to 995 characters (−1%), dropping 2 headings and 3 list items. A whole rewrite replaces everything, so whatever it leaves out is deleted. To add to the chapter or bring it up to date, keep its text and change only what changes: edit_paragraphs (by ¶ number) or edit_document / <edit> blocks. If the user asked for it to be shorter, or its text moved to other chapters, send the same rewrite again and it will be applied."
+   }
+  ],
+  "block_text": [
+   {
+    "input": [
+     "<p>a&nbsp;b<br>c</p>"
+    ],
+    "output": "a b\nc"
+   },
+   {
+    "input": [
+     "<ul><li>x</li><li>y &amp; z</li></ul>"
+    ],
+    "output": "x\ny & z"
+   },
+   {
+    "input": [
+     "<p>  tail \t\n</p>"
+    ],
+    "output": "tail"
+   },
+   {
+    "input": [
+     "plain"
+    ],
+    "output": "plain"
+   }
+  ],
+  "top_level_blocks": [
+   {
+    "input": [
+     "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+    ],
+    "output": [
+     "<h1>第三章 风起</h1>",
+     "<p>阿青推开门，<strong>风</strong>从巷口灌进来。</p>",
+     "<p>她想：“该走了。”</p>",
+     "<blockquote><p>门外无人。</p></blockquote>",
+     "<ul><li>一</li><li>二 &amp; 三</li></ul>",
+     "<p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p>",
+     "<p>{{IMAGE_PLACEHOLDER_0}}</p>",
+     "<p></p>",
+     "<p>loose text here</p>",
+     "<hr>",
+     "<p>a&nbsp;b<br>c</p>"
+    ]
+   },
+   {
+    "input": [
+     "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+    ],
+    "output": [
+     "<h2>Title</h2>",
+     "<p>The cat sat on the mat.</p>",
+     "<p>It was <em>warm</em>, and &lt;quiet&gt; \"outside\" 'then'.</p>"
+    ]
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": []
+   },
+   {
+    "input": [
+     "loose only"
+    ],
+    "output": [
+     "<p>loose only</p>"
+    ]
+   },
+   {
+    "input": [
+     "<p>a</p> between <p>b</p>"
+    ],
+    "output": [
+     "<p>a</p>",
+     "<p>between</p>",
+     "<p>b</p>"
+    ]
+   },
+   {
+    "input": [
+     "<p>un &amp; closed"
+    ],
+    "output": [
+     "<p>un &amp; closed</p>"
+    ]
+   },
+   {
+    "input": [
+     "<img src=\"x\"><p>after</p>"
+    ],
+    "output": [
+     "<img src=\"x\">",
+     "<p>after</p>"
+    ]
+   },
+   {
+    "input": [
+     "<p><img src=\"y\"/></p>text &amp; more"
+    ],
+    "output": [
+     "<p><img src=\"y\"></p>",
+     "<p>text & more</p>"
+    ]
+   }
+  ],
+  "chapter_paragraphs": [
+   {
+    "input": [
+     "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+    ],
+    "output": [
+     {
+      "number": 1,
+      "html": "<h1>第三章 风起</h1>",
+      "text": "第三章 风起",
+      "kind": "heading"
+     },
+     {
+      "number": 2,
+      "html": "<p>阿青推开门，<strong>风</strong>从巷口灌进来。</p>",
+      "text": "阿青推开门，风从巷口灌进来。",
+      "kind": "paragraph"
+     },
+     {
+      "number": 3,
+      "html": "<p>她想：“该走了。”</p>",
+      "text": "她想：“该走了。”",
+      "kind": "paragraph"
+     },
+     {
+      "number": 4,
+      "html": "<blockquote><p>门外无人。</p></blockquote>",
+      "text": "门外无人。",
+      "kind": "other"
+     },
+     {
+      "number": 5,
+      "html": "<li>一</li>",
+      "text": "一",
+      "kind": "item"
+     },
+     {
+      "number": 6,
+      "html": "<li>二 &amp; 三</li>",
+      "text": "二 & 三",
+      "kind": "item"
+     },
+     {
+      "number": 7,
+      "html": "<p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p>",
+      "text": "",
+      "kind": "image"
+     },
+     {
+      "number": 8,
+      "html": "<p>{{IMAGE_PLACEHOLDER_0}}</p>",
+      "text": "",
+      "kind": "image"
+     },
+     {
+      "number": 9,
+      "html": "<p>loose text here</p>",
+      "text": "loose text here",
+      "kind": "paragraph"
+     },
+     {
+      "number": 10,
+      "html": "<p>a&nbsp;b<br>c</p>",
+      "text": "a b\nc",
+      "kind": "paragraph"
+     }
+    ]
+   },
+   {
+    "input": [
+     "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+    ],
+    "output": [
+     {
+      "number": 1,
+      "html": "<h2>Title</h2>",
+      "text": "Title",
+      "kind": "heading"
+     },
+     {
+      "number": 2,
+      "html": "<p>The cat sat on the mat.</p>",
+      "text": "The cat sat on the mat.",
+      "kind": "paragraph"
+     },
+     {
+      "number": 3,
+      "html": "<p>It was <em>warm</em>, and &lt;quiet&gt; \"outside\" 'then'.</p>",
+      "text": "It was warm, and <quiet> \"outside\" 'then'.",
+      "kind": "paragraph"
+     }
+    ]
+   },
+   {
+    "input": [
+     "<p>{{IMAGE_PLACEHOLDER_3}}</p>"
+    ],
+    "output": [
+     {
+      "number": 1,
+      "html": "<p>{{IMAGE_PLACEHOLDER_3}}</p>",
+      "text": "",
+      "kind": "image"
+     }
+    ]
+   },
+   {
+    "input": [
+     "<h1>标题</h1><p>一。</p><p></p><p><img src=\"x\"></p><ul><li>a</li><li>b</li></ul>loose"
+    ],
+    "output": [
+     {
+      "number": 1,
+      "html": "<h1>标题</h1>",
+      "text": "标题",
+      "kind": "heading"
+     },
+     {
+      "number": 2,
+      "html": "<p>一。</p>",
+      "text": "一。",
+      "kind": "paragraph"
+     },
+     {
+      "number": 3,
+      "html": "<p><img src=\"x\"></p>",
+      "text": "",
+      "kind": "image"
+     },
+     {
+      "number": 4,
+      "html": "<li>a</li>",
+      "text": "a",
+      "kind": "item"
+     },
+     {
+      "number": 5,
+      "html": "<li>b</li>",
+      "text": "b",
+      "kind": "item"
+     },
+     {
+      "number": 6,
+      "html": "<p>loose</p>",
+      "text": "loose",
+      "kind": "paragraph"
+     }
+    ]
+   },
+   {
+    "input": [
+     "<p>before <ins class=\"diff-addition\" data-diff-id=\"diff-a\">added</ins> after</p><p><del class=\"diff-deletion\" data-diff-id=\"diff-b\">gone</del>kept text</p><p><ins class=\"diff-addition\" data-diff-id=\"diff-c\">whole new paragraph</ins></p><ul><li><ins class=\"diff-addition\" data-diff-id=\"diff-d\">new item</ins></li></ul><p>old <del class=\"diff-deletion\" data-diff-id=\"diff-e\">word</del><ins data-diff-id=\"diff-e\" class=\"diff-addition\">term</ins> here</p><p><ins class=\"diff-addition\" data-diff-id=\"diff-f\">X </ins>A<ins class=\"diff-addition\" data-diff-id=\"diff-f\"> Y</ins></p>"
+    ],
+    "output": [
+     {
+      "number": 1,
+      "html": "<p>before <ins class=\"diff-addition\" data-diff-id=\"diff-a\">added</ins> after</p>",
+      "text": "before added after",
+      "kind": "paragraph"
+     },
+     {
+      "number": 2,
+      "html": "<p><del class=\"diff-deletion\" data-diff-id=\"diff-b\">gone</del>kept text</p>",
+      "text": "gonekept text",
+      "kind": "paragraph"
+     },
+     {
+      "number": 3,
+      "html": "<p><ins class=\"diff-addition\" data-diff-id=\"diff-c\">whole new paragraph</ins></p>",
+      "text": "whole new paragraph",
+      "kind": "paragraph"
+     },
+     {
+      "number": 4,
+      "html": "<li><ins class=\"diff-addition\" data-diff-id=\"diff-d\">new item</ins></li>",
+      "text": "new item",
+      "kind": "item"
+     },
+     {
+      "number": 5,
+      "html": "<p>old <del class=\"diff-deletion\" data-diff-id=\"diff-e\">word</del><ins data-diff-id=\"diff-e\" class=\"diff-addition\">term</ins> here</p>",
+      "text": "old wordterm here",
+      "kind": "paragraph"
+     },
+     {
+      "number": 6,
+      "html": "<p><ins class=\"diff-addition\" data-diff-id=\"diff-f\">X </ins>A<ins class=\"diff-addition\" data-diff-id=\"diff-f\"> Y</ins></p>",
+      "text": "X A Y",
+      "kind": "paragraph"
+     }
+    ]
+   }
+  ],
+  "chapter_chars": [
+   {
+    "input": [
+     "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+    ],
+    "output": 60
+   },
+   {
+    "input": [
+     "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+    ],
+    "output": 70
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": 0
+   }
+  ],
+  "numbered_line": [
+   {
+    "input": [
+     {
+      "number": 1,
+      "html": "<h2>T</h2>",
+      "text": "T",
+      "kind": "heading"
+     }
+    ],
+    "output": "¶1 # T"
+   },
+   {
+    "input": [
+     {
+      "number": 2,
+      "html": "<p>a &amp; b</p>",
+      "text": "a & b",
+      "kind": "paragraph"
+     }
+    ],
+    "output": "¶2 a & b"
+   },
+   {
+    "input": [
+     {
+      "number": 3,
+      "html": "<p><img src=\"x\"></p>",
+      "text": "",
+      "kind": "image"
+     }
+    ],
+    "output": "¶3 [image]"
+   },
+   {
+    "input": [
+     {
+      "number": 4,
+      "html": "<li>x</li>",
+      "text": "x",
+      "kind": "item"
+     }
+    ],
+    "output": "¶4 • x"
+   },
+   {
+    "input": [
+     {
+      "number": 5,
+      "html": "<li>y</li>",
+      "text": "y",
+      "kind": "item"
+     }
+    ],
+    "output": "¶5 • y"
+   },
+   {
+    "input": [
+     {
+      "number": 6,
+      "html": "<p>words then a picture <img src=\"y\"></p>",
+      "text": "words then a picture",
+      "kind": "paragraph",
+      "image": true
+     }
+    ],
+    "output": "¶6 words then a picture [image]"
+   },
+   {
+    "input": [
+     {
+      "number": 7,
+      "html": "<p>{{IMAGE_PLACEHOLDER_0}}</p>",
+      "text": "",
+      "kind": "image"
+     }
+    ],
+    "output": "¶7 [image]"
+   },
+   {
+    "input": [
+     {
+      "number": 8,
+      "html": "<p>tail {{IMAGE_PLACEHOLDER_1}}</p>",
+      "text": "tail",
+      "kind": "paragraph",
+      "image": true
+     }
+    ],
+    "output": "¶8 tail [image]"
+   }
+  ],
+  "searchable_text": [
+   {
+    "input": [
+     {
+      "number": 1,
+      "html": "<p>t</p>",
+      "text": "t",
+      "kind": "paragraph"
+     }
+    ],
+    "output": "t"
+   },
+   {
+    "input": [
+     {
+      "number": 2,
+      "html": "<p><img src=\"x\"></p>",
+      "text": "",
+      "kind": "image"
+     }
+    ],
+    "output": "[image]"
+   },
+   {
+    "input": [
+     {
+      "number": 3,
+      "html": "<p>t <img src=\"y\"></p>",
+      "text": "t",
+      "kind": "paragraph",
+      "image": true
+     }
+    ],
+    "output": "t [image]"
+   }
+  ],
+  "block_images": [
+   {
+    "input": [
+     "<p>a <img src=\"x\" alt=\"1\"> b <img src=\"y\"></p>"
+    ],
+    "output": [
+     "<img src=\"x\" alt=\"1\">",
+     "<img src=\"y\">"
+    ]
+   },
+   {
+    "input": [
+     "<p>{{IMAGE_PLACEHOLDER_3}} x</p>"
+    ],
+    "output": [
+     "{{IMAGE_PLACEHOLDER_3}}"
+    ]
+   },
+   {
+    "input": [
+     "<p>none</p>"
+    ],
+    "output": []
+   }
+  ],
+  "paragraph_spans_card": [
+   {
+    "input": [
+     "<h1>人物卡</h1><p>适用范围：第1–20章</p><h2>林霜</h2><ul><li><p>身份：港务局引航员，三级。</p></li><li><p>资质：甲等。</p></li></ul><h2>沈月</h2><ul>\n<li><p>身份：港务局局长。</p><ul><li>嵌套</li></ul></li>\n</ul>"
+    ],
+    "output": [
+     {
+      "start": 0,
+      "end": 12,
+      "html": "<h1>人物卡</h1>",
+      "loose": false
+     },
+     {
+      "start": 12,
+      "end": 30,
+      "html": "<p>适用范围：第1–20章</p>",
+      "loose": false
+     },
+     {
+      "start": 30,
+      "end": 41,
+      "html": "<h2>林霜</h2>",
+      "loose": false
+     },
+     {
+      "start": 45,
+      "end": 74,
+      "html": "<li><p>身份：港务局引航员，三级。</p></li>",
+      "loose": false
+     },
+     {
+      "start": 74,
+      "end": 96,
+      "html": "<li><p>资质：甲等。</p></li>",
+      "loose": false
+     },
+     {
+      "start": 101,
+      "end": 112,
+      "html": "<h2>沈月</h2>",
+      "loose": false
+     },
+     {
+      "start": 117,
+      "end": 162,
+      "html": "<li><p>身份：港务局局长。</p><ul><li>嵌套</li></ul></li>",
+      "loose": false
+     }
+    ]
+   }
+  ],
+  "numbered_paragraph_spans_card": [
+   {
+    "input": [
+     "<h1>人物卡</h1><p>适用范围：第1–20章</p><h2>林霜</h2><ul><li><p>身份：港务局引航员，三级。</p></li><li><p>资质：甲等。</p></li></ul><h2>沈月</h2><ul>\n<li><p>身份：港务局局长。</p><ul><li>嵌套</li></ul></li>\n</ul>"
+    ],
+    "output": [
+     {
+      "start": 0,
+      "end": 12,
+      "html": "<h1>人物卡</h1>",
+      "loose": false,
+      "number": 1,
+      "text": "人物卡",
+      "kind": "heading"
+     },
+     {
+      "start": 12,
+      "end": 30,
+      "html": "<p>适用范围：第1–20章</p>",
+      "loose": false,
+      "number": 2,
+      "text": "适用范围：第1–20章",
+      "kind": "paragraph"
+     },
+     {
+      "start": 30,
+      "end": 41,
+      "html": "<h2>林霜</h2>",
+      "loose": false,
+      "number": 3,
+      "text": "林霜",
+      "kind": "heading"
+     },
+     {
+      "start": 45,
+      "end": 74,
+      "html": "<li><p>身份：港务局引航员，三级。</p></li>",
+      "loose": false,
+      "number": 4,
+      "text": "身份：港务局引航员，三级。",
+      "kind": "item"
+     },
+     {
+      "start": 74,
+      "end": 96,
+      "html": "<li><p>资质：甲等。</p></li>",
+      "loose": false,
+      "number": 5,
+      "text": "资质：甲等。",
+      "kind": "item"
+     },
+     {
+      "start": 101,
+      "end": 112,
+      "html": "<h2>沈月</h2>",
+      "loose": false,
+      "number": 6,
+      "text": "沈月",
+      "kind": "heading"
+     },
+     {
+      "start": 117,
+      "end": 162,
+      "html": "<li><p>身份：港务局局长。</p><ul><li>嵌套</li></ul></li>",
+      "loose": false,
+      "number": 7,
+      "text": "身份：港务局局长。嵌套",
+      "kind": "item"
+     }
+    ]
+   }
+  ],
+  "paragraph_spans": [
+   {
+    "input": [
+     "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+    ],
+    "output": [
+     {
+      "start": 0,
+      "end": 15,
+      "html": "<h1>第三章 风起</h1>",
+      "loose": false
+     },
+     {
+      "start": 15,
+      "end": 53,
+      "html": "<p>阿青推开门，<strong>风</strong>从巷口灌进来。</p>",
+      "loose": false
+     },
+     {
+      "start": 53,
+      "end": 81,
+      "html": "<p>她想：&ldquo;该走了。&rdquo;</p>",
+      "loose": false
+     },
+     {
+      "start": 81,
+      "end": 118,
+      "html": "<blockquote><p>门外无人。</p></blockquote>",
+      "loose": false
+     },
+     {
+      "start": 122,
+      "end": 132,
+      "html": "<li>一</li>",
+      "loose": false
+     },
+     {
+      "start": 132,
+      "end": 150,
+      "html": "<li>二 &amp; 三</li>",
+      "loose": false
+     },
+     {
+      "start": 155,
+      "end": 208,
+      "html": "<p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p>",
+      "loose": false
+     },
+     {
+      "start": 208,
+      "end": 238,
+      "html": "<p>{{IMAGE_PLACEHOLDER_0}}</p>",
+      "loose": false
+     },
+     {
+      "start": 238,
+      "end": 245,
+      "html": "<p></p>",
+      "loose": false
+     },
+     {
+      "start": 245,
+      "end": 264,
+      "html": "   loose text here ",
+      "loose": true
+     },
+     {
+      "start": 264,
+      "end": 268,
+      "html": "<hr>",
+      "loose": false
+     },
+     {
+      "start": 268,
+      "end": 288,
+      "html": "<p>a&nbsp;b<br>c</p>",
+      "loose": false
+     }
+    ]
+   },
+   {
+    "input": [
+     "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+    ],
+    "output": [
+     {
+      "start": 0,
+      "end": 14,
+      "html": "<h2>Title</h2>",
+      "loose": false
+     },
+     {
+      "start": 14,
+      "end": 44,
+      "html": "<p>The cat sat on the mat.</p>",
+      "loose": false
+     },
+     {
+      "start": 44,
+      "end": 126,
+      "html": "<p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>",
+      "loose": false
+     }
+    ]
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": []
+   },
+   {
+    "input": [
+     "<h1>T</h1>\n<p>One a</p><p>Two <em>b</em></p> <p><img src=\"x.png\"></p><p>Three</p>"
+    ],
+    "output": [
+     {
+      "start": 0,
+      "end": 10,
+      "html": "<h1>T</h1>",
+      "loose": false
+     },
+     {
+      "start": 11,
+      "end": 23,
+      "html": "<p>One a</p>",
+      "loose": false
+     },
+     {
+      "start": 23,
+      "end": 44,
+      "html": "<p>Two <em>b</em></p>",
+      "loose": false
+     },
+     {
+      "start": 45,
+      "end": 69,
+      "html": "<p><img src=\"x.png\"></p>",
+      "loose": false
+     },
+     {
+      "start": 69,
+      "end": 81,
+      "html": "<p>Three</p>",
+      "loose": false
+     }
+    ]
+   },
+   {
+    "input": [
+     "loose <p>a</p> tail"
+    ],
+    "output": [
+     {
+      "start": 0,
+      "end": 6,
+      "html": "loose ",
+      "loose": true
+     },
+     {
+      "start": 6,
+      "end": 14,
+      "html": "<p>a</p>",
+      "loose": false
+     },
+     {
+      "start": 14,
+      "end": 19,
+      "html": " tail",
+      "loose": true
+     }
+    ]
+   },
+   {
+    "input": [
+     "<!-- c --><p>a</p></p><div><div>x</div></div><br/><p class=\"x>y\">q</p>"
+    ],
+    "output": [
+     {
+      "start": 10,
+      "end": 18,
+      "html": "<p>a</p>",
+      "loose": false
+     },
+     {
+      "start": 22,
+      "end": 45,
+      "html": "<div><div>x</div></div>",
+      "loose": false
+     },
+     {
+      "start": 45,
+      "end": 50,
+      "html": "<br/>",
+      "loose": false
+     },
+     {
+      "start": 50,
+      "end": 70,
+      "html": "<p class=\"x>y\">q</p>",
+      "loose": false
+     }
+    ]
+   },
+   {
+    "input": [
+     "<p>never closed"
+    ],
+    "output": [
+     {
+      "start": 0,
+      "end": 15,
+      "html": "<p>never closed",
+      "loose": false
+     }
+    ]
+   },
+   {
+    "input": [
+     "<p>a<p>b</p>"
+    ],
+    "output": [
+     {
+      "start": 0,
+      "end": 12,
+      "html": "<p>a<p>b</p>",
+      "loose": false
+     }
+    ]
+   }
+  ],
+  "numbered_paragraph_spans": [
+   {
+    "input": [
+     "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+    ],
+    "output": [
+     {
+      "start": 0,
+      "end": 14,
+      "html": "<h2>Title</h2>",
+      "loose": false,
+      "number": 1,
+      "text": "Title",
+      "kind": "heading"
+     },
+     {
+      "start": 14,
+      "end": 44,
+      "html": "<p>The cat sat on the mat.</p>",
+      "loose": false,
+      "number": 2,
+      "text": "The cat sat on the mat.",
+      "kind": "paragraph"
+     },
+     {
+      "start": 44,
+      "end": 126,
+      "html": "<p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>",
+      "loose": false,
+      "number": 3,
+      "text": "It was warm, and <quiet> \"outside\" 'then'.",
+      "kind": "paragraph"
+     }
+    ]
+   },
+   {
+    "input": [
+     "<h1>T</h1>\n<p>One a</p><p>Two <em>b</em></p> <p><img src=\"x.png\"></p><p>Three</p>"
+    ],
+    "output": [
+     {
+      "start": 0,
+      "end": 10,
+      "html": "<h1>T</h1>",
+      "loose": false,
+      "number": 1,
+      "text": "T",
+      "kind": "heading"
+     },
+     {
+      "start": 11,
+      "end": 23,
+      "html": "<p>One a</p>",
+      "loose": false,
+      "number": 2,
+      "text": "One a",
+      "kind": "paragraph"
+     },
+     {
+      "start": 23,
+      "end": 44,
+      "html": "<p>Two <em>b</em></p>",
+      "loose": false,
+      "number": 3,
+      "text": "Two b",
+      "kind": "paragraph"
+     },
+     {
+      "start": 45,
+      "end": 69,
+      "html": "<p><img src=\"x.png\"></p>",
+      "loose": false,
+      "number": 4,
+      "text": "",
+      "kind": "image"
+     },
+     {
+      "start": 69,
+      "end": 81,
+      "html": "<p>Three</p>",
+      "loose": false,
+      "number": 5,
+      "text": "Three",
+      "kind": "paragraph"
+     }
+    ]
+   },
+   {
+    "input": [
+     "<p>a<p>b</p>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<p>x &#8217; y</p>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": []
+   }
+  ],
+  "is_plain_chapter_html": [
+   {
+    "input": [
+     "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "<h1>T</h1>\n<p>One a</p><p>Two <em>b</em></p> <p><img src=\"x.png\"></p><p>Three</p>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "<h1>标题</h1><p>一。</p><p>二<br>三</p><p></p>"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<p class=\"a\">x</p>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "<p>x</p><ul><li>a</li></ul>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "loose"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": true
+   }
+  ],
+  "is_text_rewritable_html": [
+   {
+    "input": [
+     "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "<p>一。</p><p><img src=\"a\" width=\"600\" style=\"\"> <img src=\"b\"></p>"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<p>一。</p><p><img src=\"a\">图</p>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "<p><br><img src=\"a\"><br></p>"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<p class=\"x\"><img src=\"a\"></p>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "<p>x</p><ul><li>a</li></ul>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": true
+   }
+  ],
+  "strip_image_marker_paragraphs": [
+   {
+    "input": [
+     "<p>一。</p><p>[image]</p><p>[image] [image]</p><p>见[image]</p>"
+    ],
+    "output": "<p>一。</p><p>见[image]</p>"
+   },
+   {
+    "input": [
+     "<p>[image]x</p>"
+    ],
+    "output": "<p>[image]x</p>"
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": ""
+   }
+  ],
+  "as_blocks": [
+   {
+    "input": [
+     "<p>x</p>"
+    ],
+    "output": "<p>x</p>"
+   },
+   {
+    "input": [
+     "  <h2>t</h2> "
+    ],
+    "output": "<h2>t</h2>"
+   },
+   {
+    "input": [
+     "one\n\ntwo\nlines"
+    ],
+    "output": "<p>one</p><p>two<br>lines</p>"
+   },
+   {
+    "input": [
+     "plain"
+    ],
+    "output": "<p>plain</p>"
+   },
+   {
+    "input": [
+     "  "
+    ],
+    "output": ""
+   }
+  ],
+  "paragraph_blocks": [
+   {
+    "input": [
+     "<h1>人物卡</h1><p>适用范围：第1–20章</p><h2>林霜</h2><ul><li><p>身份：港务局引航员，三级。</p></li><li><p>资质：甲等。</p></li></ul><h2>沈月</h2><ul>\n<li><p>身份：港务局局长。</p><ul><li>嵌套</li></ul></li>\n</ul>"
+    ],
+    "output": [
+     "<h1>人物卡</h1>",
+     "<p>适用范围：第1–20章</p>",
+     "<h2>林霜</h2>",
+     "<li><p>身份：港务局引航员，三级。</p></li>",
+     "<li><p>资质：甲等。</p></li>",
+     "<h2>沈月</h2>",
+     "<li><p>身份：港务局局长。</p><ul><li>嵌套</li></ul></li>"
+    ]
+   },
+   {
+    "input": [
+     "<ol><li>a</li>x<li>b</li></ol><p>c</p>"
+    ],
+    "output": [
+     "<li>a</li>",
+     "<p>x</p>",
+     "<li>b</li>",
+     "<p>c</p>"
+    ]
+   },
+   {
+    "input": [
+     "<ul></ul>"
+    ],
+    "output": []
+   }
+  ],
+  "anchor_matches": [
+   {
+    "input": [
+     "身份：港务局引航员，三级",
+     "身份：港务局引杭员"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "身份：港务局引航员",
+     "身份：港务居引杭员"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "abc",
+     "abd"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "适用范围：第1–20章，主要",
+     "适用范围：第1–25章，主要角色"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "The quick brown fox jumps",
+     "The quikc brown fox"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "短",
+     "短"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "• 第八章 渡口：阿林替朋友买了礼物",
+     "第八章 渡口"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "• 第八章 渡口：阿林替朋友买了礼物",
+     "• 第八章 渡口"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "•  第八章",
+     "第八章"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "第八章 渡口",
+     "第九章"
+    ],
+    "output": false
+   }
+  ],
+  "as_items": [
+   {
+    "input": [
+     "<p>x</p>"
+    ],
+    "output": "<li><p>x</p></li>"
+   },
+   {
+    "input": [
+     "<li>y</li>"
+    ],
+    "output": "<li>y</li>"
+   },
+   {
+    "input": [
+     "plain"
+    ],
+    "output": "<li><p>plain</p></li>"
+   }
+  ],
+  "apply_paragraph_edits": [
+   {
+    "input": [
+     "<h1>T</h1>\n<p>One a</p><p>Two <em>b</em></p> <p><img src=\"x.png\"></p><p>Three</p>",
+     [
+      {
+       "paragraph": 2,
+       "action": "replace",
+       "html": "<p>Uno</p>",
+       "startsWith": "One"
+      },
+      {
+       "paragraph": 5,
+       "action": "insert_after",
+       "html": "Four\n\nFive",
+       "startsWith": "¶5 Three"
+      },
+      {
+       "paragraph": 4,
+       "action": "delete",
+       "startsWith": "[image]"
+      }
+     ]
+    ],
+    "output": {
+     "ok": true,
+     "html": "<h1>T</h1>\n<p>Uno</p><p>Two <em>b</em></p> <p>Three</p><p>Four</p><p>Five</p>",
+     "paragraphsBefore": 5,
+     "paragraphsAfter": 6,
+     "firstChanged": 2,
+     "applied": 3,
+     "skipped": [],
+     "stale": []
+    }
+   },
+   {
+    "input": [
+     "<h1>T</h1>\n<p>One a</p><p>Two <em>b</em></p> <p><img src=\"x.png\"></p><p>Three</p>",
+     [
+      {
+       "paragraph": 1,
+       "action": "insert_before",
+       "html": "<p>pre</p>",
+       "startsWith": "# T"
+      },
+      {
+       "paragraph": 1,
+       "action": "replace",
+       "html": "<h1>New</h1>",
+       "startsWith": "T"
+      },
+      {
+       "paragraph": 2,
+       "action": "insert_before",
+       "html": "<p>mid</p>",
+       "startsWith": "One"
+      }
+     ]
+    ],
+    "output": {
+     "ok": true,
+     "html": "<p>pre</p><h1>New</h1>\n<p>mid</p><p>One a</p><p>Two <em>b</em></p> <p><img src=\"x.png\"></p><p>Three</p>",
+     "paragraphsBefore": 5,
+     "paragraphsAfter": 7,
+     "firstChanged": 1,
+     "applied": 3,
+     "skipped": [],
+     "stale": []
+    }
+   },
+   {
+    "input": [
+     "<h1>T</h1>\n<p>One a</p><p>Two <em>b</em></p> <p><img src=\"x.png\"></p><p>Three</p>",
+     [
+      {
+       "paragraph": 3,
+       "action": "replace",
+       "html": "x",
+       "startsWith": "Nope"
+      },
+      {
+       "paragraph": 9,
+       "action": "delete",
+       "startsWith": "x"
+      }
+     ]
+    ],
+    "output": {
+     "ok": false,
+     "error": "nothing was applied:\n¶9: the chapter has 5 paragraphs\n¶3 does not start with what you gave; it now reads: Two b",
+     "stale": [
+      {
+       "number": 3,
+       "text": "Two b"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     "<p>Intro.</p><p>She smiled. <img src=\"pic\"></p><p>End.</p>",
+     [
+      {
+       "paragraph": 2,
+       "action": "replace",
+       "html": "<p>She grinned.</p>",
+       "startsWith": "She smiled"
+      }
+     ]
+    ],
+    "output": {
+     "ok": true,
+     "html": "<p>Intro.</p><p>She grinned.<img src=\"pic\"></p><p>End.</p>",
+     "paragraphsBefore": 3,
+     "paragraphsAfter": 3,
+     "firstChanged": 2,
+     "applied": 1,
+     "skipped": [],
+     "stale": []
+    }
+   },
+   {
+    "input": [
+     "<p>Intro.</p><p>She smiled. <img src=\"pic\"></p>",
+     [
+      {
+       "paragraph": 2,
+       "action": "replace",
+       "html": "Plain words",
+       "startsWith": "She smiled"
+      }
+     ]
+    ],
+    "output": {
+     "ok": true,
+     "html": "<p>Intro.</p><p>Plain words<img src=\"pic\"></p>",
+     "paragraphsBefore": 2,
+     "paragraphsAfter": 2,
+     "firstChanged": 2,
+     "applied": 1,
+     "skipped": [],
+     "stale": []
+    }
+   },
+   {
+    "input": [
+     "<p>Intro.</p><p>She smiled. <img src=\"pic\"></p>",
+     [
+      {
+       "paragraph": 2,
+       "action": "replace",
+       "html": "<p>Own <img src=\"other\"></p>",
+       "startsWith": "She smiled"
+      }
+     ]
+    ],
+    "output": {
+     "ok": true,
+     "html": "<p>Intro.</p><p>Own <img src=\"other\"></p>",
+     "paragraphsBefore": 2,
+     "paragraphsAfter": 2,
+     "firstChanged": 2,
+     "applied": 1,
+     "skipped": [],
+     "stale": []
+    }
+   },
+   {
+    "input": [
+     "<h1>T</h1>\n<p>One a</p><p>Two <em>b</em></p> <p><img src=\"x.png\"></p><p>Three</p>",
+     [
+      {
+       "paragraph": 4,
+       "action": "replace",
+       "html": "<p>x</p>",
+       "startsWith": "image"
+      }
+     ]
+    ],
+    "output": {
+     "ok": false,
+     "error": "nothing was applied:\n¶4 is an image: delete it, or insert next to it",
+     "stale": []
+    }
+   },
+   {
+    "input": [
+     "<h1>T</h1>\n<p>One a</p><p>Two <em>b</em></p> <p><img src=\"x.png\"></p><p>Three</p>",
+     [
+      {
+       "paragraph": 2,
+       "action": "delete",
+       "startsWith": "One"
+      },
+      {
+       "paragraph": 2,
+       "action": "replace",
+       "html": "<p>x</p>",
+       "startsWith": "One"
+      }
+     ]
+    ],
+    "output": {
+     "ok": true,
+     "html": "<h1>T</h1>\n<p>Two <em>b</em></p> <p><img src=\"x.png\"></p><p>Three</p>",
+     "paragraphsBefore": 5,
+     "paragraphsAfter": 4,
+     "firstChanged": 2,
+     "applied": 1,
+     "skipped": [
+      "¶2 is replaced or deleted twice"
+     ],
+     "stale": []
+    }
+   },
+   {
+    "input": [
+     "<h1>T</h1>\n<p>One a</p><p>Two <em>b</em></p> <p><img src=\"x.png\"></p><p>Three</p>",
+     [
+      {
+       "paragraph": 2,
+       "action": "replace",
+       "startsWith": "One"
+      },
+      {
+       "paragraph": 3,
+       "action": "move",
+       "startsWith": "Two"
+      },
+      {
+       "paragraph": 3,
+       "action": "delete",
+       "startsWith": "  "
+      }
+     ]
+    ],
+    "output": {
+     "ok": false,
+     "error": "nothing was applied:\n¶2: replace needs html\n¶3: unknown action \"move\"\n¶3: starts_with is empty — give the first words of the paragraph as you read them",
+     "stale": []
+    }
+   },
+   {
+    "input": [
+     "<h1>T</h1>\n<p>One a</p><p>Two <em>b</em></p> <p><img src=\"x.png\"></p><p>Three</p>",
+     []
+    ],
+    "output": {
+     "ok": false,
+     "error": "no edits were given",
+     "stale": []
+    }
+   },
+   {
+    "input": [
+     "<p>a<p>b</p>",
+     [
+      {
+       "paragraph": 1,
+       "action": "delete",
+       "startsWith": "a"
+      }
+     ]
+    ],
+    "output": {
+     "ok": false,
+     "error": "this chapter's HTML could not be split into paragraphs reliably; use edit_document with SEARCH text from its HTML instead",
+     "stale": []
+    }
+   },
+   {
+    "input": [
+     "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>",
+     [
+      {
+       "paragraph": 2,
+       "action": "insert_after",
+       "html": "<p>新段。</p>",
+       "startsWith": "阿青推开"
+      }
+     ]
+    ],
+    "output": {
+     "ok": false,
+     "error": "this chapter's HTML could not be split into paragraphs reliably; use edit_document with SEARCH text from its HTML instead",
+     "stale": []
+    }
+   },
+   {
+    "input": [
+     "<h1>人物卡</h1><p>适用范围：第1–20章</p><h2>林霜</h2><ul><li><p>身份：港务局引航员，三级。</p></li><li><p>资质：甲等。</p></li></ul><h2>沈月</h2><ul>\n<li><p>身份：港务局局长。</p><ul><li>嵌套</li></ul></li>\n</ul>",
+     [
+      {
+       "paragraph": 4,
+       "action": "replace",
+       "html": "<p>身份：港务局引航员，四级。</p>",
+       "startsWith": "身份：港务局引杭员"
+      },
+      {
+       "paragraph": 5,
+       "action": "insert_after",
+       "html": "工龄：十二年。",
+       "startsWith": "• 资质"
+      },
+      {
+       "paragraph": 7,
+       "action": "delete",
+       "startsWith": "身份：港务局局长"
+      }
+     ]
+    ],
+    "output": {
+     "ok": true,
+     "html": "<h1>人物卡</h1><p>适用范围：第1–20章</p><h2>林霜</h2><ul><li><p>身份：港务局引航员，四级。</p></li><li><p>资质：甲等。</p></li><li><p>工龄：十二年。</p></li></ul><h2>沈月</h2><ul>\n\n</ul>",
+     "paragraphsBefore": 7,
+     "paragraphsAfter": 7,
+     "firstChanged": 4,
+     "applied": 3,
+     "skipped": [],
+     "stale": []
+    }
+   },
+   {
+    "input": [
+     "<h1>人物卡</h1><p>适用范围：第1–20章</p><h2>林霜</h2><ul><li><p>身份：港务局引航员，三级。</p></li><li><p>资质：甲等。</p></li></ul><h2>沈月</h2><ul>\n<li><p>身份：港务局局长。</p><ul><li>嵌套</li></ul></li>\n</ul>",
+     [
+      {
+       "paragraph": 2,
+       "action": "replace",
+       "html": "<p>适用范围：第1–25章</p>",
+       "startsWith": "适用范围"
+      },
+      {
+       "paragraph": 4,
+       "action": "replace",
+       "html": "<p>x</p>",
+       "startsWith": "完全不同的开头文字"
+      }
+     ]
+    ],
+    "output": {
+     "ok": true,
+     "html": "<h1>人物卡</h1><p>适用范围：第1–25章</p><h2>林霜</h2><ul><li><p>身份：港务局引航员，三级。</p></li><li><p>资质：甲等。</p></li></ul><h2>沈月</h2><ul>\n<li><p>身份：港务局局长。</p><ul><li>嵌套</li></ul></li>\n</ul>",
+     "paragraphsBefore": 7,
+     "paragraphsAfter": 7,
+     "firstChanged": 2,
+     "applied": 1,
+     "skipped": [
+      "¶4 does not start with what you gave; it now reads: 身份：港务局引航员，三级。"
+     ],
+     "stale": [
+      {
+       "number": 4,
+       "text": "身份：港务局引航员，三级。"
+      }
+     ]
+    }
+   }
+  ]
+ }
+}

@@ -1,0 +1,269 @@
+{
+ "module": "retry_policy",
+ "cases": {
+  "constants": [
+   {
+    "input": [],
+    "output": {
+     "MAX_TRANSPORT_RETRIES": 4,
+     "MAX_RETRY_DELAY_MS": 30000,
+     "RETRYABLE_STATUSES": [
+      408,
+      429,
+      500,
+      502,
+      503,
+      504,
+      520,
+      521,
+      522,
+      523,
+      524,
+      529
+     ]
+    }
+   }
+  ],
+  "is_retryable_status": [
+   {
+    "input": [
+     429,
+     ""
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     503,
+     "busy"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     400,
+     ""
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     401,
+     "x"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     529,
+     ""
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     413,
+     "prompt is too long"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     408,
+     "timeout"
+    ],
+    "output": true
+   }
+  ],
+  "is_context_length_error": [
+   {
+    "input": [
+     400,
+     "This model's maximum context length is 131072 tokens"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     413,
+     "Prompt is too long"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     422,
+     "too many tokens in input"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     400,
+     "bad tool"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     503,
+     "context length"
+    ],
+    "output": false
+   }
+  ],
+  "parse_retry_after": [
+   {
+    "input": [
+     "7"
+    ],
+    "output": 7
+   },
+   {
+    "input": [
+     " 1.5 "
+    ],
+    "output": 1.5
+   },
+   {
+    "input": [
+     "0"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "-3"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "Wed, 21 Oct 2026 07:28:00 GMT"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     null
+    ],
+    "output": null
+   }
+  ],
+  "retry_delay_ms": [
+   {
+    "input": [
+     1,
+     null
+    ],
+    "output": 1000
+   },
+   {
+    "input": [
+     2,
+     null
+    ],
+    "output": 2000
+   },
+   {
+    "input": [
+     4,
+     null
+    ],
+    "output": 8000
+   },
+   {
+    "input": [
+     6,
+     null
+    ],
+    "output": 30000
+   },
+   {
+    "input": [
+     1,
+     12
+    ],
+    "output": 12000
+   },
+   {
+    "input": [
+     1,
+     0.4
+    ],
+    "output": 400
+   },
+   {
+    "input": [
+     3,
+     600
+    ],
+    "output": 30000
+   },
+   {
+    "input": [
+     0,
+     null
+    ],
+    "output": 1000
+   }
+  ],
+  "with_jitter": [
+   {
+    "input": [
+     1000,
+     0
+    ],
+    "output": 800
+   },
+   {
+    "input": [
+     1000,
+     0.5
+    ],
+    "output": 1000
+   },
+   {
+    "input": [
+     1000,
+     0.999
+    ],
+    "output": 1200
+   },
+   {
+    "input": [
+     2500,
+     0.25
+    ],
+    "output": 2250
+   },
+   {
+    "input": [
+     1000,
+     -1
+    ],
+    "output": 800
+   },
+   {
+    "input": [
+     1000,
+     2
+    ],
+    "output": 1200
+   },
+   {
+    "input": [
+     1,
+     0.5
+    ],
+    "output": 1
+   }
+  ]
+ }
+}

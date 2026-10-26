@@ -1,0 +1,159 @@
+/* Editor Styling (ProseMirror Customizations) */
+/* Containment measurably reduced scroll jank on Firefox/Android (probe-
+   verified); paint containment is safe here because every decoration the
+   editor draws lives inside this element. */
+.ProseMirror {
+  contain: layout style paint;
+  font-family: var(--font-editor);
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+  outline: none;
+  min-height: calc(100vh - 200px);
+  padding: 2rem 4rem 10rem 4rem;
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.ProseMirror > * + * {
+  margin-top: 1.25em;
+}
+
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3,
+.ProseMirror h4 {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+
+.ProseMirror h1 {
+  font-size: 2.25rem;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.ProseMirror h2 {
+  font-size: 1.75rem;
+  margin-top: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.ProseMirror h3 {
+  font-size: 1.4rem;
+  margin-top: 1.5rem;
+}
+
+.ProseMirror p {
+  margin-bottom: 1.25rem;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.ProseMirror li {
+  margin-bottom: 0.5rem;
+}
+
+.ProseMirror blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 1.5rem 0;
+}
+
+.ProseMirror pre {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  overflow-x: auto;
+  font-size: 0.9rem;
+  margin: 1.5rem 0;
+}
+
+.ProseMirror code {
+  background-color: var(--bg-tertiary);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.ProseMirror pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+/* Images never outgrow the column. Every insertion path writes an inline
+   max-width, but content that has been round-tripped — pasted from a page, or
+   rewritten by the model — arrives carrying only the intrinsic width/height
+   attributes, and a 1600px image then ran past the page on a phone. Enforced
+   here, where every path converges; `height: auto` keeps the aspect ratio
+   once the width is capped. */
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* TipTap Placeholder Extension Styling */
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: var(--text-muted);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+  font-style: italic;
+}
+
+/* Custom Selection Styling (Premium Amber Gold Theme) */
+.ProseMirror ::selection {
+  background-color: rgba(128, 128, 128, 0.3);
+}
+
+[data-theme="light"] .ProseMirror ::selection {
+  background-color: rgba(0, 0, 0, 0.13);
+}
+
+/* Kept Visual Selection Highlight when Editor is Blurred */
+.ProseMirror .blurred-selection-highlight {
+  background-color: rgba(128, 128, 128, 0.25);
+  border-radius: 2px;
+}
+
+[data-theme="light"] .ProseMirror .blurred-selection-highlight {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Diff Styling Classes */
+.diff-added {
+  background-color: var(--diff-add-bg);
+  color: var(--diff-add-text);
+  text-decoration: none;
+  padding: 0 2px;
+  border-radius: 2px;
+  border-bottom: 1px solid var(--diff-add-text);
+}
+
+.diff-removed {
+  background-color: var(--diff-remove-bg);
+  color: var(--diff-remove-text);
+  text-decoration: line-through;
+  padding: 0 2px;
+  border-radius: 2px;
+  border-bottom: 1px solid var(--diff-remove-text);
+  opacity: 0.7;
+}

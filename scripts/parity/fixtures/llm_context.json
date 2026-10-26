@@ -1,0 +1,707 @@
+{
+ "module": "llm_context",
+ "cases": {
+  "html_to_plain_text": [
+   {
+    "input": [
+     "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+    ],
+    "output": "第三章 风起\n阿青推开门，风从巷口灌进来。\n她想：&ldquo;该走了。&rdquo;\n门外无人。\n\n- 一\n- 二 & 三\n\n{{IMAGE_PLACEHOLDER_0}}\n\n   loose text here\na b\nc"
+   },
+   {
+    "input": [
+     "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+    ],
+    "output": "Title\nThe cat sat on the mat.\nIt was warm, and <quiet> \"outside\" 'then'."
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": ""
+   },
+   {
+    "input": [
+     "<p>a</p>\n\n\n<p>b</p>"
+    ],
+    "output": "a\n\nb"
+   },
+   {
+    "input": [
+     "&amp;lt; stays &amp;lt;"
+    ],
+    "output": "&lt; stays &lt;"
+   },
+   {
+    "input": [
+     "<div>x<br/>y</div><pre>z</pre>"
+    ],
+    "output": "x\ny\nz"
+   },
+   {
+    "input": [
+     "<p>tail   \n</p>"
+    ],
+    "output": "tail"
+   },
+   {
+    "input": [
+     "<ol><li class=\"a\">one</li><li>two</li></ol>"
+    ],
+    "output": "- one\n- two"
+   }
+  ],
+  "strip_chat_display_artifacts": [
+   {
+    "input": [
+     "[Attached Context: 大纲 (auto)]\n[Attached Context: 第一章]\n\n写好了。"
+    ],
+    "output": "写好了。"
+   },
+   {
+    "input": [
+     "写好了。\n\n⚠️ The response was cut off before it finished."
+    ],
+    "output": "写好了。"
+   },
+   {
+    "input": [
+     "📚 analyzing…\n写好了。\n🔁 retrying…\n完。"
+    ],
+    "output": "写好了。\n完。"
+   },
+   {
+    "input": [
+     "只有正文。"
+    ],
+    "output": "只有正文。"
+   },
+   {
+    "input": [
+     "⚠️ Error: boom"
+    ],
+    "output": ""
+   },
+   {
+    "input": [
+     "写好了。\n\n⚠️ 2 suggested changes could not be located\nmore"
+    ],
+    "output": "写好了。"
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": ""
+   }
+  ],
+  "truncate_with_notice": [
+   {
+    "input": [
+     "短",
+     10
+    ],
+    "output": "短"
+   },
+   {
+    "input": [
+     "一二三四五六七八九十",
+     4
+    ],
+    "output": "一二三四\n…[truncated: showing first 4 of 10 characters]"
+   },
+   {
+    "input": [
+     "abcdef",
+     6
+    ],
+    "output": "abcdef"
+   }
+  ],
+  "detect_referenced_doc_ids": [
+   {
+    "input": [
+     "对照大纲和第一章改写",
+     [
+      {
+       "id": "a",
+       "title": "大纲"
+      },
+      {
+       "id": "b",
+       "title": "Chapter 1: 第一章"
+      },
+      {
+       "id": "c",
+       "title": "x"
+      },
+      {
+       "id": "d",
+       "title": "第一章"
+      }
+     ],
+     "d"
+    ],
+    "output": [
+     "a"
+    ]
+   },
+   {
+    "input": [
+     "nothing here",
+     [
+      {
+       "id": "a",
+       "title": "Outline"
+      }
+     ],
+     null
+    ],
+    "output": []
+   }
+  ],
+  "trim_history_for_context": [
+   {
+    "input": [
+     [
+      {
+       "role": "assistant",
+       "content": "leading assistant"
+      },
+      {
+       "role": "user",
+       "content": "  "
+      },
+      {
+       "role": "user",
+       "content": "first",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "role": "user",
+       "content": "",
+       "images": [
+        "data:image/png;base64,BBBB"
+       ]
+      },
+      {
+       "role": "assistant",
+       "content": "reply one",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "encrypted_content": "r1"
+        }
+       ]
+      },
+      {
+       "role": "assistant",
+       "content": "\n",
+       "responseItems": []
+      },
+      {
+       "role": "assistant",
+       "content": "reply two",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "encrypted_content": "r2"
+        }
+       ]
+      },
+      {
+       "role": "user",
+       "content": "第二个问题，长一点的中文内容在这里。"
+      },
+      {
+       "role": "assistant",
+       "content": "final reply with ${marker} and $& text"
+      }
+     ],
+     {
+      "maxChars": 100000
+     }
+    ],
+    "output": [
+     {
+      "role": "user",
+      "content": "first\n\n[image sent earlier in this conversation]"
+     },
+     {
+      "role": "assistant",
+      "content": "reply one\n\nreply two",
+      "responseItems": [
+       {
+        "type": "reasoning",
+        "encrypted_content": "r1"
+       },
+       {
+        "type": "reasoning",
+        "encrypted_content": "r2"
+       }
+      ]
+     },
+     {
+      "role": "user",
+      "content": "第二个问题，长一点的中文内容在这里。"
+     },
+     {
+      "role": "assistant",
+      "content": "final reply with ${marker} and $& text"
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "role": "assistant",
+       "content": "leading assistant"
+      },
+      {
+       "role": "user",
+       "content": "  "
+      },
+      {
+       "role": "user",
+       "content": "first",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "role": "user",
+       "content": "",
+       "images": [
+        "data:image/png;base64,BBBB"
+       ]
+      },
+      {
+       "role": "assistant",
+       "content": "reply one",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "encrypted_content": "r1"
+        }
+       ]
+      },
+      {
+       "role": "assistant",
+       "content": "\n",
+       "responseItems": []
+      },
+      {
+       "role": "assistant",
+       "content": "reply two",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "encrypted_content": "r2"
+        }
+       ]
+      },
+      {
+       "role": "user",
+       "content": "第二个问题，长一点的中文内容在这里。"
+      },
+      {
+       "role": "assistant",
+       "content": "final reply with ${marker} and $& text"
+      }
+     ],
+     {
+      "maxChars": 30
+     }
+    ],
+    "output": [
+     {
+      "role": "user",
+      "content": "第二个问题，长一点的中文内容在这里。"
+     },
+     {
+      "role": "assistant",
+      "content": "final reply with ${marker} and $& text"
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "role": "assistant",
+       "content": "leading assistant"
+      },
+      {
+       "role": "user",
+       "content": "  "
+      },
+      {
+       "role": "user",
+       "content": "first",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "role": "user",
+       "content": "",
+       "images": [
+        "data:image/png;base64,BBBB"
+       ]
+      },
+      {
+       "role": "assistant",
+       "content": "reply one",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "encrypted_content": "r1"
+        }
+       ]
+      },
+      {
+       "role": "assistant",
+       "content": "\n",
+       "responseItems": []
+      },
+      {
+       "role": "assistant",
+       "content": "reply two",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "encrypted_content": "r2"
+        }
+       ]
+      },
+      {
+       "role": "user",
+       "content": "第二个问题，长一点的中文内容在这里。"
+      },
+      {
+       "role": "assistant",
+       "content": "final reply with ${marker} and $& text"
+      }
+     ],
+     {
+      "maxChars": 30,
+      "minKeepMessages": 4
+     }
+    ],
+    "output": [
+     {
+      "role": "user",
+      "content": "first\n\n[image sent earlier in this conversation]"
+     },
+     {
+      "role": "assistant",
+      "content": "reply one\n\nreply two",
+      "responseItems": [
+       {
+        "type": "reasoning",
+        "encrypted_content": "r1"
+       },
+       {
+        "type": "reasoning",
+        "encrypted_content": "r2"
+       }
+      ]
+     },
+     {
+      "role": "user",
+      "content": "第二个问题，长一点的中文内容在这里。"
+     },
+     {
+      "role": "assistant",
+      "content": "final reply with ${marker} and $& text"
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "role": "assistant",
+       "content": "leading assistant"
+      },
+      {
+       "role": "user",
+       "content": "  "
+      },
+      {
+       "role": "user",
+       "content": "first",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "role": "user",
+       "content": "",
+       "images": [
+        "data:image/png;base64,BBBB"
+       ]
+      },
+      {
+       "role": "assistant",
+       "content": "reply one",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "encrypted_content": "r1"
+        }
+       ]
+      },
+      {
+       "role": "assistant",
+       "content": "\n",
+       "responseItems": []
+      },
+      {
+       "role": "assistant",
+       "content": "reply two",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "encrypted_content": "r2"
+        }
+       ]
+      },
+      {
+       "role": "user",
+       "content": "第二个问题，长一点的中文内容在这里。"
+      },
+      {
+       "role": "assistant",
+       "content": "final reply with ${marker} and $& text"
+      }
+     ],
+     {
+      "maxChars": 100000,
+      "keepImages": true
+     }
+    ],
+    "output": [
+     {
+      "role": "user",
+      "content": "first",
+      "images": [
+       "data:image/png;base64,AAAA",
+       "data:image/png;base64,BBBB"
+      ]
+     },
+     {
+      "role": "assistant",
+      "content": "reply one\n\nreply two",
+      "responseItems": [
+       {
+        "type": "reasoning",
+        "encrypted_content": "r1"
+       },
+       {
+        "type": "reasoning",
+        "encrypted_content": "r2"
+       }
+      ]
+     },
+     {
+      "role": "user",
+      "content": "第二个问题，长一点的中文内容在这里。"
+     },
+     {
+      "role": "assistant",
+      "content": "final reply with ${marker} and $& text"
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "role": "assistant",
+       "content": "leading assistant"
+      },
+      {
+       "role": "user",
+       "content": "  "
+      },
+      {
+       "role": "user",
+       "content": "first",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "role": "user",
+       "content": "",
+       "images": [
+        "data:image/png;base64,BBBB"
+       ]
+      },
+      {
+       "role": "assistant",
+       "content": "reply one",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "encrypted_content": "r1"
+        }
+       ]
+      },
+      {
+       "role": "assistant",
+       "content": "\n",
+       "responseItems": []
+      },
+      {
+       "role": "assistant",
+       "content": "reply two",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "encrypted_content": "r2"
+        }
+       ]
+      },
+      {
+       "role": "user",
+       "content": "第二个问题，长一点的中文内容在这里。"
+      },
+      {
+       "role": "assistant",
+       "content": "final reply with ${marker} and $& text"
+      }
+     ],
+     {
+      "maxChars": 0,
+      "minKeepMessages": 0
+     }
+    ],
+    "output": []
+   },
+   {
+    "input": [
+     [
+      {
+       "role": "assistant",
+       "content": "only"
+      }
+     ],
+     {
+      "maxChars": 10
+     }
+    ],
+    "output": []
+   },
+   {
+    "input": [
+     [],
+     {
+      "maxChars": 10
+     }
+    ],
+    "output": []
+   }
+  ],
+  "build_attachments_label": [
+   {
+    "input": [
+     [
+      "a",
+      "zz",
+      "b"
+     ],
+     [
+      {
+       "id": "a",
+       "title": "大纲"
+      },
+      {
+       "id": "b",
+       "title": "人物卡"
+      }
+     ],
+     [
+      "b"
+     ]
+    ],
+    "output": "[Attached Context: 大纲]\n[Attached Context: 人物卡 (auto)]"
+   },
+   {
+    "input": [
+     [],
+     [],
+     []
+    ],
+    "output": ""
+   }
+  ],
+  "was_turn_interrupted": [
+   {
+    "input": [
+     [
+      {
+       "role": "user",
+       "content": "a"
+      },
+      {
+       "role": "assistant",
+       "content": "b",
+       "agent": {
+        "status": "stopped"
+       }
+      }
+     ]
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     [
+      {
+       "role": "user",
+       "content": "a"
+      },
+      {
+       "role": "assistant",
+       "content": "x\n\n⏹️ Stopped."
+      },
+      {
+       "role": "user",
+       "content": "again"
+      }
+     ]
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     [
+      {
+       "role": "user",
+       "content": "a"
+      },
+      {
+       "role": "assistant",
+       "content": "done",
+       "agent": {
+        "status": "done"
+       }
+      }
+     ]
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     []
+    ],
+    "output": false
+   }
+  ]
+ }
+}

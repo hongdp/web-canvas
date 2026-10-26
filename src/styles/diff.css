@@ -1,0 +1,132 @@
+/* Milestone 3: Inline Diff Styles */
+ins.diff-addition {
+  background-color: var(--diff-add-bg);
+  color: var(--diff-add-text);
+  text-decoration: none;
+  border-bottom: 1.5px dotted var(--diff-add-text);
+  padding: 0 2px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+ins.diff-addition:hover {
+  background-color: rgba(16, 185, 129, 0.25);
+}
+
+del.diff-deletion {
+  background-color: var(--diff-remove-bg);
+  color: var(--diff-remove-text);
+  text-decoration: line-through;
+  padding: 0 2px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+del.diff-deletion:hover {
+  background-color: rgba(239, 68, 68, 0.25);
+}
+
+/* A picture under review (diffHtml marks an <img> like text): a frame, so it reads as a change. */
+ins.diff-addition img {
+  outline: 3px solid var(--diff-add-text);
+  outline-offset: 2px;
+}
+
+del.diff-deletion img {
+  outline: 3px solid var(--diff-remove-text);
+  outline-offset: 2px;
+  opacity: 0.45;
+}
+
+/* Bulk Diff Review Banner styling */
+.diff-review-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+  animation: slideDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 10;
+}
+
+.diff-banner-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.diff-banner-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.diff-banner-btn {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.diff-banner-btn.accept {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: var(--diff-add-text);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.diff-banner-btn.accept:hover {
+  background-color: rgba(16, 185, 129, 0.25);
+  border-color: var(--diff-add-text);
+}
+
+.diff-banner-btn.reject {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: var(--diff-remove-text);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.diff-banner-btn.reject:hover {
+  background-color: rgba(239, 68, 68, 0.25);
+  border-color: var(--diff-remove-text);
+}
+
+.diff-banner-btn.neutral {
+  background-color: var(--bg-tertiary, var(--bg-primary));
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.diff-banner-btn.neutral:hover {
+  border-color: var(--accent);
+}
+
+/* Another copy of a chapter was saved first (store/documentSync). */
+.sync-notice-banner {
+  border-left: 3px solid var(--accent);
+  gap: 0.75rem;
+}
+
+/* The assistant is writing into this chapter: review waits until it is done. */
+.diff-banner-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

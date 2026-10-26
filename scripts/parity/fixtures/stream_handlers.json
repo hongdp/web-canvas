@@ -1,0 +1,472 @@
+{
+ "module": "stream_handlers",
+ "cases": {
+  "constants": [
+   {
+    "input": [],
+    "output": {
+     "NO_ACTION_RETRY_INSTRUCTION": "Your previous reply did not follow the output protocol, so NOTHING reached the document — the user saw only your message.\n\nRedo this turn. Exactly one of these two shapes is acceptable:\n- You are changing the document: emit the change inside <canvas>, <edit> or <selection_replace>, with the full content (no summaries, no \"as above\"), and end with <doc_status>updated</doc_status>.\n- You are NOT changing the document: answer normally, say what you need from the user, and end with <doc_status>unchanged</doc_status>. This is a perfectly good answer — but you may not say or imply that you edited anything.\n\nThe <doc_status> line is required either way, and it must match what you actually emitted.",
+     "MAX_NO_ACTION_RETRIES": 3,
+     "ASSISTANT_PLACEHOLDER": "Thinking...",
+     "INTERRUPTED_NOTICE": "⚠️ Interrupted before the model replied (the page reloaded). Send again to retry.",
+     "RECONNECT_FAILED_NOTICE": "⚠️ Could not reconnect to this generation — it may still be running on the server. Reload the page to try again.",
+     "STEP_LIMIT_NOTE": "This turn has used its step budget. Do not call any more tools: answer the user now with what you have, and say what is left undone."
+    }
+   }
+  ],
+  "split_streaming_response": [
+   {
+    "input": [
+     "Just chat, no tags.\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": {
+     "chatText": "Just chat, no tags.",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "Sure.\n<canvas>\n<h1>T</h1><p>a</p>\n</canvas>\n<doc_status>updated</doc_status>"
+    ],
+    "output": {
+     "chatText": "Sure.",
+     "canvasText": "\n<h1>T</h1><p>a</p>\n",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "Rewriting 3.\n<canvas chapter=\"3\"><p>three</p></canvas>\nDone.\n<doc_status>updated</doc_status>"
+    ],
+    "output": {
+     "chatText": "Rewriting 3.\n\nDone.",
+     "canvasText": "<p>three</p>",
+     "canvasChapter": "3",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "New chapter.\n<canvas new_chapter=\"第二章 进城\"><p>进城</p></canvas>"
+    ],
+    "output": {
+     "chatText": "New chapter.",
+     "canvasText": "<p>进城</p>",
+     "canvasNewChapter": "第二章 进城",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>cut off"
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "<p>cut off",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "Edit.\n<edit>\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit>\nAnd more.\n<doc_status>updated</doc_status>"
+    ],
+    "output": {
+     "chatText": "Edit.",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "<edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit><edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>c</p>\n=======\n\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "<selection_replace>new words</selection_replace>\n<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "",
+     "selectionReplaceText": "new words",
+     "isSelectionEdit": true
+    }
+   },
+   {
+    "input": [
+     "<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>\n<selection_replace>sel</selection_replace>"
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "",
+     "selectionReplaceText": "sel",
+     "isSelectionEdit": true
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>active</p></canvas>\n<edit chapter=\"1\">\n<<<<<<< SEARCH\n<p>o</p>\n=======\n<p>p</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "<p>active</p>",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>active</p></canvas>\n<edit>\n<<<<<<< SEARCH\n<p>o</p>\n=======\n<p>p</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "<p>active</p>",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "<selection_replace>sel</selection_replace><canvas><p>stray</p></canvas>"
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "",
+     "selectionReplaceText": "sel",
+     "isSelectionEdit": true
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>one</p></canvas><canvas chapter=\"4\"><p>four</p></canvas><canvas new_chapter=\"五\"><p>五</p></canvas>"
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "<p>one</p>",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "chat <<<<<<< SEARCH\nunterminated"
+    ],
+    "output": {
+     "chatText": "chat",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>bare</p>\n=======\n<p>markers</p>\n>>>>>>> REPLACE"
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "<edit>\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n</edit>\n<edit>\n<<<<<<< SEARCH\n<p>c</p>\n=======\n<p>d</p>\n</edit>"
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n<<<<<<< SEARCH\n<p>c</p>\n=======\n<p>d</p>\n>>>>>>> REPLACE"
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>half"
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n   \n=======\n<p>blank search</p>\n>>>>>>> REPLACE"
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "Canvas fenced.\n<canvas>\n```html\n<p>fenced</p>\n```\n</canvas>"
+    ],
+    "output": {
+     "chatText": "Canvas fenced.",
+     "canvasText": "\n```html\n<p>fenced</p>\n```\n",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "<CANVAS data-x=\"1\"><p>caps</p></CANVAS >"
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "<p>caps</p></CANVAS >",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "我已经把第二章改好了。\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": {
+     "chatText": "我已经把第二章改好了。",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "你已经把第二章改好了。\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": {
+     "chatText": "你已经把第二章改好了。",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "I've updated the paragraph.\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": {
+     "chatText": "I've updated the paragraph.",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "Here is the text.\n<doc_status>updated</doc_status>"
+    ],
+    "output": {
+     "chatText": "Here is the text.",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "No declaration here."
+    ],
+    "output": {
+     "chatText": "No declaration here.",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "<edit>broken"
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_sta"
+    ],
+    "output": {
+     "chatText": "Streaming…",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_status>upd"
+    ],
+    "output": {
+     "chatText": "Streaming…",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_status>updated</doc_st"
+    ],
+    "output": {
+     "chatText": "Streaming…\n<doc_status>updated</doc_st",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "Prose with < less-than and <b>tag</b> end"
+    ],
+    "output": {
+     "chatText": "Prose with < less-than and <b>tag</b> end",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "Hi <canv"
+    ],
+    "output": {
+     "chatText": "Hi <canv",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "Lead\n<canvas chapter=\"2\">partial"
+    ],
+    "output": {
+     "chatText": "Lead",
+     "canvasText": "partial",
+     "canvasChapter": "2",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   },
+   {
+    "input": [
+     "<selection_replace>half"
+    ],
+    "output": {
+     "chatText": "",
+     "canvasText": "",
+     "selectionReplaceText": "half",
+     "isSelectionEdit": true
+    }
+   },
+   {
+    "input": [
+     "a\n<edit>\n<<<<<<< SEARCH\nx"
+    ],
+    "output": {
+     "chatText": "a",
+     "canvasText": "",
+     "selectionReplaceText": "",
+     "isSelectionEdit": false
+    }
+   }
+  ],
+  "build_completion_warnings": [
+   {
+    "input": [
+     {
+      "canvasIssue": null,
+      "editFailedCount": 0,
+      "exhaustedNoActionRetries": false,
+      "reinsertedImages": 0
+     }
+    ],
+    "output": ""
+   },
+   {
+    "input": [
+     {
+      "canvasIssue": "truncated",
+      "editFailedCount": 1,
+      "exhaustedNoActionRetries": false,
+      "reinsertedImages": 1,
+      "strayMarkup": 1
+     }
+    ],
+    "output": "\n\n⚠️ The response was cut off before the document update finished, so no changes were applied (your document is unchanged). Please retry — for long documents, try editing a smaller selection at a time.\n\n⚠️ 1 suggested change could not be located in the current document and was skipped. The text to change may have moved or differ from what was matched.\n\n⚠️ This reply also contained 1 document change that could not be applied alongside the main one, so it was left out of this message. Ask again if it matters.\n\nℹ️ 1 image missing from the rewrite was restored near its original position. Delete it manually if the removal was intended."
+   },
+   {
+    "input": [
+     {
+      "canvasIssue": "elided",
+      "editFailedCount": 2,
+      "exhaustedNoActionRetries": true,
+      "reinsertedImages": 2,
+      "strayMarkup": 2,
+      "selectionGone": true,
+      "unretriableFailedUpdate": true,
+      "toolCallProducedNothing": true
+     }
+    ],
+    "output": "\n\n⚠️ The response abbreviated unchanged parts of the document, so applying it would have deleted content. No changes were applied. Please retry — for long documents, try editing a smaller selection at a time.\n\n⚠️ 2 suggested changes could not be located in the current document and were skipped. The text to change may have moved or differ from what was matched.\n\n⚠️ The model never produced a valid document update or a clear \"no change\" declaration (retried 3 times), so your document is unchanged. Ask again — naming the chapter or section usually helps.\n\n⚠️ The model started a document change but its request could not be used (empty or malformed arguments), so your document is unchanged. Try again — a shorter, more specific instruction usually helps.\n\n⚠️ This reply produced no usable document update, and it was resumed after a reload — so there is no request left to retry with. Your document is unchanged; send the instruction again to have another go.\n\n⚠️ The text you had selected is no longer where it was (the chapter changed while this ran), so nothing was written. The rewrite is above — paste it where you want it, or select the text again and retry.\n\nℹ️ 2 images missing from the rewrite were restored near their original position. Delete them manually if the removal was intended."
+   },
+   {
+    "input": [
+     {
+      "canvasIssue": null,
+      "editFailedCount": 0,
+      "exhaustedNoActionRetries": false,
+      "reinsertedImages": 0,
+      "strayMarkup": 3,
+      "unretriableFailedUpdate": true
+     }
+    ],
+    "output": "\n\n⚠️ This reply produced no usable document update, and it was resumed after a reload — so there is no request left to retry with. Your document is unchanged; send the instruction again to have another go."
+   }
+  ]
+ }
+}

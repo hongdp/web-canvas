@@ -1,0 +1,271 @@
+{
+ "module": "context_window",
+ "cases": {
+  "resolve_context_window_tokens": [
+   {
+    "input": [
+     "grok",
+     "grok-4.6"
+    ],
+    "output": 256000
+   },
+   {
+    "input": [
+     "grok",
+     "grok-3-mini"
+    ],
+    "output": 131072
+   },
+   {
+    "input": [
+     "openai",
+     "gpt-4o-mini"
+    ],
+    "output": 128000
+   },
+   {
+    "input": [
+     "openai",
+     "GPT-4.1-nano"
+    ],
+    "output": 1047576
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-opus-4-8"
+    ],
+    "output": 1000000
+   },
+   {
+    "input": [
+     "gemini",
+     "gemini-2.5-pro"
+    ],
+    "output": 1048576
+   },
+   {
+    "input": [
+     "ollama",
+     "qwen3"
+    ],
+    "output": 32768
+   },
+   {
+    "input": [
+     "ollama",
+     "qwen3",
+     262144
+    ],
+    "output": 262144
+   },
+   {
+    "input": [
+     "runpod",
+     ""
+    ],
+    "output": 32768
+   },
+   {
+    "input": [
+     "grok",
+     "grok-4.6",
+     0
+    ],
+    "output": 256000
+   },
+   {
+    "input": [
+     "moonshot",
+     "kimi-k3"
+    ],
+    "output": 1048576
+   },
+   {
+    "input": [
+     "moonshot",
+     "kimi-k2.7-code"
+    ],
+    "output": 262144
+   },
+   {
+    "input": [
+     "moonshot",
+     ""
+    ],
+    "output": 262144
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-sonnet-5-5"
+    ],
+    "output": 1000000
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-opus-4-6"
+    ],
+    "output": 1000000
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-opus-4-5-20251101"
+    ],
+    "output": 200000
+   },
+   {
+    "input": [
+     "anthropic",
+     "claude-haiku-4-5-20251001"
+    ],
+    "output": 200000
+   }
+  ],
+  "estimate_tokens": [
+   {
+    "input": [
+     ""
+    ],
+    "output": 0
+   },
+   {
+    "input": [
+     "hello world"
+    ],
+    "output": 3
+   },
+   {
+    "input": [
+     "你好世界"
+    ],
+    "output": 4
+   },
+   {
+    "input": [
+     "mixed 中文 text"
+    ],
+    "output": 5
+   },
+   {
+    "input": [
+     "a"
+    ],
+    "output": 1
+   }
+  ],
+  "tokens_to_chars": [
+   {
+    "input": [
+     1000,
+     0
+    ],
+    "output": 4000
+   },
+   {
+    "input": [
+     1000,
+     1
+    ],
+    "output": 1000
+   },
+   {
+    "input": [
+     1000,
+     0.5
+    ],
+    "output": 2500
+   },
+   {
+    "input": [
+     1000,
+     2
+    ],
+    "output": 1000
+   },
+   {
+    "input": [
+     1000,
+     -1
+    ],
+    "output": 4000
+   },
+   {
+    "input": [
+     7,
+     0.3
+    ],
+    "output": 21
+   }
+  ],
+  "history_budget_chars": [
+   {
+    "input": [
+     {
+      "contextTokens": 131072,
+      "maxOutputTokens": 16384,
+      "fixedTokens": 30000,
+      "cjkRatio": 0.8
+     }
+    ],
+    "output": 114527
+   },
+   {
+    "input": [
+     {
+      "contextTokens": 32768,
+      "maxOutputTokens": 16384,
+      "fixedTokens": 20000,
+      "cjkRatio": 0
+     }
+    ],
+    "output": 4000
+   },
+   {
+    "input": [
+     {
+      "contextTokens": 200000,
+      "maxOutputTokens": 4096,
+      "fixedTokens": 0,
+      "cjkRatio": 0.123
+     }
+    ],
+    "output": 638707
+   }
+  ],
+  "cjk_ratio_of": [
+   {
+    "input": [
+     ""
+    ],
+    "output": 0
+   },
+   {
+    "input": [
+     "abc"
+    ],
+    "output": 0
+   },
+   {
+    "input": [
+     "你好"
+    ],
+    "output": 1
+   },
+   {
+    "input": [
+     "你好ab"
+    ],
+    "output": 0.5
+   },
+   {
+    "input": [
+     "㐀豈 x"
+    ],
+    "output": 0.5
+   }
+  ]
+ }
+}

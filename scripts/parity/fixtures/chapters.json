@@ -1,0 +1,629 @@
+{
+ "module": "chapters",
+ "cases": {
+  "cite_chapter": [
+   {
+    "input": [
+     {
+      "id": "x",
+      "title": "T \"q\"",
+      "number": 3
+     }
+    ],
+    "output": "#3 \"T \"q\"\""
+   }
+  ],
+  "resolve_chapter": [
+   {
+    "input": [
+     3,
+     [
+      {
+       "id": "c1",
+       "title": "第一章 启程"
+      },
+      {
+       "id": "c2",
+       "title": "Chapter 2: The Road"
+      },
+      {
+       "id": "c3",
+       "title": "大纲"
+      },
+      {
+       "id": "c4",
+       "title": "第二章 进城"
+      },
+      {
+       "id": "c5",
+       "title": "第二章 入城"
+      }
+     ]
+    ],
+    "output": {
+     "id": "c3",
+     "title": "大纲",
+     "number": 3
+    }
+   },
+   {
+    "input": [
+     "3",
+     [
+      {
+       "id": "c1",
+       "title": "第一章 启程"
+      },
+      {
+       "id": "c2",
+       "title": "Chapter 2: The Road"
+      },
+      {
+       "id": "c3",
+       "title": "大纲"
+      },
+      {
+       "id": "c4",
+       "title": "第二章 进城"
+      },
+      {
+       "id": "c5",
+       "title": "第二章 入城"
+      }
+     ]
+    ],
+    "output": {
+     "id": "c3",
+     "title": "大纲",
+     "number": 3
+    }
+   },
+   {
+    "input": [
+     " #2 ",
+     [
+      {
+       "id": "c1",
+       "title": "第一章 启程"
+      },
+      {
+       "id": "c2",
+       "title": "Chapter 2: The Road"
+      },
+      {
+       "id": "c3",
+       "title": "大纲"
+      },
+      {
+       "id": "c4",
+       "title": "第二章 进城"
+      },
+      {
+       "id": "c5",
+       "title": "第二章 入城"
+      }
+     ]
+    ],
+    "output": {
+     "id": "c2",
+     "title": "Chapter 2: The Road",
+     "number": 2
+    }
+   },
+   {
+    "input": [
+     0,
+     [
+      {
+       "id": "c1",
+       "title": "第一章 启程"
+      },
+      {
+       "id": "c2",
+       "title": "Chapter 2: The Road"
+      },
+      {
+       "id": "c3",
+       "title": "大纲"
+      },
+      {
+       "id": "c4",
+       "title": "第二章 进城"
+      },
+      {
+       "id": "c5",
+       "title": "第二章 入城"
+      }
+     ]
+    ],
+    "output": "There is no chapter #0; the book has 5 chapters."
+   },
+   {
+    "input": [
+     "9",
+     [
+      {
+       "id": "c1",
+       "title": "第一章 启程"
+      },
+      {
+       "id": "c2",
+       "title": "Chapter 2: The Road"
+      },
+      {
+       "id": "c3",
+       "title": "大纲"
+      },
+      {
+       "id": "c4",
+       "title": "第二章 进城"
+      },
+      {
+       "id": "c5",
+       "title": "第二章 入城"
+      }
+     ]
+    ],
+    "output": "There is no chapter #9; the book has 5 chapters."
+   },
+   {
+    "input": [
+     2.5,
+     [
+      {
+       "id": "c1",
+       "title": "第一章 启程"
+      },
+      {
+       "id": "c2",
+       "title": "Chapter 2: The Road"
+      },
+      {
+       "id": "c3",
+       "title": "大纲"
+      },
+      {
+       "id": "c4",
+       "title": "第二章 进城"
+      },
+      {
+       "id": "c5",
+       "title": "第二章 入城"
+      }
+     ]
+    ],
+    "output": "There is no chapter #2.5; the book has 5 chapters."
+   },
+   {
+    "input": [
+     "大纲",
+     [
+      {
+       "id": "c1",
+       "title": "第一章 启程"
+      },
+      {
+       "id": "c2",
+       "title": "Chapter 2: The Road"
+      },
+      {
+       "id": "c3",
+       "title": "大纲"
+      },
+      {
+       "id": "c4",
+       "title": "第二章 进城"
+      },
+      {
+       "id": "c5",
+       "title": "第二章 入城"
+      }
+     ]
+    ],
+    "output": {
+     "id": "c3",
+     "title": "大纲",
+     "number": 3
+    }
+   },
+   {
+    "input": [
+     "  chapter 2: the road ",
+     [
+      {
+       "id": "c1",
+       "title": "第一章 启程"
+      },
+      {
+       "id": "c2",
+       "title": "Chapter 2: The Road"
+      },
+      {
+       "id": "c3",
+       "title": "大纲"
+      },
+      {
+       "id": "c4",
+       "title": "第二章 进城"
+      },
+      {
+       "id": "c5",
+       "title": "第二章 入城"
+      }
+     ]
+    ],
+    "output": {
+     "id": "c2",
+     "title": "Chapter 2: The Road",
+     "number": 2
+    }
+   },
+   {
+    "input": [
+     "启程",
+     [
+      {
+       "id": "c1",
+       "title": "第一章 启程"
+      },
+      {
+       "id": "c2",
+       "title": "Chapter 2: The Road"
+      },
+      {
+       "id": "c3",
+       "title": "大纲"
+      },
+      {
+       "id": "c4",
+       "title": "第二章 进城"
+      },
+      {
+       "id": "c5",
+       "title": "第二章 入城"
+      }
+     ]
+    ],
+    "output": {
+     "id": "c1",
+     "title": "第一章 启程",
+     "number": 1
+    }
+   },
+   {
+    "input": [
+     "第二章",
+     [
+      {
+       "id": "c1",
+       "title": "第一章 启程"
+      },
+      {
+       "id": "c2",
+       "title": "Chapter 2: The Road"
+      },
+      {
+       "id": "c3",
+       "title": "大纲"
+      },
+      {
+       "id": "c4",
+       "title": "第二章 进城"
+      },
+      {
+       "id": "c5",
+       "title": "第二章 入城"
+      }
+     ]
+    ],
+    "output": "\"第二章\" matches 2 chapters — pass a number instead:\n#4 \"第二章 进城\"\n#5 \"第二章 入城\""
+   },
+   {
+    "input": [
+     "nothing",
+     [
+      {
+       "id": "c1",
+       "title": "第一章 启程"
+      },
+      {
+       "id": "c2",
+       "title": "Chapter 2: The Road"
+      },
+      {
+       "id": "c3",
+       "title": "大纲"
+      },
+      {
+       "id": "c4",
+       "title": "第二章 进城"
+      },
+      {
+       "id": "c5",
+       "title": "第二章 入城"
+      }
+     ]
+    ],
+    "output": "No chapter is titled \"nothing\". The chapters are:\n#1 \"第一章 启程\"\n#2 \"Chapter 2: The Road\"\n#3 \"大纲\"\n#4 \"第二章 进城\"\n#5 \"第二章 入城\""
+   },
+   {
+    "input": [
+     "",
+     [
+      {
+       "id": "c1",
+       "title": "第一章 启程"
+      },
+      {
+       "id": "c2",
+       "title": "Chapter 2: The Road"
+      },
+      {
+       "id": "c3",
+       "title": "大纲"
+      },
+      {
+       "id": "c4",
+       "title": "第二章 进城"
+      },
+      {
+       "id": "c5",
+       "title": "第二章 入城"
+      }
+     ]
+    ],
+    "output": "No chapter was named. Pass its number from the CHAPTER INDEX or its exact title."
+   },
+   {
+    "input": [
+     null,
+     [
+      {
+       "id": "c1",
+       "title": "第一章 启程"
+      },
+      {
+       "id": "c2",
+       "title": "Chapter 2: The Road"
+      },
+      {
+       "id": "c3",
+       "title": "大纲"
+      },
+      {
+       "id": "c4",
+       "title": "第二章 进城"
+      },
+      {
+       "id": "c5",
+       "title": "第二章 入城"
+      }
+     ]
+    ],
+    "output": "No chapter was named. Pass its number from the CHAPTER INDEX or its exact title."
+   },
+   {
+    "input": [
+     {
+      "x": 1
+     },
+     [
+      {
+       "id": "c1",
+       "title": "第一章 启程"
+      },
+      {
+       "id": "c2",
+       "title": "Chapter 2: The Road"
+      },
+      {
+       "id": "c3",
+       "title": "大纲"
+      },
+      {
+       "id": "c4",
+       "title": "第二章 进城"
+      },
+      {
+       "id": "c5",
+       "title": "第二章 入城"
+      }
+     ]
+    ],
+    "output": "No chapter was named. Pass its number from the CHAPTER INDEX or its exact title."
+   },
+   {
+    "input": [
+     "   ",
+     [
+      {
+       "id": "c1",
+       "title": "第一章 启程"
+      },
+      {
+       "id": "c2",
+       "title": "Chapter 2: The Road"
+      },
+      {
+       "id": "c3",
+       "title": "大纲"
+      },
+      {
+       "id": "c4",
+       "title": "第二章 进城"
+      },
+      {
+       "id": "c5",
+       "title": "第二章 入城"
+      }
+     ]
+    ],
+    "output": "No chapter was named. Pass its number from the CHAPTER INDEX or its exact title."
+   },
+   {
+    "input": [
+     "missing",
+     [
+      {
+       "id": "m0",
+       "title": "Part 1"
+      },
+      {
+       "id": "m1",
+       "title": "Part 2"
+      },
+      {
+       "id": "m2",
+       "title": "Part 3"
+      },
+      {
+       "id": "m3",
+       "title": "Part 4"
+      },
+      {
+       "id": "m4",
+       "title": "Part 5"
+      },
+      {
+       "id": "m5",
+       "title": "Part 6"
+      },
+      {
+       "id": "m6",
+       "title": "Part 7"
+      },
+      {
+       "id": "m7",
+       "title": "Part 8"
+      },
+      {
+       "id": "m8",
+       "title": "Part 9"
+      },
+      {
+       "id": "m9",
+       "title": "Part 10"
+      },
+      {
+       "id": "m10",
+       "title": "Part 11"
+      },
+      {
+       "id": "m11",
+       "title": "Part 12"
+      },
+      {
+       "id": "m12",
+       "title": "Part 13"
+      },
+      {
+       "id": "m13",
+       "title": "Part 14"
+      },
+      {
+       "id": "m14",
+       "title": "Part 15"
+      }
+     ]
+    ],
+    "output": "No chapter is titled \"missing\". The chapters are:\n#1 \"Part 1\"\n#2 \"Part 2\"\n#3 \"Part 3\"\n#4 \"Part 4\"\n#5 \"Part 5\"\n#6 \"Part 6\"\n#7 \"Part 7\"\n#8 \"Part 8\"\n#9 \"Part 9\"\n#10 \"Part 10\"\n#11 \"Part 11\"\n#12 \"Part 12\"\n… 3 more (see the CHAPTER INDEX)"
+   },
+   {
+    "input": [
+     "Part",
+     [
+      {
+       "id": "m0",
+       "title": "Part 1"
+      },
+      {
+       "id": "m1",
+       "title": "Part 2"
+      },
+      {
+       "id": "m2",
+       "title": "Part 3"
+      },
+      {
+       "id": "m3",
+       "title": "Part 4"
+      },
+      {
+       "id": "m4",
+       "title": "Part 5"
+      },
+      {
+       "id": "m5",
+       "title": "Part 6"
+      },
+      {
+       "id": "m6",
+       "title": "Part 7"
+      },
+      {
+       "id": "m7",
+       "title": "Part 8"
+      },
+      {
+       "id": "m8",
+       "title": "Part 9"
+      },
+      {
+       "id": "m9",
+       "title": "Part 10"
+      },
+      {
+       "id": "m10",
+       "title": "Part 11"
+      },
+      {
+       "id": "m11",
+       "title": "Part 12"
+      },
+      {
+       "id": "m12",
+       "title": "Part 13"
+      },
+      {
+       "id": "m13",
+       "title": "Part 14"
+      },
+      {
+       "id": "m14",
+       "title": "Part 15"
+      }
+     ]
+    ],
+    "output": "\"Part\" matches 15 chapters — pass a number instead:\n#1 \"Part 1\"\n#2 \"Part 2\"\n#3 \"Part 3\"\n#4 \"Part 4\"\n#5 \"Part 5\"\n#6 \"Part 6\"\n#7 \"Part 7\"\n#8 \"Part 8\"\n#9 \"Part 9\"\n#10 \"Part 10\"\n#11 \"Part 11\"\n#12 \"Part 12\""
+   },
+   {
+    "input": [
+     true,
+     [
+      {
+       "id": "c1",
+       "title": "第一章 启程"
+      },
+      {
+       "id": "c2",
+       "title": "Chapter 2: The Road"
+      },
+      {
+       "id": "c3",
+       "title": "大纲"
+      },
+      {
+       "id": "c4",
+       "title": "第二章 进城"
+      },
+      {
+       "id": "c5",
+       "title": "第二章 入城"
+      }
+     ]
+    ],
+    "output": "No chapter was named. Pass its number from the CHAPTER INDEX or its exact title."
+   }
+  ]
+ }
+}

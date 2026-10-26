@@ -1,0 +1,914 @@
+{
+ "module": "document_tools",
+ "cases": {
+  "document_tools": [
+   {
+    "input": [],
+    "output": [
+     {
+      "name": "update_document",
+      "description": "Replace the entire text of a chapter (the active one unless `chapter` names another), or write a new chapter (`new_chapter`). Use for a brand-new chapter, a full rewrite, or restructuring where most of the text changes. For a small change to an existing chapter, prefer edit_document. To add to a chapter or bring it up to date (new entries, a timeline carried further), change only what changes with edit_paragraphs or edit_document: a rewrite that would drop much of the text is held back.",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "chapter": {
+         "type": "string",
+         "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+        },
+        "new_chapter": {
+         "type": "string",
+         "description": "Optional. To add a chapter: its title. The chapter is created at the end of the book and filled with `html` in this one call — there is no separate step for creating it. Leave out `chapter` when you set this. Write this argument first."
+        },
+        "html": {
+         "type": "string",
+         "description": "The COMPLETE new document as an HTML fragment: <h1>, <p>, <blockquote>, <strong>, <em>, <ul>/<ol>/<li>. No <!DOCTYPE>, <html>, <head> or <body>. Never abbreviate with placeholders like \"<!-- unchanged -->\". Copy every {{IMAGE_PLACEHOLDER_n}} token exactly, in place."
+        }
+       },
+       "required": [
+        "html"
+       ]
+      }
+     },
+     {
+      "name": "edit_document",
+      "description": "Change specific passages of a chapter (the active one unless `chapter` names another), leaving everything else untouched. Preferred for rewriting a sentence or paragraph, fixing wording, or inserting and removing a section. For another chapter, read its HTML with read first.",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "chapter": {
+         "type": "string",
+         "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+        },
+        "edits": {
+         "type": "array",
+         "description": "One entry per separate change.",
+         "items": {
+          "type": "object",
+          "properties": {
+           "search": {
+            "type": "string",
+            "description": "HTML copied EXACTLY from the current document — same tags, entities, punctuation. Include enough context to be unique. Any difference and the edit cannot be located."
+           },
+           "replace": {
+            "type": "string",
+            "description": "The HTML that replaces it. Empty string deletes the passage."
+           }
+          },
+          "required": [
+           "search",
+           "replace"
+          ]
+         }
+        }
+       },
+       "required": [
+        "edits"
+       ]
+      }
+     },
+     {
+      "name": "replace_selection",
+      "description": "Rewrite ONLY the text the user currently has selected. Available when the request includes a CURRENT SELECTED TEXT section; do not use it otherwise.",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "html": {
+         "type": "string",
+         "description": "The replacement for the selected passage only, as HTML. Do not include the surrounding text."
+        }
+       },
+       "required": [
+        "html"
+       ]
+      }
+     }
+    ]
+   }
+  ],
+  "to_openai_tools": [
+   {
+    "input": [
+     [
+      {
+       "name": "update_document",
+       "description": "Replace the entire text of a chapter (the active one unless `chapter` names another), or write a new chapter (`new_chapter`). Use for a brand-new chapter, a full rewrite, or restructuring where most of the text changes. For a small change to an existing chapter, prefer edit_document. To add to a chapter or bring it up to date (new entries, a timeline carried further), change only what changes with edit_paragraphs or edit_document: a rewrite that would drop much of the text is held back.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "chapter": {
+          "type": "string",
+          "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+         },
+         "new_chapter": {
+          "type": "string",
+          "description": "Optional. To add a chapter: its title. The chapter is created at the end of the book and filled with `html` in this one call — there is no separate step for creating it. Leave out `chapter` when you set this. Write this argument first."
+         },
+         "html": {
+          "type": "string",
+          "description": "The COMPLETE new document as an HTML fragment: <h1>, <p>, <blockquote>, <strong>, <em>, <ul>/<ol>/<li>. No <!DOCTYPE>, <html>, <head> or <body>. Never abbreviate with placeholders like \"<!-- unchanged -->\". Copy every {{IMAGE_PLACEHOLDER_n}} token exactly, in place."
+         }
+        },
+        "required": [
+         "html"
+        ]
+       }
+      },
+      {
+       "name": "edit_document",
+       "description": "Change specific passages of a chapter (the active one unless `chapter` names another), leaving everything else untouched. Preferred for rewriting a sentence or paragraph, fixing wording, or inserting and removing a section. For another chapter, read its HTML with read first.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "chapter": {
+          "type": "string",
+          "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+         },
+         "edits": {
+          "type": "array",
+          "description": "One entry per separate change.",
+          "items": {
+           "type": "object",
+           "properties": {
+            "search": {
+             "type": "string",
+             "description": "HTML copied EXACTLY from the current document — same tags, entities, punctuation. Include enough context to be unique. Any difference and the edit cannot be located."
+            },
+            "replace": {
+             "type": "string",
+             "description": "The HTML that replaces it. Empty string deletes the passage."
+            }
+           },
+           "required": [
+            "search",
+            "replace"
+           ]
+          }
+         }
+        },
+        "required": [
+         "edits"
+        ]
+       }
+      },
+      {
+       "name": "replace_selection",
+       "description": "Rewrite ONLY the text the user currently has selected. Available when the request includes a CURRENT SELECTED TEXT section; do not use it otherwise.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "html": {
+          "type": "string",
+          "description": "The replacement for the selected passage only, as HTML. Do not include the surrounding text."
+         }
+        },
+        "required": [
+         "html"
+        ]
+       }
+      }
+     ]
+    ],
+    "output": [
+     {
+      "type": "function",
+      "function": {
+       "name": "update_document",
+       "description": "Replace the entire text of a chapter (the active one unless `chapter` names another), or write a new chapter (`new_chapter`). Use for a brand-new chapter, a full rewrite, or restructuring where most of the text changes. For a small change to an existing chapter, prefer edit_document. To add to a chapter or bring it up to date (new entries, a timeline carried further), change only what changes with edit_paragraphs or edit_document: a rewrite that would drop much of the text is held back.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "chapter": {
+          "type": "string",
+          "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+         },
+         "new_chapter": {
+          "type": "string",
+          "description": "Optional. To add a chapter: its title. The chapter is created at the end of the book and filled with `html` in this one call — there is no separate step for creating it. Leave out `chapter` when you set this. Write this argument first."
+         },
+         "html": {
+          "type": "string",
+          "description": "The COMPLETE new document as an HTML fragment: <h1>, <p>, <blockquote>, <strong>, <em>, <ul>/<ol>/<li>. No <!DOCTYPE>, <html>, <head> or <body>. Never abbreviate with placeholders like \"<!-- unchanged -->\". Copy every {{IMAGE_PLACEHOLDER_n}} token exactly, in place."
+         }
+        },
+        "required": [
+         "html"
+        ]
+       }
+      }
+     },
+     {
+      "type": "function",
+      "function": {
+       "name": "edit_document",
+       "description": "Change specific passages of a chapter (the active one unless `chapter` names another), leaving everything else untouched. Preferred for rewriting a sentence or paragraph, fixing wording, or inserting and removing a section. For another chapter, read its HTML with read first.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "chapter": {
+          "type": "string",
+          "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+         },
+         "edits": {
+          "type": "array",
+          "description": "One entry per separate change.",
+          "items": {
+           "type": "object",
+           "properties": {
+            "search": {
+             "type": "string",
+             "description": "HTML copied EXACTLY from the current document — same tags, entities, punctuation. Include enough context to be unique. Any difference and the edit cannot be located."
+            },
+            "replace": {
+             "type": "string",
+             "description": "The HTML that replaces it. Empty string deletes the passage."
+            }
+           },
+           "required": [
+            "search",
+            "replace"
+           ]
+          }
+         }
+        },
+        "required": [
+         "edits"
+        ]
+       }
+      }
+     },
+     {
+      "type": "function",
+      "function": {
+       "name": "replace_selection",
+       "description": "Rewrite ONLY the text the user currently has selected. Available when the request includes a CURRENT SELECTED TEXT section; do not use it otherwise.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "html": {
+          "type": "string",
+          "description": "The replacement for the selected passage only, as HTML. Do not include the surrounding text."
+         }
+        },
+        "required": [
+         "html"
+        ]
+       }
+      }
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "name": "x",
+       "description": "",
+       "parameters": {
+        "type": "object"
+       }
+      }
+     ]
+    ],
+    "output": [
+     {
+      "type": "function",
+      "function": {
+       "name": "x",
+       "description": "",
+       "parameters": {
+        "type": "object"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "to_anthropic_tools": [
+   {
+    "input": [
+     [
+      {
+       "name": "update_document",
+       "description": "Replace the entire text of a chapter (the active one unless `chapter` names another), or write a new chapter (`new_chapter`). Use for a brand-new chapter, a full rewrite, or restructuring where most of the text changes. For a small change to an existing chapter, prefer edit_document. To add to a chapter or bring it up to date (new entries, a timeline carried further), change only what changes with edit_paragraphs or edit_document: a rewrite that would drop much of the text is held back.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "chapter": {
+          "type": "string",
+          "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+         },
+         "new_chapter": {
+          "type": "string",
+          "description": "Optional. To add a chapter: its title. The chapter is created at the end of the book and filled with `html` in this one call — there is no separate step for creating it. Leave out `chapter` when you set this. Write this argument first."
+         },
+         "html": {
+          "type": "string",
+          "description": "The COMPLETE new document as an HTML fragment: <h1>, <p>, <blockquote>, <strong>, <em>, <ul>/<ol>/<li>. No <!DOCTYPE>, <html>, <head> or <body>. Never abbreviate with placeholders like \"<!-- unchanged -->\". Copy every {{IMAGE_PLACEHOLDER_n}} token exactly, in place."
+         }
+        },
+        "required": [
+         "html"
+        ]
+       }
+      },
+      {
+       "name": "edit_document",
+       "description": "Change specific passages of a chapter (the active one unless `chapter` names another), leaving everything else untouched. Preferred for rewriting a sentence or paragraph, fixing wording, or inserting and removing a section. For another chapter, read its HTML with read first.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "chapter": {
+          "type": "string",
+          "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+         },
+         "edits": {
+          "type": "array",
+          "description": "One entry per separate change.",
+          "items": {
+           "type": "object",
+           "properties": {
+            "search": {
+             "type": "string",
+             "description": "HTML copied EXACTLY from the current document — same tags, entities, punctuation. Include enough context to be unique. Any difference and the edit cannot be located."
+            },
+            "replace": {
+             "type": "string",
+             "description": "The HTML that replaces it. Empty string deletes the passage."
+            }
+           },
+           "required": [
+            "search",
+            "replace"
+           ]
+          }
+         }
+        },
+        "required": [
+         "edits"
+        ]
+       }
+      },
+      {
+       "name": "replace_selection",
+       "description": "Rewrite ONLY the text the user currently has selected. Available when the request includes a CURRENT SELECTED TEXT section; do not use it otherwise.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "html": {
+          "type": "string",
+          "description": "The replacement for the selected passage only, as HTML. Do not include the surrounding text."
+         }
+        },
+        "required": [
+         "html"
+        ]
+       }
+      }
+     ]
+    ],
+    "output": [
+     {
+      "name": "update_document",
+      "description": "Replace the entire text of a chapter (the active one unless `chapter` names another), or write a new chapter (`new_chapter`). Use for a brand-new chapter, a full rewrite, or restructuring where most of the text changes. For a small change to an existing chapter, prefer edit_document. To add to a chapter or bring it up to date (new entries, a timeline carried further), change only what changes with edit_paragraphs or edit_document: a rewrite that would drop much of the text is held back.",
+      "input_schema": {
+       "type": "object",
+       "properties": {
+        "chapter": {
+         "type": "string",
+         "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+        },
+        "new_chapter": {
+         "type": "string",
+         "description": "Optional. To add a chapter: its title. The chapter is created at the end of the book and filled with `html` in this one call — there is no separate step for creating it. Leave out `chapter` when you set this. Write this argument first."
+        },
+        "html": {
+         "type": "string",
+         "description": "The COMPLETE new document as an HTML fragment: <h1>, <p>, <blockquote>, <strong>, <em>, <ul>/<ol>/<li>. No <!DOCTYPE>, <html>, <head> or <body>. Never abbreviate with placeholders like \"<!-- unchanged -->\". Copy every {{IMAGE_PLACEHOLDER_n}} token exactly, in place."
+        }
+       },
+       "required": [
+        "html"
+       ]
+      }
+     },
+     {
+      "name": "edit_document",
+      "description": "Change specific passages of a chapter (the active one unless `chapter` names another), leaving everything else untouched. Preferred for rewriting a sentence or paragraph, fixing wording, or inserting and removing a section. For another chapter, read its HTML with read first.",
+      "input_schema": {
+       "type": "object",
+       "properties": {
+        "chapter": {
+         "type": "string",
+         "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+        },
+        "edits": {
+         "type": "array",
+         "description": "One entry per separate change.",
+         "items": {
+          "type": "object",
+          "properties": {
+           "search": {
+            "type": "string",
+            "description": "HTML copied EXACTLY from the current document — same tags, entities, punctuation. Include enough context to be unique. Any difference and the edit cannot be located."
+           },
+           "replace": {
+            "type": "string",
+            "description": "The HTML that replaces it. Empty string deletes the passage."
+           }
+          },
+          "required": [
+           "search",
+           "replace"
+          ]
+         }
+        }
+       },
+       "required": [
+        "edits"
+       ]
+      }
+     },
+     {
+      "name": "replace_selection",
+      "description": "Rewrite ONLY the text the user currently has selected. Available when the request includes a CURRENT SELECTED TEXT section; do not use it otherwise.",
+      "input_schema": {
+       "type": "object",
+       "properties": {
+        "html": {
+         "type": "string",
+         "description": "The replacement for the selected passage only, as HTML. Do not include the surrounding text."
+        }
+       },
+       "required": [
+        "html"
+       ]
+      }
+     }
+    ]
+   }
+  ],
+  "to_gemini_tools": [
+   {
+    "input": [
+     [
+      {
+       "name": "update_document",
+       "description": "Replace the entire text of a chapter (the active one unless `chapter` names another), or write a new chapter (`new_chapter`). Use for a brand-new chapter, a full rewrite, or restructuring where most of the text changes. For a small change to an existing chapter, prefer edit_document. To add to a chapter or bring it up to date (new entries, a timeline carried further), change only what changes with edit_paragraphs or edit_document: a rewrite that would drop much of the text is held back.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "chapter": {
+          "type": "string",
+          "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+         },
+         "new_chapter": {
+          "type": "string",
+          "description": "Optional. To add a chapter: its title. The chapter is created at the end of the book and filled with `html` in this one call — there is no separate step for creating it. Leave out `chapter` when you set this. Write this argument first."
+         },
+         "html": {
+          "type": "string",
+          "description": "The COMPLETE new document as an HTML fragment: <h1>, <p>, <blockquote>, <strong>, <em>, <ul>/<ol>/<li>. No <!DOCTYPE>, <html>, <head> or <body>. Never abbreviate with placeholders like \"<!-- unchanged -->\". Copy every {{IMAGE_PLACEHOLDER_n}} token exactly, in place."
+         }
+        },
+        "required": [
+         "html"
+        ]
+       }
+      },
+      {
+       "name": "edit_document",
+       "description": "Change specific passages of a chapter (the active one unless `chapter` names another), leaving everything else untouched. Preferred for rewriting a sentence or paragraph, fixing wording, or inserting and removing a section. For another chapter, read its HTML with read first.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "chapter": {
+          "type": "string",
+          "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+         },
+         "edits": {
+          "type": "array",
+          "description": "One entry per separate change.",
+          "items": {
+           "type": "object",
+           "properties": {
+            "search": {
+             "type": "string",
+             "description": "HTML copied EXACTLY from the current document — same tags, entities, punctuation. Include enough context to be unique. Any difference and the edit cannot be located."
+            },
+            "replace": {
+             "type": "string",
+             "description": "The HTML that replaces it. Empty string deletes the passage."
+            }
+           },
+           "required": [
+            "search",
+            "replace"
+           ]
+          }
+         }
+        },
+        "required": [
+         "edits"
+        ]
+       }
+      },
+      {
+       "name": "replace_selection",
+       "description": "Rewrite ONLY the text the user currently has selected. Available when the request includes a CURRENT SELECTED TEXT section; do not use it otherwise.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "html": {
+          "type": "string",
+          "description": "The replacement for the selected passage only, as HTML. Do not include the surrounding text."
+         }
+        },
+        "required": [
+         "html"
+        ]
+       }
+      }
+     ]
+    ],
+    "output": [
+     {
+      "functionDeclarations": [
+       {
+        "name": "update_document",
+        "description": "Replace the entire text of a chapter (the active one unless `chapter` names another), or write a new chapter (`new_chapter`). Use for a brand-new chapter, a full rewrite, or restructuring where most of the text changes. For a small change to an existing chapter, prefer edit_document. To add to a chapter or bring it up to date (new entries, a timeline carried further), change only what changes with edit_paragraphs or edit_document: a rewrite that would drop much of the text is held back.",
+        "parameters": {
+         "type": "OBJECT",
+         "properties": {
+          "chapter": {
+           "type": "STRING",
+           "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+          },
+          "new_chapter": {
+           "type": "STRING",
+           "description": "Optional. To add a chapter: its title. The chapter is created at the end of the book and filled with `html` in this one call — there is no separate step for creating it. Leave out `chapter` when you set this. Write this argument first."
+          },
+          "html": {
+           "type": "STRING",
+           "description": "The COMPLETE new document as an HTML fragment: <h1>, <p>, <blockquote>, <strong>, <em>, <ul>/<ol>/<li>. No <!DOCTYPE>, <html>, <head> or <body>. Never abbreviate with placeholders like \"<!-- unchanged -->\". Copy every {{IMAGE_PLACEHOLDER_n}} token exactly, in place."
+          }
+         },
+         "required": [
+          "html"
+         ]
+        }
+       },
+       {
+        "name": "edit_document",
+        "description": "Change specific passages of a chapter (the active one unless `chapter` names another), leaving everything else untouched. Preferred for rewriting a sentence or paragraph, fixing wording, or inserting and removing a section. For another chapter, read its HTML with read first.",
+        "parameters": {
+         "type": "OBJECT",
+         "properties": {
+          "chapter": {
+           "type": "STRING",
+           "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+          },
+          "edits": {
+           "type": "ARRAY",
+           "description": "One entry per separate change.",
+           "items": {
+            "type": "OBJECT",
+            "properties": {
+             "search": {
+              "type": "STRING",
+              "description": "HTML copied EXACTLY from the current document — same tags, entities, punctuation. Include enough context to be unique. Any difference and the edit cannot be located."
+             },
+             "replace": {
+              "type": "STRING",
+              "description": "The HTML that replaces it. Empty string deletes the passage."
+             }
+            },
+            "required": [
+             "search",
+             "replace"
+            ]
+           }
+          }
+         },
+         "required": [
+          "edits"
+         ]
+        }
+       },
+       {
+        "name": "replace_selection",
+        "description": "Rewrite ONLY the text the user currently has selected. Available when the request includes a CURRENT SELECTED TEXT section; do not use it otherwise.",
+        "parameters": {
+         "type": "OBJECT",
+         "properties": {
+          "html": {
+           "type": "STRING",
+           "description": "The replacement for the selected passage only, as HTML. Do not include the surrounding text."
+          }
+         },
+         "required": [
+          "html"
+         ]
+        }
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "name": "x",
+       "description": "",
+       "parameters": {
+        "type": "object"
+       }
+      }
+     ]
+    ],
+    "output": [
+     {
+      "functionDeclarations": [
+       {
+        "name": "x",
+        "description": "",
+        "parameters": {
+         "type": "OBJECT"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "name": "e",
+       "description": "",
+       "parameters": {
+        "type": "object",
+        "description": "",
+        "properties": {},
+        "required": []
+       }
+      }
+     ]
+    ],
+    "output": [
+     {
+      "functionDeclarations": [
+       {
+        "name": "e",
+        "description": "",
+        "parameters": {
+         "type": "OBJECT",
+         "properties": {},
+         "required": []
+        }
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "input": [
+     []
+    ],
+    "output": [
+     {
+      "functionDeclarations": []
+     }
+    ]
+   }
+  ],
+  "from_openai_tools": [
+   {
+    "input": [
+     [
+      {
+       "type": "function",
+       "function": {
+        "name": "update_document",
+        "description": "Replace the entire text of a chapter (the active one unless `chapter` names another), or write a new chapter (`new_chapter`). Use for a brand-new chapter, a full rewrite, or restructuring where most of the text changes. For a small change to an existing chapter, prefer edit_document. To add to a chapter or bring it up to date (new entries, a timeline carried further), change only what changes with edit_paragraphs or edit_document: a rewrite that would drop much of the text is held back.",
+        "parameters": {
+         "type": "object",
+         "properties": {
+          "chapter": {
+           "type": "string",
+           "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+          },
+          "new_chapter": {
+           "type": "string",
+           "description": "Optional. To add a chapter: its title. The chapter is created at the end of the book and filled with `html` in this one call — there is no separate step for creating it. Leave out `chapter` when you set this. Write this argument first."
+          },
+          "html": {
+           "type": "string",
+           "description": "The COMPLETE new document as an HTML fragment: <h1>, <p>, <blockquote>, <strong>, <em>, <ul>/<ol>/<li>. No <!DOCTYPE>, <html>, <head> or <body>. Never abbreviate with placeholders like \"<!-- unchanged -->\". Copy every {{IMAGE_PLACEHOLDER_n}} token exactly, in place."
+          }
+         },
+         "required": [
+          "html"
+         ]
+        }
+       }
+      },
+      {
+       "type": "function",
+       "function": {
+        "name": "edit_document",
+        "description": "Change specific passages of a chapter (the active one unless `chapter` names another), leaving everything else untouched. Preferred for rewriting a sentence or paragraph, fixing wording, or inserting and removing a section. For another chapter, read its HTML with read first.",
+        "parameters": {
+         "type": "object",
+         "properties": {
+          "chapter": {
+           "type": "string",
+           "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+          },
+          "edits": {
+           "type": "array",
+           "description": "One entry per separate change.",
+           "items": {
+            "type": "object",
+            "properties": {
+             "search": {
+              "type": "string",
+              "description": "HTML copied EXACTLY from the current document — same tags, entities, punctuation. Include enough context to be unique. Any difference and the edit cannot be located."
+             },
+             "replace": {
+              "type": "string",
+              "description": "The HTML that replaces it. Empty string deletes the passage."
+             }
+            },
+            "required": [
+             "search",
+             "replace"
+            ]
+           }
+          }
+         },
+         "required": [
+          "edits"
+         ]
+        }
+       }
+      },
+      {
+       "type": "function",
+       "function": {
+        "name": "replace_selection",
+        "description": "Rewrite ONLY the text the user currently has selected. Available when the request includes a CURRENT SELECTED TEXT section; do not use it otherwise.",
+        "parameters": {
+         "type": "object",
+         "properties": {
+          "html": {
+           "type": "string",
+           "description": "The replacement for the selected passage only, as HTML. Do not include the surrounding text."
+          }
+         },
+         "required": [
+          "html"
+         ]
+        }
+       }
+      }
+     ]
+    ],
+    "output": [
+     {
+      "name": "update_document",
+      "description": "Replace the entire text of a chapter (the active one unless `chapter` names another), or write a new chapter (`new_chapter`). Use for a brand-new chapter, a full rewrite, or restructuring where most of the text changes. For a small change to an existing chapter, prefer edit_document. To add to a chapter or bring it up to date (new entries, a timeline carried further), change only what changes with edit_paragraphs or edit_document: a rewrite that would drop much of the text is held back.",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "chapter": {
+         "type": "string",
+         "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+        },
+        "new_chapter": {
+         "type": "string",
+         "description": "Optional. To add a chapter: its title. The chapter is created at the end of the book and filled with `html` in this one call — there is no separate step for creating it. Leave out `chapter` when you set this. Write this argument first."
+        },
+        "html": {
+         "type": "string",
+         "description": "The COMPLETE new document as an HTML fragment: <h1>, <p>, <blockquote>, <strong>, <em>, <ul>/<ol>/<li>. No <!DOCTYPE>, <html>, <head> or <body>. Never abbreviate with placeholders like \"<!-- unchanged -->\". Copy every {{IMAGE_PLACEHOLDER_n}} token exactly, in place."
+        }
+       },
+       "required": [
+        "html"
+       ]
+      }
+     },
+     {
+      "name": "edit_document",
+      "description": "Change specific passages of a chapter (the active one unless `chapter` names another), leaving everything else untouched. Preferred for rewriting a sentence or paragraph, fixing wording, or inserting and removing a section. For another chapter, read its HTML with read first.",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "chapter": {
+         "type": "string",
+         "description": "Optional. The chapter to change: its position in the CHAPTER INDEX (e.g. \"3\" for the third chapter — never a number from its title) or its exact title. Omit to change the active chapter. Write this argument first."
+        },
+        "edits": {
+         "type": "array",
+         "description": "One entry per separate change.",
+         "items": {
+          "type": "object",
+          "properties": {
+           "search": {
+            "type": "string",
+            "description": "HTML copied EXACTLY from the current document — same tags, entities, punctuation. Include enough context to be unique. Any difference and the edit cannot be located."
+           },
+           "replace": {
+            "type": "string",
+            "description": "The HTML that replaces it. Empty string deletes the passage."
+           }
+          },
+          "required": [
+           "search",
+           "replace"
+          ]
+         }
+        }
+       },
+       "required": [
+        "edits"
+       ]
+      }
+     },
+     {
+      "name": "replace_selection",
+      "description": "Rewrite ONLY the text the user currently has selected. Available when the request includes a CURRENT SELECTED TEXT section; do not use it otherwise.",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "html": {
+         "type": "string",
+         "description": "The replacement for the selected passage only, as HTML. Do not include the surrounding text."
+        }
+       },
+       "required": [
+        "html"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "type": "function",
+       "function": {
+        "name": "n",
+        "parameters": {
+         "type": "object"
+        }
+       }
+      },
+      {
+       "function": {
+        "name": 3,
+        "parameters": {}
+       }
+      },
+      null,
+      "junk",
+      {
+       "function": {
+        "name": "p",
+        "parameters": "bad"
+       }
+      },
+      {
+       "function": {
+        "name": "q",
+        "parameters": []
+       }
+      }
+     ]
+    ],
+    "output": [
+     {
+      "name": "n",
+      "description": "",
+      "parameters": {
+       "type": "object"
+      }
+     },
+     {
+      "name": "q",
+      "description": "",
+      "parameters": []
+     }
+    ]
+   },
+   {
+    "input": [
+     []
+    ],
+    "output": []
+   }
+  ]
+ }
+}

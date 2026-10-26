@@ -1,0 +1,2975 @@
+{
+ "module": "text",
+ "cases": {
+  "strip_incomplete_end_tag": [
+   {
+    "input": [
+     "abc</selection_replace>"
+    ],
+    "output": "abc"
+   },
+   {
+    "input": [
+     "abc</selection_re"
+    ],
+    "output": "abc"
+   },
+   {
+    "input": [
+     "abc e>"
+    ],
+    "output": "abc e>"
+   },
+   {
+    "input": [
+     "</sel in middle"
+    ],
+    "output": "</sel in middle"
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": ""
+   },
+   {
+    "input": [
+     "</selection_replace>"
+    ],
+    "output": ""
+   }
+  ],
+  "chapter_attribute": [
+   {
+    "input": [
+     "<canvas chapter=\"3\">"
+    ],
+    "output": "3"
+   },
+   {
+    "input": [
+     "<edit chapter='第二章'>"
+    ],
+    "output": "第二章"
+   },
+   {
+    "input": [
+     "<canvas new_chapter=\"x\">"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<canvas>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<canvas chapter=\"  \">"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<canvas CHAPTER = \"4\" >"
+    ],
+    "output": "4"
+   }
+  ],
+  "new_chapter_attribute": [
+   {
+    "input": [
+     "<canvas new_chapter=\"第二章 进城\">"
+    ],
+    "output": "第二章 进城"
+   },
+   {
+    "input": [
+     "<canvas new_chapter=' 尾声 '>"
+    ],
+    "output": "尾声"
+   },
+   {
+    "input": [
+     "<canvas new_chapter=\"\">"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<canvas chapter=\"3\">"
+    ],
+    "output": null
+   }
+  ],
+  "extract_tagged_block": [
+   {
+    "input": [
+     "no tags",
+     "canvas"
+    ],
+    "output": {
+     "found": false,
+     "closed": false,
+     "inner": "",
+     "before": "no tags",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "before <canvas><p>x</p></canvas> after",
+     "canvas"
+    ],
+    "output": {
+     "found": true,
+     "closed": true,
+     "inner": "<p>x</p>",
+     "before": "before ",
+     "after": " after"
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>cut",
+     "canvas"
+    ],
+    "output": {
+     "found": true,
+     "closed": false,
+     "inner": "<p>cut",
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "<Canvas foo=\"bar\"><p>x</p></canvas >",
+     "canvas"
+    ],
+    "output": {
+     "found": true,
+     "closed": true,
+     "inner": "<p>x</p>",
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "<canvas>\n```html\n<p>f</p>\n```\n</canvas>",
+     "canvas"
+    ],
+    "output": {
+     "found": true,
+     "closed": true,
+     "inner": "<p>f</p>",
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "a <selection_replace>s</selection_replace> b",
+     "selection_replace"
+    ],
+    "output": {
+     "found": true,
+     "closed": true,
+     "inner": "s",
+     "before": "a ",
+     "after": " b"
+    }
+   },
+   {
+    "input": [
+     "Rewriting 3.\n<canvas chapter=\"3\"><p>three</p></canvas>\nDone.\n<doc_status>updated</doc_status>",
+     "canvas"
+    ],
+    "output": {
+     "found": true,
+     "closed": true,
+     "inner": "<p>three</p>",
+     "before": "Rewriting 3.\n",
+     "after": "\nDone.\n<doc_status>updated</doc_status>",
+     "chapter": "3"
+    }
+   },
+   {
+    "input": [
+     "New chapter.\n<canvas new_chapter=\"第二章 进城\"><p>进城</p></canvas>",
+     "canvas"
+    ],
+    "output": {
+     "found": true,
+     "closed": true,
+     "inner": "<p>进城</p>",
+     "before": "New chapter.\n",
+     "after": "",
+     "newChapter": "第二章 进城"
+    }
+   }
+  ],
+  "has_elision_markers": [
+   {
+    "input": [
+     "<p>第1–9章：见原条目。</p><p>第10章：新</p>"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<p>（略）</p>"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<p>略。</p>"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<li>第五章：同上</li>"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<p>此处省略三千字</p>"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<p>其余内容不变</p>"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<p>【下同】</p>"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<p>他的脸色保持不变，略微一笑。</p><p>她说……</p>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "<p>他省略了寒暄：“同上次一样。”</p>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "<p>余同学走了过来。</p>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "<p>数值：不变量</p>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "<p>a</p><!-- rest unchanged --><p>z</p>"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<p>[content continues]</p>"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<p>(rest of the document remains the same)</p>"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<p>...</p>"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<p>She paused... and went on.</p>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "<p>The story continues in the next room.</p>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "<p>ordinary</p>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "<p>[TRUNCATED]</p>"
+    ],
+    "output": true
+   }
+  ],
+  "validate_canvas_replacement": [
+   {
+    "input": [
+     "<p>x</p>",
+     false
+    ],
+    "output": "truncated"
+   },
+   {
+    "input": [
+     "<p>[unchanged]</p>",
+     true
+    ],
+    "output": "elided"
+   },
+   {
+    "input": [
+     "<p>x</p>",
+     true
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<p>[unchanged]</p>",
+     false
+    ],
+    "output": "truncated"
+   }
+  ],
+  "parse_edit_blocks": [
+   {
+    "input": [
+     "Just chat, no tags.\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "Sure.\n<canvas>\n<h1>T</h1><p>a</p>\n</canvas>\n<doc_status>updated</doc_status>"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "Rewriting 3.\n<canvas chapter=\"3\"><p>three</p></canvas>\nDone.\n<doc_status>updated</doc_status>"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "New chapter.\n<canvas new_chapter=\"第二章 进城\"><p>进城</p></canvas>"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>cut off"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "Edit.\n<edit>\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit>\nAnd more.\n<doc_status>updated</doc_status>"
+    ],
+    "output": {
+     "blocks": [
+      {
+       "search": "<p>a</p>",
+       "replace": "<p>b</p>"
+      }
+     ],
+     "before": "Edit.",
+     "after": "And more.\n<doc_status>updated</doc_status>"
+    }
+   },
+   {
+    "input": [
+     "<edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit><edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>c</p>\n=======\n\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": {
+     "blocks": [
+      {
+       "search": "<p>a</p>",
+       "replace": "<p>b</p>",
+       "chapter": "2"
+      },
+      {
+       "search": "<p>c</p>",
+       "replace": "",
+       "chapter": "2"
+      }
+     ],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "<selection_replace>new words</selection_replace>\n<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": {
+     "blocks": [
+      {
+       "search": "<p>x</p>",
+       "replace": "<p>y</p>"
+      }
+     ],
+     "before": "<selection_replace>new words</selection_replace>",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>\n<selection_replace>sel</selection_replace>"
+    ],
+    "output": {
+     "blocks": [
+      {
+       "search": "<p>x</p>",
+       "replace": "<p>y</p>"
+      }
+     ],
+     "before": "",
+     "after": "<selection_replace>sel</selection_replace>"
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>active</p></canvas>\n<edit chapter=\"1\">\n<<<<<<< SEARCH\n<p>o</p>\n=======\n<p>p</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": {
+     "blocks": [
+      {
+       "search": "<p>o</p>",
+       "replace": "<p>p</p>",
+       "chapter": "1"
+      }
+     ],
+     "before": "<canvas><p>active</p></canvas>",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>active</p></canvas>\n<edit>\n<<<<<<< SEARCH\n<p>o</p>\n=======\n<p>p</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": {
+     "blocks": [
+      {
+       "search": "<p>o</p>",
+       "replace": "<p>p</p>"
+      }
+     ],
+     "before": "<canvas><p>active</p></canvas>",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "<selection_replace>sel</selection_replace><canvas><p>stray</p></canvas>"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>one</p></canvas><canvas chapter=\"4\"><p>four</p></canvas><canvas new_chapter=\"五\"><p>五</p></canvas>"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "chat <<<<<<< SEARCH\nunterminated"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>bare</p>\n=======\n<p>markers</p>\n>>>>>>> REPLACE"
+    ],
+    "output": {
+     "blocks": [
+      {
+       "search": "<p>bare</p>",
+       "replace": "<p>markers</p>"
+      }
+     ],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "<edit>\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n</edit>\n<edit>\n<<<<<<< SEARCH\n<p>c</p>\n=======\n<p>d</p>\n</edit>"
+    ],
+    "output": {
+     "blocks": [
+      {
+       "search": "<p>a</p>",
+       "replace": "<p>b</p>"
+      },
+      {
+       "search": "<p>c</p>",
+       "replace": "<p>d</p>"
+      }
+     ],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n<<<<<<< SEARCH\n<p>c</p>\n=======\n<p>d</p>\n>>>>>>> REPLACE"
+    ],
+    "output": {
+     "blocks": [
+      {
+       "search": "<p>a</p>",
+       "replace": "<p>b</p>"
+      },
+      {
+       "search": "<p>c</p>",
+       "replace": "<p>d</p>"
+      }
+     ],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>half"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n   \n=======\n<p>blank search</p>\n>>>>>>> REPLACE"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "Canvas fenced.\n<canvas>\n```html\n<p>fenced</p>\n```\n</canvas>"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "<CANVAS data-x=\"1\"><p>caps</p></CANVAS >"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "我已经把第二章改好了。\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "你已经把第二章改好了。\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "I've updated the paragraph.\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "Here is the text.\n<doc_status>updated</doc_status>"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "No declaration here."
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "<edit>broken"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_sta"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_status>upd"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_status>updated</doc_st"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   },
+   {
+    "input": [
+     "Prose with < less-than and <b>tag</b> end"
+    ],
+    "output": {
+     "blocks": [],
+     "before": "",
+     "after": ""
+    }
+   }
+  ],
+  "strip_stray_document_markup": [
+   {
+    "input": [
+     "Just chat, no tags.\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": {
+     "text": "Just chat, no tags.\n<doc_status>unchanged</doc_status>",
+     "removed": 0
+    }
+   },
+   {
+    "input": [
+     "Sure.\n<canvas>\n<h1>T</h1><p>a</p>\n</canvas>\n<doc_status>updated</doc_status>"
+    ],
+    "output": {
+     "text": "Sure.\n\n<doc_status>updated</doc_status>",
+     "removed": 1
+    }
+   },
+   {
+    "input": [
+     "Rewriting 3.\n<canvas chapter=\"3\"><p>three</p></canvas>\nDone.\n<doc_status>updated</doc_status>"
+    ],
+    "output": {
+     "text": "Rewriting 3.\n\nDone.\n<doc_status>updated</doc_status>",
+     "removed": 1
+    }
+   },
+   {
+    "input": [
+     "New chapter.\n<canvas new_chapter=\"第二章 进城\"><p>进城</p></canvas>"
+    ],
+    "output": {
+     "text": "New chapter.",
+     "removed": 1
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>cut off"
+    ],
+    "output": {
+     "text": "",
+     "removed": 1
+    }
+   },
+   {
+    "input": [
+     "Edit.\n<edit>\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit>\nAnd more.\n<doc_status>updated</doc_status>"
+    ],
+    "output": {
+     "text": "Edit.\n\nAnd more.\n<doc_status>updated</doc_status>",
+     "removed": 1
+    }
+   },
+   {
+    "input": [
+     "<edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit><edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>c</p>\n=======\n\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": {
+     "text": "",
+     "removed": 2
+    }
+   },
+   {
+    "input": [
+     "<selection_replace>new words</selection_replace>\n<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": {
+     "text": "",
+     "removed": 2
+    }
+   },
+   {
+    "input": [
+     "<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>\n<selection_replace>sel</selection_replace>"
+    ],
+    "output": {
+     "text": "",
+     "removed": 2
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>active</p></canvas>\n<edit chapter=\"1\">\n<<<<<<< SEARCH\n<p>o</p>\n=======\n<p>p</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": {
+     "text": "",
+     "removed": 2
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>active</p></canvas>\n<edit>\n<<<<<<< SEARCH\n<p>o</p>\n=======\n<p>p</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": {
+     "text": "",
+     "removed": 2
+    }
+   },
+   {
+    "input": [
+     "<selection_replace>sel</selection_replace><canvas><p>stray</p></canvas>"
+    ],
+    "output": {
+     "text": "",
+     "removed": 2
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>one</p></canvas><canvas chapter=\"4\"><p>four</p></canvas><canvas new_chapter=\"五\"><p>五</p></canvas>"
+    ],
+    "output": {
+     "text": "",
+     "removed": 3
+    }
+   },
+   {
+    "input": [
+     "chat <<<<<<< SEARCH\nunterminated"
+    ],
+    "output": {
+     "text": "chat",
+     "removed": 1
+    }
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>bare</p>\n=======\n<p>markers</p>\n>>>>>>> REPLACE"
+    ],
+    "output": {
+     "text": "",
+     "removed": 1
+    }
+   },
+   {
+    "input": [
+     "<edit>\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n</edit>\n<edit>\n<<<<<<< SEARCH\n<p>c</p>\n=======\n<p>d</p>\n</edit>"
+    ],
+    "output": {
+     "text": "",
+     "removed": 2
+    }
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n<<<<<<< SEARCH\n<p>c</p>\n=======\n<p>d</p>\n>>>>>>> REPLACE"
+    ],
+    "output": {
+     "text": "",
+     "removed": 1
+    }
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>half"
+    ],
+    "output": {
+     "text": "",
+     "removed": 1
+    }
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n   \n=======\n<p>blank search</p>\n>>>>>>> REPLACE"
+    ],
+    "output": {
+     "text": "",
+     "removed": 1
+    }
+   },
+   {
+    "input": [
+     "Canvas fenced.\n<canvas>\n```html\n<p>fenced</p>\n```\n</canvas>"
+    ],
+    "output": {
+     "text": "Canvas fenced.",
+     "removed": 1
+    }
+   },
+   {
+    "input": [
+     "<CANVAS data-x=\"1\"><p>caps</p></CANVAS >"
+    ],
+    "output": {
+     "text": "",
+     "removed": 1
+    }
+   },
+   {
+    "input": [
+     "我已经把第二章改好了。\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": {
+     "text": "我已经把第二章改好了。\n<doc_status>unchanged</doc_status>",
+     "removed": 0
+    }
+   },
+   {
+    "input": [
+     "你已经把第二章改好了。\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": {
+     "text": "你已经把第二章改好了。\n<doc_status>unchanged</doc_status>",
+     "removed": 0
+    }
+   },
+   {
+    "input": [
+     "I've updated the paragraph.\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": {
+     "text": "I've updated the paragraph.\n<doc_status>unchanged</doc_status>",
+     "removed": 0
+    }
+   },
+   {
+    "input": [
+     "Here is the text.\n<doc_status>updated</doc_status>"
+    ],
+    "output": {
+     "text": "Here is the text.\n<doc_status>updated</doc_status>",
+     "removed": 0
+    }
+   },
+   {
+    "input": [
+     "No declaration here."
+    ],
+    "output": {
+     "text": "No declaration here.",
+     "removed": 0
+    }
+   },
+   {
+    "input": [
+     "<edit>broken"
+    ],
+    "output": {
+     "text": "",
+     "removed": 1
+    }
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": {
+     "text": "",
+     "removed": 0
+    }
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_sta"
+    ],
+    "output": {
+     "text": "Streaming…\n<doc_sta",
+     "removed": 0
+    }
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_status>upd"
+    ],
+    "output": {
+     "text": "Streaming…\n<doc_status>upd",
+     "removed": 0
+    }
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_status>updated</doc_st"
+    ],
+    "output": {
+     "text": "Streaming…\n<doc_status>updated</doc_st",
+     "removed": 0
+    }
+   },
+   {
+    "input": [
+     "Prose with < less-than and <b>tag</b> end"
+    ],
+    "output": {
+     "text": "Prose with < less-than and <b>tag</b> end",
+     "removed": 0
+    }
+   }
+  ],
+  "parse_assistant_response": [
+   {
+    "input": [
+     "Just chat, no tags.\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": {
+     "kind": "chat",
+     "chatText": "Just chat, no tags.",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "Sure.\n<canvas>\n<h1>T</h1><p>a</p>\n</canvas>\n<doc_status>updated</doc_status>"
+    ],
+    "output": {
+     "kind": "canvas",
+     "chatText": "Sure.",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "\n<h1>T</h1><p>a</p>\n",
+     "canvasClosed": true,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "Rewriting 3.\n<canvas chapter=\"3\"><p>three</p></canvas>\nDone.\n<doc_status>updated</doc_status>"
+    ],
+    "output": {
+     "kind": "canvas",
+     "chatText": "Rewriting 3.\n\nDone.",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "<p>three</p>",
+     "canvasClosed": true,
+     "extraCanvases": [],
+     "strayMarkup": 0,
+     "canvasChapter": "3"
+    }
+   },
+   {
+    "input": [
+     "New chapter.\n<canvas new_chapter=\"第二章 进城\"><p>进城</p></canvas>"
+    ],
+    "output": {
+     "kind": "canvas",
+     "chatText": "New chapter.",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "<p>进城</p>",
+     "canvasClosed": true,
+     "extraCanvases": [],
+     "strayMarkup": 0,
+     "canvasNewChapter": "第二章 进城"
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>cut off"
+    ],
+    "output": {
+     "kind": "canvas",
+     "chatText": "",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "<p>cut off",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "Edit.\n<edit>\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit>\nAnd more.\n<doc_status>updated</doc_status>"
+    ],
+    "output": {
+     "kind": "edits",
+     "chatText": "Edit.\n\nAnd more.",
+     "selectionText": "",
+     "editBlocks": [
+      {
+       "search": "<p>a</p>",
+       "replace": "<p>b</p>"
+      }
+     ],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "<edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit><edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>c</p>\n=======\n\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": {
+     "kind": "edits",
+     "chatText": "",
+     "selectionText": "",
+     "editBlocks": [
+      {
+       "search": "<p>a</p>",
+       "replace": "<p>b</p>",
+       "chapter": "2"
+      },
+      {
+       "search": "<p>c</p>",
+       "replace": "",
+       "chapter": "2"
+      }
+     ],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "<selection_replace>new words</selection_replace>\n<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": {
+     "kind": "selection",
+     "chatText": "",
+     "selectionText": "new words",
+     "editBlocks": [
+      {
+       "search": "<p>x</p>",
+       "replace": "<p>y</p>"
+      }
+     ],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>\n<selection_replace>sel</selection_replace>"
+    ],
+    "output": {
+     "kind": "selection",
+     "chatText": "",
+     "selectionText": "sel",
+     "editBlocks": [
+      {
+       "search": "<p>x</p>",
+       "replace": "<p>y</p>"
+      }
+     ],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>active</p></canvas>\n<edit chapter=\"1\">\n<<<<<<< SEARCH\n<p>o</p>\n=======\n<p>p</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": {
+     "kind": "edits",
+     "chatText": "",
+     "selectionText": "",
+     "editBlocks": [
+      {
+       "search": "<p>o</p>",
+       "replace": "<p>p</p>",
+       "chapter": "1"
+      }
+     ],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [
+      {
+       "text": "<p>active</p>",
+       "closed": true
+      }
+     ],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>active</p></canvas>\n<edit>\n<<<<<<< SEARCH\n<p>o</p>\n=======\n<p>p</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": {
+     "kind": "edits",
+     "chatText": "",
+     "selectionText": "",
+     "editBlocks": [
+      {
+       "search": "<p>o</p>",
+       "replace": "<p>p</p>"
+      }
+     ],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 1
+    }
+   },
+   {
+    "input": [
+     "<selection_replace>sel</selection_replace><canvas><p>stray</p></canvas>"
+    ],
+    "output": {
+     "kind": "selection",
+     "chatText": "",
+     "selectionText": "sel",
+     "editBlocks": [],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 1
+    }
+   },
+   {
+    "input": [
+     "<canvas><p>one</p></canvas><canvas chapter=\"4\"><p>four</p></canvas><canvas new_chapter=\"五\"><p>五</p></canvas>"
+    ],
+    "output": {
+     "kind": "canvas",
+     "chatText": "",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "<p>one</p>",
+     "canvasClosed": true,
+     "extraCanvases": [
+      {
+       "text": "<p>four</p>",
+       "closed": true,
+       "chapter": "4"
+      },
+      {
+       "text": "<p>五</p>",
+       "closed": true,
+       "newChapter": "五"
+      }
+     ],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "chat <<<<<<< SEARCH\nunterminated"
+    ],
+    "output": {
+     "kind": "chat",
+     "chatText": "chat",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 1
+    }
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>bare</p>\n=======\n<p>markers</p>\n>>>>>>> REPLACE"
+    ],
+    "output": {
+     "kind": "edits",
+     "chatText": "",
+     "selectionText": "",
+     "editBlocks": [
+      {
+       "search": "<p>bare</p>",
+       "replace": "<p>markers</p>"
+      }
+     ],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "<edit>\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n</edit>\n<edit>\n<<<<<<< SEARCH\n<p>c</p>\n=======\n<p>d</p>\n</edit>"
+    ],
+    "output": {
+     "kind": "edits",
+     "chatText": "",
+     "selectionText": "",
+     "editBlocks": [
+      {
+       "search": "<p>a</p>",
+       "replace": "<p>b</p>"
+      },
+      {
+       "search": "<p>c</p>",
+       "replace": "<p>d</p>"
+      }
+     ],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n<<<<<<< SEARCH\n<p>c</p>\n=======\n<p>d</p>\n>>>>>>> REPLACE"
+    ],
+    "output": {
+     "kind": "edits",
+     "chatText": "",
+     "selectionText": "",
+     "editBlocks": [
+      {
+       "search": "<p>a</p>",
+       "replace": "<p>b</p>"
+      },
+      {
+       "search": "<p>c</p>",
+       "replace": "<p>d</p>"
+      }
+     ],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>half"
+    ],
+    "output": {
+     "kind": "chat",
+     "chatText": "",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 1
+    }
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n   \n=======\n<p>blank search</p>\n>>>>>>> REPLACE"
+    ],
+    "output": {
+     "kind": "chat",
+     "chatText": "",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 1
+    }
+   },
+   {
+    "input": [
+     "Canvas fenced.\n<canvas>\n```html\n<p>fenced</p>\n```\n</canvas>"
+    ],
+    "output": {
+     "kind": "canvas",
+     "chatText": "Canvas fenced.",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "<p>fenced</p>",
+     "canvasClosed": true,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "<CANVAS data-x=\"1\"><p>caps</p></CANVAS >"
+    ],
+    "output": {
+     "kind": "canvas",
+     "chatText": "",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "<p>caps</p>",
+     "canvasClosed": true,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "我已经把第二章改好了。\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": {
+     "kind": "chat",
+     "chatText": "我已经把第二章改好了。",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "你已经把第二章改好了。\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": {
+     "kind": "chat",
+     "chatText": "你已经把第二章改好了。",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "I've updated the paragraph.\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": {
+     "kind": "chat",
+     "chatText": "I've updated the paragraph.",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "Here is the text.\n<doc_status>updated</doc_status>"
+    ],
+    "output": {
+     "kind": "chat",
+     "chatText": "Here is the text.",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "No declaration here."
+    ],
+    "output": {
+     "kind": "chat",
+     "chatText": "No declaration here.",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "<edit>broken"
+    ],
+    "output": {
+     "kind": "chat",
+     "chatText": "",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 1
+    }
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": {
+     "kind": "chat",
+     "chatText": "",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_sta"
+    ],
+    "output": {
+     "kind": "chat",
+     "chatText": "Streaming…",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_status>upd"
+    ],
+    "output": {
+     "kind": "chat",
+     "chatText": "Streaming…",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_status>updated</doc_st"
+    ],
+    "output": {
+     "kind": "chat",
+     "chatText": "Streaming…\n<doc_status>updated</doc_st",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   },
+   {
+    "input": [
+     "Prose with < less-than and <b>tag</b> end"
+    ],
+    "output": {
+     "kind": "chat",
+     "chatText": "Prose with < less-than and <b>tag</b> end",
+     "selectionText": "",
+     "editBlocks": [],
+     "canvasText": "",
+     "canvasClosed": false,
+     "extraCanvases": [],
+     "strayMarkup": 0
+    }
+   }
+  ],
+  "apply_edit_blocks": [
+   {
+    "input": [
+     "<p>Hello world</p>",
+     [
+      {
+       "search": "<p>Hello world</p>",
+       "replace": "<p>Hi</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>Hi</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>real content</p>",
+     [
+      {
+       "search": "<p>hallucinated content</p>",
+       "replace": "<p>X</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>real content</p>",
+     "failed": [
+      {
+       "search": "<p>hallucinated content</p>",
+       "replace": "<p>X</p>"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     "<p>a</p>\n  <p>b</p>",
+     [
+      {
+       "search": "<p>a</p>\n<p>b</p>",
+       "replace": "<p>c</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>c</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>a</p>",
+     [
+      {
+       "search": "  <p>a</p>\n",
+       "replace": "<p>b</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>b</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>a</p><p>b</p><p>c</p>",
+     [
+      {
+       "search": "<p>a</p>",
+       "replace": "<p>A</p>"
+      },
+      {
+       "search": "<p>c</p>",
+       "replace": "<p>C</p>"
+      },
+      {
+       "search": "<p>zz</p>",
+       "replace": ""
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>A</p><p>b</p><p>C</p>",
+     "failed": [
+      {
+       "search": "<p>zz</p>",
+       "replace": ""
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     "<p>cost $5</p>",
+     [
+      {
+       "search": "<p>cost $5</p>",
+       "replace": "<p>cost $1 and $& and $' and $$</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>cost $1 and $& and $' and $$</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>a&nbsp;b</p>",
+     [
+      {
+       "search": "<p>a b</p>",
+       "replace": "<p>c</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>c</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>“quoted” and ‘single’</p>",
+     [
+      {
+       "search": "<p>\"quoted\" and 'single'</p>",
+       "replace": "<p>q</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>q</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>fish &amp; chips</p>",
+     [
+      {
+       "search": "<p>fish & chips</p>",
+       "replace": "<p>f</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>f</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>it&#39;s</p>",
+     [
+      {
+       "search": "<p>it’s</p>",
+       "replace": "<p>its</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>its</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>one <strong>two</strong> three</p>",
+     [
+      {
+       "search": "<p>one two three</p>",
+       "replace": "<p>1 2 3</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>1 2 3</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p class=\"x\">one</p><p>two</p><p>three</p>",
+     [
+      {
+       "search": "<p>one</p><p>two</p>",
+       "replace": "<p>12</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>12</p><p>three</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>“Hello,” she said.</p><p>“Bye,” he said.</p>",
+     [
+      {
+       "search": "<p>“Hello, she said.</p><p>“Bye, he said.</p>",
+       "replace": "<p>x</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>x</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>“Same” text</p><p>“Same” text</p>",
+     [
+      {
+       "search": "<p>Same text</p>",
+       "replace": "<p>x</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>“Same” text</p><p>“Same” text</p>",
+     "failed": [
+      {
+       "search": "<p>Same text</p>",
+       "replace": "<p>x</p>"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     "<p>one</p><p>Lead-in clause, then the tail sentence to change.</p><p>three</p>",
+     [
+      {
+       "search": "<p>then the tail sentence to change.</p>",
+       "replace": "<p>then a better tail.</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>one</p><p>Lead-in clause, then a better tail.</p><p>three</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>Opening words here, and the rest of it stays.</p>",
+     [
+      {
+       "search": "<p>Opening words here,</p>",
+       "replace": "<p>New opening,</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>New opening, and the rest of it stays.</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>Keep this sentence. Rewrite this part please.</p>",
+     [
+      {
+       "search": "<p>Rewrite this part please.</p>",
+       "replace": "<p>First new.</p><p>Second new.</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>Keep this sentence. First new.</p><p>Second new.</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>Keep this sentence. Remove this one please.</p>",
+     [
+      {
+       "search": "<p>Remove this one please.</p>",
+       "replace": ""
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>Keep this sentence. </p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>Alpha one. Alpha two.</p><p>Beta one. Beta two.</p>",
+     [
+      {
+       "search": "<p>Alpha two.</p><p>Beta one.</p>",
+       "replace": "<p>Joined text.</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>Alpha one. Joined text. Beta two.</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>Lead <strong>bold excerpt text</strong> end.</p>",
+     [
+      {
+       "search": "<p>bold excerpt text</p>",
+       "replace": "<p>new excerpt words</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>Lead <strong>new excerpt words</strong> end.</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>First: same phrase here.</p><p>Second: same phrase here.</p>",
+     [
+      {
+       "search": "<p>same phrase here.</p>",
+       "replace": "<p>X</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>First: same phrase here.</p><p>Second: same phrase here.</p>",
+     "failed": [
+      {
+       "search": "<p>same phrase here.</p>",
+       "replace": "<p>X</p>"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     "<p>The opening clause stays here. The closing clause.</p>",
+     [
+      {
+       "search": "<p>The closing clause.</p>",
+       "replace": "<p>The opening clause stays here, joined with the closing clause.</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>The opening clause stays here. The closing clause.</p>",
+     "failed": [
+      {
+       "search": "<p>The closing clause.</p>",
+       "replace": "<p>The opening clause stays here, joined with the closing clause.</p>"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     "<p>Lead <strong>bold excerpt text</strong> end.</p>",
+     [
+      {
+       "search": "<p>bold excerpt text</p>",
+       "replace": "<p>A.</p><p>B.</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>Lead <strong>bold excerpt text</strong> end.</p>",
+     "failed": [
+      {
+       "search": "<p>bold excerpt text</p>",
+       "replace": "<p>A.</p><p>B.</p>"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     "<p>Some lead text, then the excerpt to retitle.</p>",
+     [
+      {
+       "search": "<p>then the excerpt to retitle.</p>",
+       "replace": "<h2>A heading</h2>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>Some lead text, then the excerpt to retitle.</p>",
+     "failed": [
+      {
+       "search": "<p>then the excerpt to retitle.</p>",
+       "replace": "<h2>A heading</h2>"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     "<p>a big dog ran far</p>",
+     [
+      {
+       "search": "<p>dog</p>",
+       "replace": "<p>cat</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>a big dog ran far</p>",
+     "failed": [
+      {
+       "search": "<p>dog</p>",
+       "replace": "<p>cat</p>"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     "<p><a title=\"hidden tooltip words\">link</a> rest</p>",
+     [
+      {
+       "search": "<p>hidden tooltip words</p>",
+       "replace": "<p>X</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p><a title=\"hidden tooltip words\">link</a> rest</p>",
+     "failed": [
+      {
+       "search": "<p>hidden tooltip words</p>",
+       "replace": "<p>X</p>"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>",
+     [
+      {
+       "search": "<p>她想：&ldquo;该走了。&rdquo;</p>",
+       "replace": "<p>她想：“留下。”</p>"
+      },
+      {
+       "search": "<li>二 &amp; 三</li>",
+       "replace": "<li>二和三</li>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：“留下。”</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二和三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>",
+     "failed": []
+    }
+   },
+   {
+    "input": [
+     "<p>x (a.b) [c] {d} *e* +f? ^g$ |h| \\i</p>",
+     [
+      {
+       "search": "<p>x (a.b) [c] {d} *e* +f? ^g$ |h| \\i</p>",
+       "replace": "<p>ok</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>ok</p>",
+     "failed": []
+    }
+   }
+  ],
+  "apply_edit_blocks_locally": [
+   {
+    "input": [
+     "<p>intro</p><p>keep <ins class=\"diff-addition\" data-diff-id=\"d1\">added words</ins> tail</p><p>second para here</p><ul><li>one</li><li>two</li></ul><p>中文段落在这里。</p>",
+     [
+      {
+       "search": "<p>second para here</p>",
+       "replace": "<p>second paragraph here</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>intro</p><p>keep <ins class=\"diff-addition\" data-diff-id=\"diff-1\">added words</ins> tail</p><p>second <del class=\"diff-deletion\" data-diff-id=\"diff-2\">para</del><ins class=\"diff-addition\" data-diff-id=\"diff-2\">paragraph</ins> here</p><ul><li>one</li><li>two</li></ul><p>中文段落在这里。</p>",
+     "failed": [],
+     "underReview": []
+    }
+   },
+   {
+    "input": [
+     "<p>intro</p><p>keep <ins class=\"diff-addition\" data-diff-id=\"d1\">added words</ins> tail</p><p>second para here</p><ul><li>one</li><li>two</li></ul><p>中文段落在这里。</p>",
+     [
+      {
+       "search": "<p>keep <ins class=\"diff-addition\" data-diff-id=\"d1\">added words</ins> tail</p>",
+       "replace": "<p>keep <ins class=\"diff-addition\" data-diff-id=\"d1\">added words</ins> tails</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>intro</p><p>keep <ins class=\"diff-addition\" data-diff-id=\"diff-1\">added words</ins> <del class=\"diff-deletion\" data-diff-id=\"diff-2\">tail</del><ins class=\"diff-addition\" data-diff-id=\"diff-2\">tails</ins></p><p>second para here</p><ul><li>one</li><li>two</li></ul><p>中文段落在这里。</p>",
+     "failed": [],
+     "underReview": []
+    }
+   },
+   {
+    "input": [
+     "<p>intro</p><p>keep <ins class=\"diff-addition\" data-diff-id=\"d1\">added words</ins> tail</p><p>second para here</p><ul><li>one</li><li>two</li></ul><p>中文段落在这里。</p>",
+     [
+      {
+       "search": "added words",
+       "replace": "added word"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>intro</p><p>keep <ins class=\"diff-addition\" data-diff-id=\"diff-1\">added word</ins> tail</p><p>second para here</p><ul><li>one</li><li>two</li></ul><p>中文段落在这里。</p>",
+     "failed": [],
+     "underReview": []
+    }
+   },
+   {
+    "input": [
+     "<p>intro</p><p>keep <ins class=\"diff-addition\" data-diff-id=\"d1\">added words</ins> tail</p><p>second para here</p><ul><li>one</li><li>two</li></ul><p>中文段落在这里。</p>",
+     [
+      {
+       "search": "中文段落在这里。",
+       "replace": "中文段落不在这里。"
+      },
+      {
+       "search": "<p>intro</p>",
+       "replace": "<p>introduction</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p><del class=\"diff-deletion\" data-diff-id=\"diff-1\">intro</del><ins class=\"diff-addition\" data-diff-id=\"diff-1\">introduction</ins></p><p>keep <ins class=\"diff-addition\" data-diff-id=\"diff-2\">added words</ins> tail</p><p>second para here</p><ul><li>one</li><li>two</li></ul><p>中文段落<ins class=\"diff-addition\" data-diff-id=\"diff-3\">不</ins>在这里。</p>",
+     "failed": [],
+     "underReview": []
+    }
+   },
+   {
+    "input": [
+     "<p>intro</p><p>keep <ins class=\"diff-addition\" data-diff-id=\"d1\">added words</ins> tail</p><p>second para here</p><ul><li>one</li><li>two</li></ul><p>中文段落在这里。</p>",
+     [
+      {
+       "search": "<li>two</li>",
+       "replace": "<li>two</li><li>three</li>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>intro</p><p>keep <ins class=\"diff-addition\" data-diff-id=\"diff-1\">added words</ins> tail</p><p>second para here</p><ul><li>one</li><li>two</li><li><ins class=\"diff-addition\" data-diff-id=\"diff-2\">three</ins></li></ul><p>中文段落在这里。</p>",
+     "failed": [],
+     "underReview": []
+    }
+   },
+   {
+    "input": [
+     "<p>intro</p><p>keep <ins class=\"diff-addition\" data-diff-id=\"d1\">added words</ins> tail</p><p>second para here</p><ul><li>one</li><li>two</li></ul><p>中文段落在这里。</p>",
+     [
+      {
+       "search": "<p>missing</p>",
+       "replace": "<p>x</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>intro</p><p>keep <ins class=\"diff-addition\" data-diff-id=\"diff-1\">added words</ins> tail</p><p>second para here</p><ul><li>one</li><li>two</li></ul><p>中文段落在这里。</p>",
+     "failed": [
+      {
+       "search": "<p>missing</p>",
+       "replace": "<p>x</p>"
+      }
+     ],
+     "underReview": []
+    }
+   },
+   {
+    "input": [
+     "<p>a &amp; b</p>",
+     [
+      {
+       "search": "<p>a &amp; b</p>",
+       "replace": "<p>a &amp; c</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>a &amp; <del class=\"diff-deletion\" data-diff-id=\"diff-1\">b</del><ins class=\"diff-addition\" data-diff-id=\"diff-1\">c</ins></p>",
+     "failed": [],
+     "underReview": []
+    }
+   },
+   {
+    "input": [
+     "<p>one <em>two</em> three</p>",
+     [
+      {
+       "search": "<p>one <em>two</em> three</p>",
+       "replace": "<p>one <strong>two</strong> three</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>one <strong>two</strong> three</p>",
+     "failed": [],
+     "underReview": []
+    }
+   },
+   {
+    "input": [
+     "<p>gone <del class=\"diff-deletion\" data-diff-id=\"d2\">deleted words</del> here</p>",
+     [
+      {
+       "search": "deleted words",
+       "replace": "other words"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>gone <del class=\"diff-deletion\" data-diff-id=\"diff-1\">deleted words</del> here</p>",
+     "failed": [
+      {
+       "search": "deleted words",
+       "replace": "other words"
+      }
+     ],
+     "underReview": [
+      {
+       "search": "deleted words",
+       "replace": "other words"
+      }
+     ]
+    }
+   },
+   {
+    "input": [
+     "<p>Alpha beta gamma delta.</p>",
+     [
+      {
+       "search": "<p>Alpha beta gamma delta.</p>",
+       "replace": "<p>Alpha beta GAMMA delta.</p>"
+      }
+     ]
+    ],
+    "output": {
+     "html": "<p>Alpha beta <del class=\"diff-deletion\" data-diff-id=\"diff-1\">gamma</del><ins class=\"diff-addition\" data-diff-id=\"diff-1\">GAMMA</ins> delta.</p>",
+     "failed": [],
+     "underReview": []
+    }
+   }
+  ],
+  "strip_blank_paragraphs": [
+   {
+    "input": [
+     "<p></p><p> </p><p>&nbsp;</p><p><br></p><p>x</p>\n\n<p>y</p>"
+    ],
+    "output": "<p>x</p><p>y</p>"
+   },
+   {
+    "input": [
+     "<ul><li>a</li>\n<li>b</li></ul>\n<h2>t</h2>"
+    ],
+    "output": "<ul><li>a</li><li>b</li></ul><h2>t</h2>"
+   },
+   {
+    "input": [
+     "<p>keep  inside</p>"
+    ],
+    "output": "<p>keep  inside</p>"
+   }
+  ],
+  "parse_doc_status": [
+   {
+    "input": [
+     "Just chat, no tags.\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": "unchanged"
+   },
+   {
+    "input": [
+     "Sure.\n<canvas>\n<h1>T</h1><p>a</p>\n</canvas>\n<doc_status>updated</doc_status>"
+    ],
+    "output": "updated"
+   },
+   {
+    "input": [
+     "Rewriting 3.\n<canvas chapter=\"3\"><p>three</p></canvas>\nDone.\n<doc_status>updated</doc_status>"
+    ],
+    "output": "updated"
+   },
+   {
+    "input": [
+     "New chapter.\n<canvas new_chapter=\"第二章 进城\"><p>进城</p></canvas>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<canvas><p>cut off"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "Edit.\n<edit>\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit>\nAnd more.\n<doc_status>updated</doc_status>"
+    ],
+    "output": "updated"
+   },
+   {
+    "input": [
+     "<edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit><edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>c</p>\n=======\n\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<selection_replace>new words</selection_replace>\n<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>\n<selection_replace>sel</selection_replace>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<canvas><p>active</p></canvas>\n<edit chapter=\"1\">\n<<<<<<< SEARCH\n<p>o</p>\n=======\n<p>p</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<canvas><p>active</p></canvas>\n<edit>\n<<<<<<< SEARCH\n<p>o</p>\n=======\n<p>p</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<selection_replace>sel</selection_replace><canvas><p>stray</p></canvas>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<canvas><p>one</p></canvas><canvas chapter=\"4\"><p>four</p></canvas><canvas new_chapter=\"五\"><p>五</p></canvas>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "chat <<<<<<< SEARCH\nunterminated"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>bare</p>\n=======\n<p>markers</p>\n>>>>>>> REPLACE"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<edit>\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n</edit>\n<edit>\n<<<<<<< SEARCH\n<p>c</p>\n=======\n<p>d</p>\n</edit>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n<<<<<<< SEARCH\n<p>c</p>\n=======\n<p>d</p>\n>>>>>>> REPLACE"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>half"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n   \n=======\n<p>blank search</p>\n>>>>>>> REPLACE"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "Canvas fenced.\n<canvas>\n```html\n<p>fenced</p>\n```\n</canvas>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<CANVAS data-x=\"1\"><p>caps</p></CANVAS >"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "我已经把第二章改好了。\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": "unchanged"
+   },
+   {
+    "input": [
+     "你已经把第二章改好了。\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": "unchanged"
+   },
+   {
+    "input": [
+     "I've updated the paragraph.\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": "unchanged"
+   },
+   {
+    "input": [
+     "Here is the text.\n<doc_status>updated</doc_status>"
+    ],
+    "output": "updated"
+   },
+   {
+    "input": [
+     "No declaration here."
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "<edit>broken"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_sta"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_status>upd"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_status>updated</doc_st"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "Prose with < less-than and <b>tag</b> end"
+    ],
+    "output": null
+   }
+  ],
+  "strip_doc_status": [
+   {
+    "input": [
+     "Just chat, no tags.\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": "Just chat, no tags."
+   },
+   {
+    "input": [
+     "Sure.\n<canvas>\n<h1>T</h1><p>a</p>\n</canvas>\n<doc_status>updated</doc_status>"
+    ],
+    "output": "Sure.\n<canvas>\n<h1>T</h1><p>a</p>\n</canvas>"
+   },
+   {
+    "input": [
+     "Rewriting 3.\n<canvas chapter=\"3\"><p>three</p></canvas>\nDone.\n<doc_status>updated</doc_status>"
+    ],
+    "output": "Rewriting 3.\n<canvas chapter=\"3\"><p>three</p></canvas>\nDone."
+   },
+   {
+    "input": [
+     "New chapter.\n<canvas new_chapter=\"第二章 进城\"><p>进城</p></canvas>"
+    ],
+    "output": "New chapter.\n<canvas new_chapter=\"第二章 进城\"><p>进城</p></canvas>"
+   },
+   {
+    "input": [
+     "<canvas><p>cut off"
+    ],
+    "output": "<canvas><p>cut off"
+   },
+   {
+    "input": [
+     "Edit.\n<edit>\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit>\nAnd more.\n<doc_status>updated</doc_status>"
+    ],
+    "output": "Edit.\n<edit>\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit>\nAnd more."
+   },
+   {
+    "input": [
+     "<edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit><edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>c</p>\n=======\n\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": "<edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit><edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>c</p>\n=======\n\n>>>>>>> REPLACE\n</edit>"
+   },
+   {
+    "input": [
+     "<selection_replace>new words</selection_replace>\n<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": "<selection_replace>new words</selection_replace>\n<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>"
+   },
+   {
+    "input": [
+     "<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>\n<selection_replace>sel</selection_replace>"
+    ],
+    "output": "<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>\n<selection_replace>sel</selection_replace>"
+   },
+   {
+    "input": [
+     "<canvas><p>active</p></canvas>\n<edit chapter=\"1\">\n<<<<<<< SEARCH\n<p>o</p>\n=======\n<p>p</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": "<canvas><p>active</p></canvas>\n<edit chapter=\"1\">\n<<<<<<< SEARCH\n<p>o</p>\n=======\n<p>p</p>\n>>>>>>> REPLACE\n</edit>"
+   },
+   {
+    "input": [
+     "<canvas><p>active</p></canvas>\n<edit>\n<<<<<<< SEARCH\n<p>o</p>\n=======\n<p>p</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": "<canvas><p>active</p></canvas>\n<edit>\n<<<<<<< SEARCH\n<p>o</p>\n=======\n<p>p</p>\n>>>>>>> REPLACE\n</edit>"
+   },
+   {
+    "input": [
+     "<selection_replace>sel</selection_replace><canvas><p>stray</p></canvas>"
+    ],
+    "output": "<selection_replace>sel</selection_replace><canvas><p>stray</p></canvas>"
+   },
+   {
+    "input": [
+     "<canvas><p>one</p></canvas><canvas chapter=\"4\"><p>four</p></canvas><canvas new_chapter=\"五\"><p>五</p></canvas>"
+    ],
+    "output": "<canvas><p>one</p></canvas><canvas chapter=\"4\"><p>four</p></canvas><canvas new_chapter=\"五\"><p>五</p></canvas>"
+   },
+   {
+    "input": [
+     "chat <<<<<<< SEARCH\nunterminated"
+    ],
+    "output": "chat <<<<<<< SEARCH\nunterminated"
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>bare</p>\n=======\n<p>markers</p>\n>>>>>>> REPLACE"
+    ],
+    "output": "<<<<<<< SEARCH\n<p>bare</p>\n=======\n<p>markers</p>\n>>>>>>> REPLACE"
+   },
+   {
+    "input": [
+     "<edit>\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n</edit>\n<edit>\n<<<<<<< SEARCH\n<p>c</p>\n=======\n<p>d</p>\n</edit>"
+    ],
+    "output": "<edit>\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n</edit>\n<edit>\n<<<<<<< SEARCH\n<p>c</p>\n=======\n<p>d</p>\n</edit>"
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n<<<<<<< SEARCH\n<p>c</p>\n=======\n<p>d</p>\n>>>>>>> REPLACE"
+    ],
+    "output": "<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n<<<<<<< SEARCH\n<p>c</p>\n=======\n<p>d</p>\n>>>>>>> REPLACE"
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>half"
+    ],
+    "output": "<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>half"
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n   \n=======\n<p>blank search</p>\n>>>>>>> REPLACE"
+    ],
+    "output": "<<<<<<< SEARCH\n   \n=======\n<p>blank search</p>\n>>>>>>> REPLACE"
+   },
+   {
+    "input": [
+     "Canvas fenced.\n<canvas>\n```html\n<p>fenced</p>\n```\n</canvas>"
+    ],
+    "output": "Canvas fenced.\n<canvas>\n```html\n<p>fenced</p>\n```\n</canvas>"
+   },
+   {
+    "input": [
+     "<CANVAS data-x=\"1\"><p>caps</p></CANVAS >"
+    ],
+    "output": "<CANVAS data-x=\"1\"><p>caps</p></CANVAS >"
+   },
+   {
+    "input": [
+     "我已经把第二章改好了。\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": "我已经把第二章改好了。"
+   },
+   {
+    "input": [
+     "你已经把第二章改好了。\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": "你已经把第二章改好了。"
+   },
+   {
+    "input": [
+     "I've updated the paragraph.\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": "I've updated the paragraph."
+   },
+   {
+    "input": [
+     "Here is the text.\n<doc_status>updated</doc_status>"
+    ],
+    "output": "Here is the text."
+   },
+   {
+    "input": [
+     "No declaration here."
+    ],
+    "output": "No declaration here."
+   },
+   {
+    "input": [
+     "<edit>broken"
+    ],
+    "output": "<edit>broken"
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": ""
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_sta"
+    ],
+    "output": "Streaming…"
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_status>upd"
+    ],
+    "output": "Streaming…"
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_status>updated</doc_st"
+    ],
+    "output": "Streaming…\n<doc_status>updated</doc_st"
+   },
+   {
+    "input": [
+     "Prose with < less-than and <b>tag</b> end"
+    ],
+    "output": "Prose with < less-than and <b>tag</b> end"
+   }
+  ],
+  "detect_failed_document_update": [
+   {
+    "input": [
+     "Just chat, no tags.\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "Sure.\n<canvas>\n<h1>T</h1><p>a</p>\n</canvas>\n<doc_status>updated</doc_status>"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "Rewriting 3.\n<canvas chapter=\"3\"><p>three</p></canvas>\nDone.\n<doc_status>updated</doc_status>"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "New chapter.\n<canvas new_chapter=\"第二章 进城\"><p>进城</p></canvas>"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "<canvas><p>cut off"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "Edit.\n<edit>\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit>\nAnd more.\n<doc_status>updated</doc_status>"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "<edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n>>>>>>> REPLACE\n</edit><edit chapter=\"2\">\n<<<<<<< SEARCH\n<p>c</p>\n=======\n\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "<selection_replace>new words</selection_replace>\n<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "<edit>\n<<<<<<< SEARCH\n<p>x</p>\n=======\n<p>y</p>\n>>>>>>> REPLACE\n</edit>\n<selection_replace>sel</selection_replace>"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "<canvas><p>active</p></canvas>\n<edit chapter=\"1\">\n<<<<<<< SEARCH\n<p>o</p>\n=======\n<p>p</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "<canvas><p>active</p></canvas>\n<edit>\n<<<<<<< SEARCH\n<p>o</p>\n=======\n<p>p</p>\n>>>>>>> REPLACE\n</edit>"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "<selection_replace>sel</selection_replace><canvas><p>stray</p></canvas>"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "<canvas><p>one</p></canvas><canvas chapter=\"4\"><p>four</p></canvas><canvas new_chapter=\"五\"><p>五</p></canvas>"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "chat <<<<<<< SEARCH\nunterminated"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>bare</p>\n=======\n<p>markers</p>\n>>>>>>> REPLACE"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "<edit>\n<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n</edit>\n<edit>\n<<<<<<< SEARCH\n<p>c</p>\n=======\n<p>d</p>\n</edit>"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>b</p>\n<<<<<<< SEARCH\n<p>c</p>\n=======\n<p>d</p>\n>>>>>>> REPLACE"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n<p>a</p>\n=======\n<p>half"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "<<<<<<< SEARCH\n   \n=======\n<p>blank search</p>\n>>>>>>> REPLACE"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "Canvas fenced.\n<canvas>\n```html\n<p>fenced</p>\n```\n</canvas>"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "<CANVAS data-x=\"1\"><p>caps</p></CANVAS >"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     "我已经把第二章改好了。\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": "claimed"
+   },
+   {
+    "input": [
+     "你已经把第二章改好了。\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "I've updated the paragraph.\n<doc_status>unchanged</doc_status>"
+    ],
+    "output": "claimed"
+   },
+   {
+    "input": [
+     "Here is the text.\n<doc_status>updated</doc_status>"
+    ],
+    "output": "claimed"
+   },
+   {
+    "input": [
+     "No declaration here."
+    ],
+    "output": "undeclared"
+   },
+   {
+    "input": [
+     "<edit>broken"
+    ],
+    "output": "malformed"
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": null
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_sta"
+    ],
+    "output": "undeclared"
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_status>upd"
+    ],
+    "output": "undeclared"
+   },
+   {
+    "input": [
+     "Streaming…\n<doc_status>updated</doc_st"
+    ],
+    "output": "undeclared"
+   },
+   {
+    "input": [
+     "Prose with < less-than and <b>tag</b> end"
+    ],
+    "output": "undeclared"
+   }
+  ],
+  "claims_own_write": [
+   {
+    "input": [
+     "I have rewritten chapter 1."
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "我已经把第三章改好了"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "你已经把第二章改好了"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "Here is the updated text"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "Does this read well?"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": false
+   }
+  ],
+  "trim_incomplete_html_tail": [
+   {
+    "input": [
+     "<p>The sleek ta"
+    ],
+    "output": "<p>The sleek ta"
+   },
+   {
+    "input": [
+     "<p>a</p><h"
+    ],
+    "output": "<p>a</p>"
+   },
+   {
+    "input": [
+     "<p>a &nbs"
+    ],
+    "output": "<p>a "
+   },
+   {
+    "input": [
+     "<p>a</p><p>unclosed"
+    ],
+    "output": "<p>a</p><p>unclosed"
+   },
+   {
+    "input": [
+     "<p>fish & chips are good today</p>"
+    ],
+    "output": "<p>fish & chips are good today</p>"
+   },
+   {
+    "input": [
+     ""
+    ],
+    "output": ""
+   },
+   {
+    "input": [
+     "<p>a &amp</p>"
+    ],
+    "output": "<p>a "
+   }
+  ],
+  "is_blank_content": [
+   {
+    "input": [
+     ""
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<p></p>"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<p>&nbsp; </p>"
+    ],
+    "output": true
+   },
+   {
+    "input": [
+     "<p>x</p>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "<p><img src=\"a\"></p>"
+    ],
+    "output": false
+   },
+   {
+    "input": [
+     "<h1></h1><p>\n</p>"
+    ],
+    "output": true
+   }
+  ]
+ }
+}

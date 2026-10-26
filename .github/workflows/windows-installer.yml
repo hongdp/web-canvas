@@ -1,0 +1,111 @@
+# The Windows installer (WebCanvas-Setup-<version>.exe): the API server and the built app frozen by
+# PyInstaller (packaging/windows/web_canvas_launcher.py), smoke-tested, wrapped by Inno Setup
+# (packaging/windows/web_canvas.iss). A published release gets the installer and its .sha256 attached;
+# a pull request touching the packaging builds and tests it only.
+name: Windows installer
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "packaging/windows/**"
+      - ".github/workflows/windows-installer.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  installer:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name || github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # No .env exists on the runner, so no VITE_* key can be baked into the bundle; checked anyway.
+      - run: npx vite build
+      - name: The bundle holds nothing shaped like an API key
+        shell: bash
+        run: |
+          if grep -rEl 'sk-[A-Za-z0-9_-]{20,}|sk-ant-[A-Za-z0-9_-]{20,}|AIza[0-9A-Za-z_-]{30,}|xai-[A-Za-z0-9]{20,}' dist; then
+            echo "the built bundle contains something shaped like an API key" >&2; exit 1
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt pyinstaller
+
+      - name: Icon
+        run: python -c "from PIL import Image; Image.open('public/icons/icon-512.png').save('build-icon.ico', sizes=[(256,256),(128,128),(64,64),(48,48),(32,32),(16,16)])"
+
+      # Absolute paths: with --specpath, PyInstaller resolves relative ones against the spec's folder.
+      - name: Freeze
+        shell: bash
+        run: >
+          ROOT="$(pwd -W)" &&
+          pyinstaller --noconfirm --clean --name WebCanvas --console --icon "$ROOT/build-icon.ico"
+          --paths "$ROOT/scripts"
+          --add-data "$ROOT/dist;dist"
+          --add-data "$ROOT/scripts/wc_text/data;wc_text/data"
+          --collect-submodules uvicorn
+          --collect-submodules wc_agent --collect-submodules wc_providers --collect-submodules wc_text
+          --distpath "$ROOT/build/pyi" --workpath "$ROOT/build/pyi-work" --specpath "$ROOT/build"
+          "$ROOT/packaging/windows/web_canvas_launcher.py"
+
+      - name: Smoke test — the exe serves the API and the app
+        shell: pwsh
+        run: |
+          $env:LOCALAPPDATA = "$env:RUNNER_TEMP\wc-smoke"
+          $env:WEB_CANVAS_PORT = "3999"
+          $p = Start-Process -FilePath "build\pyi\WebCanvas\WebCanvas.exe" -ArgumentList "--no-browser" -PassThru `
+                 -RedirectStandardOutput "$env:RUNNER_TEMP\wc-out.log" -RedirectStandardError "$env:RUNNER_TEMP\wc-err.log"
+          $ok = $false
+          for ($i = 0; $i -lt 60; $i++) {
+            try {
+              $r = Invoke-WebRequest -UseBasicParsing "http://127.0.0.1:3999/api/auth/session"
+              if ($r.StatusCode -eq 200) { $ok = $true; break }
+            } catch { Start-Sleep -Seconds 1 }
+          }
+          $index = if ($ok) { (Invoke-WebRequest -UseBasicParsing "http://127.0.0.1:3999/").Content } else { "" }
+          Stop-Process -Id $p.Id -Force
+          Get-Content "$env:RUNNER_TEMP\wc-out.log", "$env:RUNNER_TEMP\wc-err.log" -ErrorAction SilentlyContinue | Select-Object -First 40
+          if (-not $ok) { throw "WebCanvas.exe did not answer /api/auth/session" }
+          if ($index -notmatch 'id="root"') { throw "WebCanvas.exe did not serve the app" }
+          if (-not (Test-Path "$env:RUNNER_TEMP\wc-smoke\WebCanvas\db\metadata.db")) { throw "the DB is not in the user's data folder" }
+
+      - name: Installer
+        shell: pwsh
+        run: |
+          $version = node -p "require('./package.json').version"
+          $iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (-not (Test-Path $iscc)) { choco install innosetup -y --no-progress }
+          New-Item -ItemType Directory -Force -Path release | Out-Null
+          & $iscc "/DAppVersion=$version" "/DSourceDir=$pwd\build\pyi\WebCanvas" "/DOutputDir=$pwd\release" "/DIconFile=$pwd\build-icon.ico" packaging\windows\web_canvas.iss
+          if ($LASTEXITCODE -ne 0) { throw "ISCC failed" }
+          Get-ChildItem release\*.exe | ForEach-Object {
+            $hash = (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower()
+            "$hash  $($_.Name)" | Out-File -Encoding ascii "$($_.FullName).sha256"
+          }
+          Get-ChildItem release
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-installer
+          path: release/*
+
+      - name: Attach to the release
+        if: github.event_name == 'release'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" release/*.exe release/*.sha256 --clobber

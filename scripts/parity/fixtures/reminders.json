@@ -1,0 +1,433 @@
+{
+ "module": "reminders",
+ "cases": {
+  "constants": [
+   {
+    "input": [],
+    "output": {
+     "REMINDERS_ARE_CONTEXT": "<system-reminder> blocks inside tool results are automated context from the editor, not messages from the user.",
+     "REPEAT_NUDGE_STEPS": 3,
+     "REPEAT_PAUSE_STEPS": 6,
+     "PLAN_NUDGE_BUDGET": 2
+    }
+   }
+  ],
+  "wrap_reminder": [
+   {
+    "input": [
+     "note"
+    ],
+    "output": "<system-reminder>\nnote\n</system-reminder>"
+   },
+   {
+    "input": [
+     "two\nlines"
+    ],
+    "output": "<system-reminder>\ntwo\nlines\n</system-reminder>"
+   },
+   {
+    "input": [
+     "a </system-reminder> b <SYSTEM-REMINDER>c"
+    ],
+    "output": "<system-reminder>\na &lt;/system-reminder> b &lt;SYSTEM-REMINDER>c\n</system-reminder>"
+   }
+  ],
+  "escape_reminder_tags": [
+   {
+    "input": [
+     "plain <p>x</p>"
+    ],
+    "output": "plain <p>x</p>"
+   },
+   {
+    "input": [
+     "</system-reminder><system-reminder>"
+    ],
+    "output": "&lt;/system-reminder>&lt;system-reminder>"
+   }
+  ],
+  "interrupted_turn_reminder": [
+   {
+    "input": [],
+    "output": "The user stopped your previous turn before it finished. What that reply described as done may not have happened: the book holds only what was actually written, and nothing more. If this message asks for a reply, answer it first. Then take up what remains of the earlier request only if this message still wants it."
+   }
+  ],
+  "steer_message": [
+   {
+    "input": [
+     "把第二段删掉"
+    ],
+    "output": "<system-reminder>\nThe user sent this message while you were working. If it asks for a reply, answer it first. Then continue the work of this turn with it taken into account, and do not start anything beyond it.\n</system-reminder>\n\nUSER MESSAGE:\n把第二段删掉"
+   },
+   {
+    "input": [
+     "two\nlines"
+    ],
+    "output": "<system-reminder>\nThe user sent this message while you were working. If it asks for a reply, answer it first. Then continue the work of this turn with it taken into account, and do not start anything beyond it.\n</system-reminder>\n\nUSER MESSAGE:\ntwo\nlines"
+   }
+  ],
+  "unbacked_claim_nudge": [
+   {
+    "input": [
+     {
+      "writes": 0,
+      "reads": 1,
+      "planLeft": 0
+     }
+    ],
+    "output": "Editor facts for this turn: 0 writes reached the book, 1 chapter read, 0 plan items left. Your reply says you wrote or changed something, but nothing was written this turn. Either make the write now, in this reply, or correct the claim and tell the user what was actually done."
+   },
+   {
+    "input": [
+     {
+      "writes": 0,
+      "reads": 2,
+      "planLeft": 1
+     }
+    ],
+    "output": "Editor facts for this turn: 0 writes reached the book, 2 chapters read, 1 plan item left. Your reply says you wrote or changed something, but nothing was written this turn. Either make the write now, in this reply, or correct the claim and tell the user what was actually done."
+   }
+  ],
+  "lookup_streak_nudge": [
+   {
+    "input": [
+     8,
+     true
+    ],
+    "output": "The last 8 steps only looked things up and wrote nothing, and every step sends the whole conversation again. Check several places in ONE call: read with parts, grep with patterns; for a question that spans many chapters, read them with a task and get notes back. Then write."
+   },
+   {
+    "input": [
+     11,
+     false
+    ],
+    "output": "The last 11 steps only looked things up and wrote nothing, and every step sends the whole conversation again. Check several places in ONE call: read with parts, grep with patterns. Then write."
+   }
+  ],
+  "lookup_nudge_steps": [
+   {
+    "input": [],
+    "output": 8
+   }
+  ],
+  "append_reminders": [
+   {
+    "input": [
+     [
+      {
+       "role": "assistant",
+       "content": "x"
+      },
+      {
+       "role": "tool",
+       "toolCallId": "c",
+       "name": "read_chapter",
+       "content": "TEXT"
+      }
+     ],
+     [
+      "r1",
+      "r2"
+     ]
+    ],
+    "output": [
+     {
+      "role": "assistant",
+      "content": "x"
+     },
+     {
+      "role": "tool",
+      "toolCallId": "c",
+      "name": "read_chapter",
+      "content": "TEXT\n\n<system-reminder>\nr1\n</system-reminder>\n<system-reminder>\nr2\n</system-reminder>"
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "role": "user",
+       "content": ""
+      }
+     ],
+     [
+      "r"
+     ]
+    ],
+    "output": [
+     {
+      "role": "user",
+      "content": "<system-reminder>\nr\n</system-reminder>"
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "role": "user",
+       "content": "u"
+      }
+     ],
+     []
+    ],
+    "output": [
+     {
+      "role": "user",
+      "content": "u"
+     }
+    ]
+   },
+   {
+    "input": [
+     [],
+     [
+      "r"
+     ]
+    ],
+    "output": []
+   }
+  ],
+  "repeat_nudge": [
+   {
+    "input": [
+     [
+      "list_chapters"
+     ],
+     3
+    ],
+    "output": "You have made the same call (list_chapters) with the same arguments 3 times in a row, and nothing was written in between. The answer will not change by asking again. Do something else with what you already have: write the chapter, or read a different part of the book. If you cannot make progress, stop and tell the user what you are missing. This run is paused for the user if the identical calls reach 6."
+   },
+   {
+    "input": [
+     [
+      "read_chapter",
+      "grep"
+     ],
+     5
+    ],
+    "output": "You have made the same calls (read_chapter, grep) with the same arguments 5 times in a row, and nothing was written in between. The answer will not change by asking again. Do something else with what you already have: write the chapter, or read a different part of the book. If you cannot make progress, stop and tell the user what you are missing. "
+   },
+   {
+    "input": [
+     [
+      "x"
+     ],
+     6
+    ],
+    "output": "You have made the same call (x) with the same arguments 6 times in a row, and nothing was written in between. The answer will not change by asking again. Do something else with what you already have: write the chapter, or read a different part of the book. If you cannot make progress, stop and tell the user what you are missing. "
+   }
+  ],
+  "long_reasoning_reminder": [
+   {
+    "input": [
+     12345
+    ],
+    "output": "Your previous step used a very long hidden reasoning trace (about 12,345 tokens) and wrote nothing. From here on, do not reason at length between tool results: read the result, decide the single next action, and emit it, with a few sentences of reasoning at most. Verify by reading or searching the book, never by thinking at length. Plan a chapter in the reply that writes it."
+   },
+   {
+    "input": [
+     900
+    ],
+    "output": "Your previous step used a very long hidden reasoning trace (about 900 tokens) and wrote nothing. From here on, do not reason at length between tool results: read the result, decide the single next action, and emit it, with a few sentences of reasoning at most. Verify by reading or searching the book, never by thinking at length. Plan a chapter in the reply that writes it."
+   }
+  ],
+  "plan_unfinished_nudge": [
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "title": "第一章",
+       "status": "done"
+      },
+      {
+       "id": "b",
+       "title": "第二章",
+       "status": "in_progress"
+      },
+      {
+       "id": "c",
+       "title": "第三章",
+       "status": "pending"
+      }
+     ]
+    ],
+    "output": "Your plan still has 2 unfinished items:\n- 第二章\n- 第三章\nContinue with the next one in your next reply. If an item no longer applies, mark it dropped with the plan tool and say why; a reply with no action ends the turn only once every item is done or dropped."
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "title": "one",
+       "status": "pending"
+      }
+     ]
+    ],
+    "output": "Your plan still has 1 unfinished item:\n- one\nContinue with the next one in your next reply. If an item no longer applies, mark it dropped with the plan tool and say why; a reply with no action ends the turn only once every item is done or dropped."
+   }
+  ],
+  "carried_plan_reminder": [
+   {
+    "input": [
+     [
+      {
+       "id": "a",
+       "title": "第一章",
+       "status": "done"
+      },
+      {
+       "id": "b",
+       "title": "第二章",
+       "status": "in_progress"
+      },
+      {
+       "id": "c",
+       "title": "第三章",
+       "status": "pending"
+      }
+     ]
+    ],
+    "output": "Your plan from the previous turn is not finished:\nPLAN (1/3 done):\n☑ 第一章\n▶ 第二章\n☐ 第三章\nNext: 第二章\nIf this message continues that work, carry on with the next item and keep the plan up to date. If it asks for something else, mark the items that no longer apply dropped with the plan tool."
+   }
+  ],
+  "user_edited_reminder": [
+   {
+    "input": [
+     [
+      {
+       "number": 2,
+       "title": "第二章"
+      }
+     ]
+    ],
+    "output": "The user changed #2 \"第二章\" while you were working. What you read of it is out of date: read it again before relying on it or writing to it, and keep the user's edits."
+   },
+   {
+    "input": [
+     [
+      {
+       "number": 1,
+       "title": "A"
+      },
+      {
+       "number": 3,
+       "title": "C"
+      }
+     ]
+    ],
+    "output": "The user changed #1 \"A\", #3 \"C\" while you were working. What you read of them is out of date: read them again before relying on them or writing to them, and keep the user's edits."
+   }
+  ],
+  "structure_changed_reminder": [
+   {
+    "input": [
+     "1. \"A\"\n2. \"B\""
+    ],
+    "output": "The user changed the book's chapter list while you were working. It is now:\n1. \"A\"\n2. \"B\"\nChapter numbers in your earlier replies may be off; use these."
+   }
+  ],
+  "queued_request_reminder": [
+   {
+    "input": [
+     1
+    ],
+    "output": "The user has sent another request that is waiting for this turn to finish. Finish the work of this turn; do not start anything beyond it."
+   },
+   {
+    "input": [
+     3
+    ],
+    "output": "The user has sent 3 more requests that are waiting for this turn to finish. Finish the work of this turn; do not start anything beyond it."
+   }
+  ],
+  "plan_not_written_note": [
+   {
+    "input": [
+     "改写第十四章"
+    ],
+    "output": "\"改写第十四章\" was marked done, but nothing has been written to the book since it started. It stays in_progress: do the write in this reply, then mark it done."
+   }
+  ],
+  "html_read_nudge": [
+   {
+    "input": [
+     "📖 read #1 \"大纲\" ¶88–88 (0.1k, html)"
+    ],
+    "output": "Your last read of a chapter's HTML (📖 read #1 \"大纲\" ¶88–88 (0.1k, html)) is the step before an edit, and no change followed it. Make the edit now, or say in your reply why it is not needed."
+   }
+  ],
+  "call_signature": [
+   {
+    "input": [
+     "read_chapter",
+     {
+      "chapters": [
+       "2"
+      ],
+      "format": "html"
+     }
+    ],
+    "output": "read_chapter:{\"chapters\":[\"2\"],\"format\":\"html\"}"
+   },
+   {
+    "input": [
+     "read_chapter",
+     {
+      "format": "html",
+      "chapters": [
+       "2"
+      ]
+     }
+    ],
+    "output": "read_chapter:{\"chapters\":[\"2\"],\"format\":\"html\"}"
+   },
+   {
+    "input": [
+     "x",
+     {
+      "a": {
+       "z": 1,
+       "b": [
+        3,
+        {
+         "y": 2,
+         "x": 1
+        }
+       ]
+      }
+     }
+    ],
+    "output": "x:{\"a\":{\"b\":[3,{\"x\":1,\"y\":2}],\"z\":1}}"
+   },
+   {
+    "input": [
+     "x",
+     null,
+     "{broken"
+    ],
+    "output": "x:{broken"
+   },
+   {
+    "input": [
+     "x",
+     null
+    ],
+    "output": "x:"
+   },
+   {
+    "input": [
+     "grep",
+     {
+      "pattern": "阿青|阿红",
+      "n": 1.5,
+      "ok": true
+     }
+    ],
+    "output": "grep:{\"n\":1.5,\"ok\":true,\"pattern\":\"阿青|阿红\"}"
+   }
+  ]
+ }
+}

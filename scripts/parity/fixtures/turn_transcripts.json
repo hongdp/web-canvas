@@ -1,0 +1,1976 @@
+{
+ "module": "turn_transcripts",
+ "cases": {
+  "plan_history_units": [
+   {
+    "input": [
+     [
+      {
+       "id": "u0",
+       "role": "user",
+       "content": "hi"
+      },
+      {
+       "id": "a0",
+       "role": "assistant",
+       "content": "reply0",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "id": "r0"
+        }
+       ]
+      },
+      {
+       "id": "u1",
+       "role": "user",
+       "content": "two"
+      },
+      {
+       "id": "a1",
+       "role": "assistant",
+       "content": "reply1"
+      },
+      {
+       "id": "u2",
+       "role": "user",
+       "content": "three",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "id": "a2",
+       "role": "assistant",
+       "content": "r2"
+      },
+      {
+       "id": "a3",
+       "role": "assistant",
+       "content": "extra"
+      },
+      {
+       "id": "u4",
+       "role": "user",
+       "content": "four"
+      },
+      {
+       "id": "a4",
+       "role": "assistant",
+       "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      }
+     ],
+     {
+      "a0": {
+       "userMessageId": "u0",
+       "messages": [
+        {
+         "role": "user",
+         "content": "TAIL0\n\nUSER REQUEST:\nhi",
+         "cacheHint": true
+        },
+        {
+         "role": "assistant",
+         "content": "",
+         "toolCalls": [
+          {
+           "id": "c1",
+           "name": "read",
+           "argumentsText": "{\"chapters\":[\"1\"]}"
+          }
+         ],
+         "responseItems": [
+          {
+           "type": "reasoning",
+           "id": "r0"
+          }
+         ]
+        },
+        {
+         "role": "tool",
+         "toolCallId": "c1",
+         "name": "read",
+         "content": "TEXT wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+        },
+        {
+         "role": "assistant",
+         "content": "reply0 full"
+        }
+       ]
+      },
+      "a1": {
+       "userMessageId": "zz",
+       "messages": [
+        {
+         "role": "user",
+         "content": "other"
+        },
+        {
+         "role": "assistant",
+         "content": "x"
+        }
+       ]
+      },
+      "a2": {
+       "userMessageId": "u2",
+       "messages": [
+        {
+         "role": "user",
+         "content": "TAIL2\n\nUSER REQUEST:\nthree",
+         "images": [
+          "data:image/png;base64,AAAA"
+         ]
+        },
+        {
+         "role": "user",
+         "content": "steer"
+        },
+        {
+         "role": "assistant",
+         "content": "r2 done"
+        }
+       ]
+      },
+      "a4": {
+       "userMessageId": "u4",
+       "messages": []
+      }
+     }
+    ],
+    "output": [
+     {
+      "start": 0,
+      "count": 2,
+      "turn": "a0"
+     },
+     {
+      "start": 2,
+      "count": 1,
+      "turn": null
+     },
+     {
+      "start": 3,
+      "count": 1,
+      "turn": null
+     },
+     {
+      "start": 4,
+      "count": 2,
+      "turn": "a2"
+     },
+     {
+      "start": 6,
+      "count": 1,
+      "turn": null
+     },
+     {
+      "start": 7,
+      "count": 1,
+      "turn": null
+     },
+     {
+      "start": 8,
+      "count": 1,
+      "turn": null
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "u0",
+       "role": "user",
+       "content": "hi"
+      },
+      {
+       "id": "a0",
+       "role": "assistant",
+       "content": "reply0",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "id": "r0"
+        }
+       ]
+      },
+      {
+       "id": "u1",
+       "role": "user",
+       "content": "two"
+      },
+      {
+       "id": "a1",
+       "role": "assistant",
+       "content": "reply1"
+      },
+      {
+       "id": "u2",
+       "role": "user",
+       "content": "three",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "id": "a2",
+       "role": "assistant",
+       "content": "r2"
+      },
+      {
+       "id": "a3",
+       "role": "assistant",
+       "content": "extra"
+      },
+      {
+       "id": "u4",
+       "role": "user",
+       "content": "four"
+      },
+      {
+       "id": "a4",
+       "role": "assistant",
+       "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      }
+     ],
+     {}
+    ],
+    "output": [
+     {
+      "start": 0,
+      "count": 1,
+      "turn": null
+     },
+     {
+      "start": 1,
+      "count": 1,
+      "turn": null
+     },
+     {
+      "start": 2,
+      "count": 1,
+      "turn": null
+     },
+     {
+      "start": 3,
+      "count": 1,
+      "turn": null
+     },
+     {
+      "start": 4,
+      "count": 1,
+      "turn": null
+     },
+     {
+      "start": 5,
+      "count": 1,
+      "turn": null
+     },
+     {
+      "start": 6,
+      "count": 1,
+      "turn": null
+     },
+     {
+      "start": 7,
+      "count": 1,
+      "turn": null
+     },
+     {
+      "start": 8,
+      "count": 1,
+      "turn": null
+     }
+    ]
+   },
+   {
+    "input": [
+     [],
+     {
+      "a0": {
+       "userMessageId": "u0",
+       "messages": [
+        {
+         "role": "user",
+         "content": "TAIL0\n\nUSER REQUEST:\nhi",
+         "cacheHint": true
+        },
+        {
+         "role": "assistant",
+         "content": "",
+         "toolCalls": [
+          {
+           "id": "c1",
+           "name": "read",
+           "argumentsText": "{\"chapters\":[\"1\"]}"
+          }
+         ],
+         "responseItems": [
+          {
+           "type": "reasoning",
+           "id": "r0"
+          }
+         ]
+        },
+        {
+         "role": "tool",
+         "toolCallId": "c1",
+         "name": "read",
+         "content": "TEXT wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+        },
+        {
+         "role": "assistant",
+         "content": "reply0 full"
+        }
+       ]
+      },
+      "a1": {
+       "userMessageId": "zz",
+       "messages": [
+        {
+         "role": "user",
+         "content": "other"
+        },
+        {
+         "role": "assistant",
+         "content": "x"
+        }
+       ]
+      },
+      "a2": {
+       "userMessageId": "u2",
+       "messages": [
+        {
+         "role": "user",
+         "content": "TAIL2\n\nUSER REQUEST:\nthree",
+         "images": [
+          "data:image/png;base64,AAAA"
+         ]
+        },
+        {
+         "role": "user",
+         "content": "steer"
+        },
+        {
+         "role": "assistant",
+         "content": "r2 done"
+        }
+       ]
+      },
+      "a4": {
+       "userMessageId": "u4",
+       "messages": []
+      }
+     }
+    ],
+    "output": []
+   }
+  ],
+  "transcript_weight": [
+   {
+    "input": [
+     [
+      {
+       "role": "user",
+       "content": "TAIL0\n\nUSER REQUEST:\nhi",
+       "cacheHint": true
+      },
+      {
+       "role": "assistant",
+       "content": "",
+       "toolCalls": [
+        {
+         "id": "c1",
+         "name": "read",
+         "argumentsText": "{\"chapters\":[\"1\"]}"
+        }
+       ],
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "id": "r0"
+        }
+       ]
+      },
+      {
+       "role": "tool",
+       "toolCallId": "c1",
+       "name": "read",
+       "content": "TEXT wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+      },
+      {
+       "role": "assistant",
+       "content": "reply0 full"
+      }
+     ]
+    ],
+    "output": 257
+   },
+   {
+    "input": [
+     []
+    ],
+    "output": 0
+   }
+  ],
+  "summarizable_history": [
+   {
+    "input": [
+     [
+      {
+       "id": "u0",
+       "role": "user",
+       "content": "hi"
+      },
+      {
+       "id": "a0",
+       "role": "assistant",
+       "content": "reply0",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "id": "r0"
+        }
+       ]
+      },
+      {
+       "id": "u1",
+       "role": "user",
+       "content": "two"
+      },
+      {
+       "id": "a1",
+       "role": "assistant",
+       "content": "reply1"
+      },
+      {
+       "id": "u2",
+       "role": "user",
+       "content": "three",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "id": "a2",
+       "role": "assistant",
+       "content": "r2"
+      },
+      {
+       "id": "a3",
+       "role": "assistant",
+       "content": "extra"
+      },
+      {
+       "id": "u4",
+       "role": "user",
+       "content": "four"
+      },
+      {
+       "id": "a4",
+       "role": "assistant",
+       "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      }
+     ],
+     [
+      {
+       "start": 0,
+       "count": 2,
+       "turn": "a0"
+      },
+      {
+       "start": 2,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 3,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 4,
+       "count": 2,
+       "turn": "a2"
+      },
+      {
+       "start": 6,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 7,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 8,
+       "count": 1,
+       "turn": null
+      }
+     ],
+     {
+      "a0": {
+       "userMessageId": "u0",
+       "messages": [
+        {
+         "role": "user",
+         "content": "TAIL0\n\nUSER REQUEST:\nhi",
+         "cacheHint": true
+        },
+        {
+         "role": "assistant",
+         "content": "",
+         "toolCalls": [
+          {
+           "id": "c1",
+           "name": "read",
+           "argumentsText": "{\"chapters\":[\"1\"]}"
+          }
+         ],
+         "responseItems": [
+          {
+           "type": "reasoning",
+           "id": "r0"
+          }
+         ]
+        },
+        {
+         "role": "tool",
+         "toolCallId": "c1",
+         "name": "read",
+         "content": "TEXT wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+        },
+        {
+         "role": "assistant",
+         "content": "reply0 full"
+        }
+       ]
+      },
+      "a1": {
+       "userMessageId": "zz",
+       "messages": [
+        {
+         "role": "user",
+         "content": "other"
+        },
+        {
+         "role": "assistant",
+         "content": "x"
+        }
+       ]
+      },
+      "a2": {
+       "userMessageId": "u2",
+       "messages": [
+        {
+         "role": "user",
+         "content": "TAIL2\n\nUSER REQUEST:\nthree",
+         "images": [
+          "data:image/png;base64,AAAA"
+         ]
+        },
+        {
+         "role": "user",
+         "content": "steer"
+        },
+        {
+         "role": "assistant",
+         "content": "r2 done"
+        }
+       ]
+      },
+      "a4": {
+       "userMessageId": "u4",
+       "messages": []
+      }
+     }
+    ],
+    "output": [
+     {
+      "id": "u0",
+      "role": "user",
+      "content": "hi",
+      "weight": 246
+     },
+     {
+      "id": "a0",
+      "role": "assistant",
+      "content": "reply0",
+      "weight": 11
+     },
+     {
+      "id": "u1",
+      "role": "user",
+      "content": "two"
+     },
+     {
+      "id": "a1",
+      "role": "assistant",
+      "content": "reply1"
+     },
+     {
+      "id": "u2",
+      "role": "user",
+      "content": "three",
+      "images": [
+       "data:image/png;base64,AAAA"
+      ],
+      "weight": 31
+     },
+     {
+      "id": "a2",
+      "role": "assistant",
+      "content": "r2",
+      "weight": 7
+     },
+     {
+      "id": "a3",
+      "role": "assistant",
+      "content": "extra"
+     },
+     {
+      "id": "u4",
+      "role": "user",
+      "content": "four"
+     },
+     {
+      "id": "a4",
+      "role": "assistant",
+      "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+     }
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "u0",
+       "role": "user",
+       "content": "hi"
+      },
+      {
+       "id": "a0",
+       "role": "assistant",
+       "content": "reply0",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "id": "r0"
+        }
+       ]
+      },
+      {
+       "id": "u1",
+       "role": "user",
+       "content": "two"
+      },
+      {
+       "id": "a1",
+       "role": "assistant",
+       "content": "reply1"
+      },
+      {
+       "id": "u2",
+       "role": "user",
+       "content": "three",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "id": "a2",
+       "role": "assistant",
+       "content": "r2"
+      },
+      {
+       "id": "a3",
+       "role": "assistant",
+       "content": "extra"
+      },
+      {
+       "id": "u4",
+       "role": "user",
+       "content": "four"
+      },
+      {
+       "id": "a4",
+       "role": "assistant",
+       "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      }
+     ],
+     [
+      {
+       "start": 0,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 1,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 2,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 3,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 4,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 5,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 6,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 7,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 8,
+       "count": 1,
+       "turn": null
+      }
+     ],
+     {}
+    ],
+    "output": [
+     {
+      "id": "u0",
+      "role": "user",
+      "content": "hi"
+     },
+     {
+      "id": "a0",
+      "role": "assistant",
+      "content": "reply0"
+     },
+     {
+      "id": "u1",
+      "role": "user",
+      "content": "two"
+     },
+     {
+      "id": "a1",
+      "role": "assistant",
+      "content": "reply1"
+     },
+     {
+      "id": "u2",
+      "role": "user",
+      "content": "three",
+      "images": [
+       "data:image/png;base64,AAAA"
+      ]
+     },
+     {
+      "id": "a2",
+      "role": "assistant",
+      "content": "r2"
+     },
+     {
+      "id": "a3",
+      "role": "assistant",
+      "content": "extra"
+     },
+     {
+      "id": "u4",
+      "role": "user",
+      "content": "four"
+     },
+     {
+      "id": "a4",
+      "role": "assistant",
+      "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+     }
+    ]
+   }
+  ],
+  "history_window": [
+   {
+    "input": [
+     [
+      {
+       "id": "u0",
+       "role": "user",
+       "content": "hi"
+      },
+      {
+       "id": "a0",
+       "role": "assistant",
+       "content": "reply0",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "id": "r0"
+        }
+       ]
+      },
+      {
+       "id": "u1",
+       "role": "user",
+       "content": "two"
+      },
+      {
+       "id": "a1",
+       "role": "assistant",
+       "content": "reply1"
+      },
+      {
+       "id": "u2",
+       "role": "user",
+       "content": "three",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "id": "a2",
+       "role": "assistant",
+       "content": "r2"
+      },
+      {
+       "id": "a3",
+       "role": "assistant",
+       "content": "extra"
+      },
+      {
+       "id": "u4",
+       "role": "user",
+       "content": "four"
+      },
+      {
+       "id": "a4",
+       "role": "assistant",
+       "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      }
+     ],
+     [
+      {
+       "start": 0,
+       "count": 2,
+       "turn": "a0"
+      },
+      {
+       "start": 2,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 3,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 4,
+       "count": 2,
+       "turn": "a2"
+      },
+      {
+       "start": 6,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 7,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 8,
+       "count": 1,
+       "turn": null
+      }
+     ],
+     {
+      "a0": {
+       "userMessageId": "u0",
+       "messages": [
+        {
+         "role": "user",
+         "content": "TAIL0\n\nUSER REQUEST:\nhi",
+         "cacheHint": true
+        },
+        {
+         "role": "assistant",
+         "content": "",
+         "toolCalls": [
+          {
+           "id": "c1",
+           "name": "read",
+           "argumentsText": "{\"chapters\":[\"1\"]}"
+          }
+         ],
+         "responseItems": [
+          {
+           "type": "reasoning",
+           "id": "r0"
+          }
+         ]
+        },
+        {
+         "role": "tool",
+         "toolCallId": "c1",
+         "name": "read",
+         "content": "TEXT wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+        },
+        {
+         "role": "assistant",
+         "content": "reply0 full"
+        }
+       ]
+      },
+      "a1": {
+       "userMessageId": "zz",
+       "messages": [
+        {
+         "role": "user",
+         "content": "other"
+        },
+        {
+         "role": "assistant",
+         "content": "x"
+        }
+       ]
+      },
+      "a2": {
+       "userMessageId": "u2",
+       "messages": [
+        {
+         "role": "user",
+         "content": "TAIL2\n\nUSER REQUEST:\nthree",
+         "images": [
+          "data:image/png;base64,AAAA"
+         ]
+        },
+        {
+         "role": "user",
+         "content": "steer"
+        },
+        {
+         "role": "assistant",
+         "content": "r2 done"
+        }
+       ]
+      },
+      "a4": {
+       "userMessageId": "u4",
+       "messages": []
+      }
+     },
+     0,
+     null
+    ],
+    "output": {
+     "messages": [
+      {
+       "role": "user",
+       "content": "TAIL0\n\nUSER REQUEST:\nhi"
+      },
+      {
+       "role": "assistant",
+       "content": "",
+       "toolCalls": [
+        {
+         "id": "c1",
+         "name": "read",
+         "argumentsText": "{\"chapters\":[\"1\"]}"
+        }
+       ],
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "id": "r0"
+        }
+       ]
+      },
+      {
+       "role": "tool",
+       "toolCallId": "c1",
+       "name": "read",
+       "content": "TEXT wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+      },
+      {
+       "role": "assistant",
+       "content": "reply0 full"
+      },
+      {
+       "role": "user",
+       "content": "two"
+      },
+      {
+       "role": "assistant",
+       "content": "reply1"
+      },
+      {
+       "role": "user",
+       "content": "TAIL2\n\nUSER REQUEST:\nthree",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "role": "user",
+       "content": "steer"
+      },
+      {
+       "role": "assistant",
+       "content": "r2 done"
+      },
+      {
+       "role": "user",
+       "content": "four"
+      },
+      {
+       "role": "assistant",
+       "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      }
+     ],
+     "present": [
+      "a0",
+      "a2"
+     ]
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "u0",
+       "role": "user",
+       "content": "hi"
+      },
+      {
+       "id": "a0",
+       "role": "assistant",
+       "content": "reply0",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "id": "r0"
+        }
+       ]
+      },
+      {
+       "id": "u1",
+       "role": "user",
+       "content": "two"
+      },
+      {
+       "id": "a1",
+       "role": "assistant",
+       "content": "reply1"
+      },
+      {
+       "id": "u2",
+       "role": "user",
+       "content": "three",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "id": "a2",
+       "role": "assistant",
+       "content": "r2"
+      },
+      {
+       "id": "a3",
+       "role": "assistant",
+       "content": "extra"
+      },
+      {
+       "id": "u4",
+       "role": "user",
+       "content": "four"
+      },
+      {
+       "id": "a4",
+       "role": "assistant",
+       "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      }
+     ],
+     [
+      {
+       "start": 0,
+       "count": 2,
+       "turn": "a0"
+      },
+      {
+       "start": 2,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 3,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 4,
+       "count": 2,
+       "turn": "a2"
+      },
+      {
+       "start": 6,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 7,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 8,
+       "count": 1,
+       "turn": null
+      }
+     ],
+     {
+      "a0": {
+       "userMessageId": "u0",
+       "messages": [
+        {
+         "role": "user",
+         "content": "TAIL0\n\nUSER REQUEST:\nhi",
+         "cacheHint": true
+        },
+        {
+         "role": "assistant",
+         "content": "",
+         "toolCalls": [
+          {
+           "id": "c1",
+           "name": "read",
+           "argumentsText": "{\"chapters\":[\"1\"]}"
+          }
+         ],
+         "responseItems": [
+          {
+           "type": "reasoning",
+           "id": "r0"
+          }
+         ]
+        },
+        {
+         "role": "tool",
+         "toolCallId": "c1",
+         "name": "read",
+         "content": "TEXT wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+        },
+        {
+         "role": "assistant",
+         "content": "reply0 full"
+        }
+       ]
+      },
+      "a1": {
+       "userMessageId": "zz",
+       "messages": [
+        {
+         "role": "user",
+         "content": "other"
+        },
+        {
+         "role": "assistant",
+         "content": "x"
+        }
+       ]
+      },
+      "a2": {
+       "userMessageId": "u2",
+       "messages": [
+        {
+         "role": "user",
+         "content": "TAIL2\n\nUSER REQUEST:\nthree",
+         "images": [
+          "data:image/png;base64,AAAA"
+         ]
+        },
+        {
+         "role": "user",
+         "content": "steer"
+        },
+        {
+         "role": "assistant",
+         "content": "r2 done"
+        }
+       ]
+      },
+      "a4": {
+       "userMessageId": "u4",
+       "messages": []
+      }
+     },
+     2,
+     null
+    ],
+    "output": {
+     "messages": [
+      {
+       "role": "user",
+       "content": "two"
+      },
+      {
+       "role": "assistant",
+       "content": "reply1"
+      },
+      {
+       "role": "user",
+       "content": "TAIL2\n\nUSER REQUEST:\nthree",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "role": "user",
+       "content": "steer"
+      },
+      {
+       "role": "assistant",
+       "content": "r2 done"
+      },
+      {
+       "role": "user",
+       "content": "four"
+      },
+      {
+       "role": "assistant",
+       "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      }
+     ],
+     "present": [
+      "a2"
+     ]
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "u0",
+       "role": "user",
+       "content": "hi"
+      },
+      {
+       "id": "a0",
+       "role": "assistant",
+       "content": "reply0",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "id": "r0"
+        }
+       ]
+      },
+      {
+       "id": "u1",
+       "role": "user",
+       "content": "two"
+      },
+      {
+       "id": "a1",
+       "role": "assistant",
+       "content": "reply1"
+      },
+      {
+       "id": "u2",
+       "role": "user",
+       "content": "three",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "id": "a2",
+       "role": "assistant",
+       "content": "r2"
+      },
+      {
+       "id": "a3",
+       "role": "assistant",
+       "content": "extra"
+      },
+      {
+       "id": "u4",
+       "role": "user",
+       "content": "four"
+      },
+      {
+       "id": "a4",
+       "role": "assistant",
+       "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      }
+     ],
+     [
+      {
+       "start": 0,
+       "count": 2,
+       "turn": "a0"
+      },
+      {
+       "start": 2,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 3,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 4,
+       "count": 2,
+       "turn": "a2"
+      },
+      {
+       "start": 6,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 7,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 8,
+       "count": 1,
+       "turn": null
+      }
+     ],
+     {
+      "a0": {
+       "userMessageId": "u0",
+       "messages": [
+        {
+         "role": "user",
+         "content": "TAIL0\n\nUSER REQUEST:\nhi",
+         "cacheHint": true
+        },
+        {
+         "role": "assistant",
+         "content": "",
+         "toolCalls": [
+          {
+           "id": "c1",
+           "name": "read",
+           "argumentsText": "{\"chapters\":[\"1\"]}"
+          }
+         ],
+         "responseItems": [
+          {
+           "type": "reasoning",
+           "id": "r0"
+          }
+         ]
+        },
+        {
+         "role": "tool",
+         "toolCallId": "c1",
+         "name": "read",
+         "content": "TEXT wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+        },
+        {
+         "role": "assistant",
+         "content": "reply0 full"
+        }
+       ]
+      },
+      "a1": {
+       "userMessageId": "zz",
+       "messages": [
+        {
+         "role": "user",
+         "content": "other"
+        },
+        {
+         "role": "assistant",
+         "content": "x"
+        }
+       ]
+      },
+      "a2": {
+       "userMessageId": "u2",
+       "messages": [
+        {
+         "role": "user",
+         "content": "TAIL2\n\nUSER REQUEST:\nthree",
+         "images": [
+          "data:image/png;base64,AAAA"
+         ]
+        },
+        {
+         "role": "user",
+         "content": "steer"
+        },
+        {
+         "role": "assistant",
+         "content": "r2 done"
+        }
+       ]
+      },
+      "a4": {
+       "userMessageId": "u4",
+       "messages": []
+      }
+     },
+     0,
+     400
+    ],
+    "output": {
+     "messages": [
+      {
+       "role": "user",
+       "content": "two"
+      },
+      {
+       "role": "assistant",
+       "content": "reply1"
+      },
+      {
+       "role": "user",
+       "content": "TAIL2\n\nUSER REQUEST:\nthree",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "role": "user",
+       "content": "steer"
+      },
+      {
+       "role": "assistant",
+       "content": "r2 done"
+      },
+      {
+       "role": "user",
+       "content": "four"
+      },
+      {
+       "role": "assistant",
+       "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      }
+     ],
+     "present": [
+      "a2"
+     ]
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "u0",
+       "role": "user",
+       "content": "hi"
+      },
+      {
+       "id": "a0",
+       "role": "assistant",
+       "content": "reply0",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "id": "r0"
+        }
+       ]
+      },
+      {
+       "id": "u1",
+       "role": "user",
+       "content": "two"
+      },
+      {
+       "id": "a1",
+       "role": "assistant",
+       "content": "reply1"
+      },
+      {
+       "id": "u2",
+       "role": "user",
+       "content": "three",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "id": "a2",
+       "role": "assistant",
+       "content": "r2"
+      },
+      {
+       "id": "a3",
+       "role": "assistant",
+       "content": "extra"
+      },
+      {
+       "id": "u4",
+       "role": "user",
+       "content": "four"
+      },
+      {
+       "id": "a4",
+       "role": "assistant",
+       "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      }
+     ],
+     [
+      {
+       "start": 0,
+       "count": 2,
+       "turn": "a0"
+      },
+      {
+       "start": 2,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 3,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 4,
+       "count": 2,
+       "turn": "a2"
+      },
+      {
+       "start": 6,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 7,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 8,
+       "count": 1,
+       "turn": null
+      }
+     ],
+     {
+      "a0": {
+       "userMessageId": "u0",
+       "messages": [
+        {
+         "role": "user",
+         "content": "TAIL0\n\nUSER REQUEST:\nhi",
+         "cacheHint": true
+        },
+        {
+         "role": "assistant",
+         "content": "",
+         "toolCalls": [
+          {
+           "id": "c1",
+           "name": "read",
+           "argumentsText": "{\"chapters\":[\"1\"]}"
+          }
+         ],
+         "responseItems": [
+          {
+           "type": "reasoning",
+           "id": "r0"
+          }
+         ]
+        },
+        {
+         "role": "tool",
+         "toolCallId": "c1",
+         "name": "read",
+         "content": "TEXT wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+        },
+        {
+         "role": "assistant",
+         "content": "reply0 full"
+        }
+       ]
+      },
+      "a1": {
+       "userMessageId": "zz",
+       "messages": [
+        {
+         "role": "user",
+         "content": "other"
+        },
+        {
+         "role": "assistant",
+         "content": "x"
+        }
+       ]
+      },
+      "a2": {
+       "userMessageId": "u2",
+       "messages": [
+        {
+         "role": "user",
+         "content": "TAIL2\n\nUSER REQUEST:\nthree",
+         "images": [
+          "data:image/png;base64,AAAA"
+         ]
+        },
+        {
+         "role": "user",
+         "content": "steer"
+        },
+        {
+         "role": "assistant",
+         "content": "r2 done"
+        }
+       ]
+      },
+      "a4": {
+       "userMessageId": "u4",
+       "messages": []
+      }
+     },
+     0,
+     10
+    ],
+    "output": {
+     "messages": [
+      {
+       "role": "user",
+       "content": "four"
+      },
+      {
+       "role": "assistant",
+       "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      }
+     ],
+     "present": []
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "u0",
+       "role": "user",
+       "content": "hi"
+      },
+      {
+       "id": "a0",
+       "role": "assistant",
+       "content": "reply0",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "id": "r0"
+        }
+       ]
+      },
+      {
+       "id": "u1",
+       "role": "user",
+       "content": "two"
+      },
+      {
+       "id": "a1",
+       "role": "assistant",
+       "content": "reply1"
+      },
+      {
+       "id": "u2",
+       "role": "user",
+       "content": "three",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "id": "a2",
+       "role": "assistant",
+       "content": "r2"
+      },
+      {
+       "id": "a3",
+       "role": "assistant",
+       "content": "extra"
+      },
+      {
+       "id": "u4",
+       "role": "user",
+       "content": "four"
+      },
+      {
+       "id": "a4",
+       "role": "assistant",
+       "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      }
+     ],
+     [
+      {
+       "start": 0,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 1,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 2,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 3,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 4,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 5,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 6,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 7,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 8,
+       "count": 1,
+       "turn": null
+      }
+     ],
+     {},
+     0,
+     30
+    ],
+    "output": {
+     "messages": [
+      {
+       "role": "user",
+       "content": "four"
+      },
+      {
+       "role": "assistant",
+       "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      }
+     ],
+     "present": []
+    }
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "u0",
+       "role": "user",
+       "content": "hi"
+      },
+      {
+       "id": "a0",
+       "role": "assistant",
+       "content": "reply0",
+       "responseItems": [
+        {
+         "type": "reasoning",
+         "id": "r0"
+        }
+       ]
+      },
+      {
+       "id": "u1",
+       "role": "user",
+       "content": "two"
+      },
+      {
+       "id": "a1",
+       "role": "assistant",
+       "content": "reply1"
+      },
+      {
+       "id": "u2",
+       "role": "user",
+       "content": "three",
+       "images": [
+        "data:image/png;base64,AAAA"
+       ]
+      },
+      {
+       "id": "a2",
+       "role": "assistant",
+       "content": "r2"
+      },
+      {
+       "id": "a3",
+       "role": "assistant",
+       "content": "extra"
+      },
+      {
+       "id": "u4",
+       "role": "user",
+       "content": "four"
+      },
+      {
+       "id": "a4",
+       "role": "assistant",
+       "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      }
+     ],
+     [
+      {
+       "start": 0,
+       "count": 2,
+       "turn": "a0"
+      },
+      {
+       "start": 2,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 3,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 4,
+       "count": 2,
+       "turn": "a2"
+      },
+      {
+       "start": 6,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 7,
+       "count": 1,
+       "turn": null
+      },
+      {
+       "start": 8,
+       "count": 1,
+       "turn": null
+      }
+     ],
+     {
+      "a0": {
+       "userMessageId": "u0",
+       "messages": [
+        {
+         "role": "user",
+         "content": "TAIL0\n\nUSER REQUEST:\nhi",
+         "cacheHint": true
+        },
+        {
+         "role": "assistant",
+         "content": "",
+         "toolCalls": [
+          {
+           "id": "c1",
+           "name": "read",
+           "argumentsText": "{\"chapters\":[\"1\"]}"
+          }
+         ],
+         "responseItems": [
+          {
+           "type": "reasoning",
+           "id": "r0"
+          }
+         ]
+        },
+        {
+         "role": "tool",
+         "toolCallId": "c1",
+         "name": "read",
+         "content": "TEXT wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+        },
+        {
+         "role": "assistant",
+         "content": "reply0 full"
+        }
+       ]
+      },
+      "a1": {
+       "userMessageId": "zz",
+       "messages": [
+        {
+         "role": "user",
+         "content": "other"
+        },
+        {
+         "role": "assistant",
+         "content": "x"
+        }
+       ]
+      },
+      "a2": {
+       "userMessageId": "u2",
+       "messages": [
+        {
+         "role": "user",
+         "content": "TAIL2\n\nUSER REQUEST:\nthree",
+         "images": [
+          "data:image/png;base64,AAAA"
+         ]
+        },
+        {
+         "role": "user",
+         "content": "steer"
+        },
+        {
+         "role": "assistant",
+         "content": "r2 done"
+        }
+       ]
+      },
+      "a4": {
+       "userMessageId": "u4",
+       "messages": []
+      }
+     },
+     6,
+     null
+    ],
+    "output": {
+     "messages": [
+      {
+       "role": "user",
+       "content": "four"
+      },
+      {
+       "role": "assistant",
+       "content": "reply4 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      }
+     ],
+     "present": []
+    }
+   }
+  ]
+ }
+}

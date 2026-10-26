@@ -1,0 +1,38 @@
+/* Settings Tabs */
+.settings-tabs {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.25rem;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE/Edge */
+}
+
+.settings-tabs::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.settings-tab-btn {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  background-color: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.settings-tab-btn:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.settings-tab-btn.active {
+  background-color: var(--accent);
+  color: var(--accent-text);
+}

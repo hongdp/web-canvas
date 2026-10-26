@@ -1,0 +1,65 @@
+#!/bin/sh
+#
+# Pre-push hook: run the unit test suite (and the backend's) before allowing a push to GitHub.
+# Enforces the "Pre-commit/Pre-push Unit Test Gate" in SKILL.md (§4.1).
+#
+# Activated via `core.hooksPath=.githooks` (set by the npm `prepare` script,
+# or manually with `git config core.hooksPath .githooks`).
+#
+# To bypass in an emergency: `git push --no-verify` (discouraged).
+
+# Wall-clock bound, not per-test. A test that starves the event loop (an
+# effect/render cascade is the usual way) cannot be interrupted by vitest's own
+# timeout: its timers never get to run, so the suite wedges forever and takes
+# the push with it. The whole suite finishes in ~5s, so 300s is pure headroom.
+SUITE_TIMEOUT_SECONDS=300
+
+echo "[pre-push] Running unit tests (npm test, ${SUITE_TIMEOUT_SECONDS}s limit)..."
+
+timeout "${SUITE_TIMEOUT_SECONDS}" npm test
+status=$?
+
+if [ $status -eq 124 ]; then
+  echo ""
+  echo "[pre-push] ⏱  Test suite exceeded ${SUITE_TIMEOUT_SECONDS}s and was killed."
+  echo "[pre-push] The usual cause is a wedged test, not a slow one: the suite"
+  echo "[pre-push] normally finishes in about 5 seconds. Look for a render or"
+  echo "[pre-push] effect loop — vitest cannot time those out by itself."
+  exit 1
+fi
+
+if [ $status -ne 0 ]; then
+  echo ""
+  echo "[pre-push] ❌ Unit tests failed. Push aborted."
+  echo "[pre-push] Fix the failing tests, or bypass with 'git push --no-verify' (discouraged)."
+  exit 1
+fi
+
+echo "[pre-push] ✅ Unit tests passed."
+
+# The backend suite too: the Python loop, the API, and the TS↔Python parity
+# replay. Before 2026-10-10 only npm test ran here, so a backend-only change
+# could be pushed untested (test audit). Same interpreter as start-server.js.
+PY="$HOME/miniconda3/bin/python3"
+[ -x "$PY" ] || PY=python3
+if ! "$PY" -c "import pytest, fastapi" >/dev/null 2>&1; then
+  echo "[pre-push] ⚠️  pytest or fastapi is missing for $PY: backend tests NOT run."
+  echo "[pre-push] Install them to restore the gate (the push goes ahead)."
+  exit 0
+fi
+echo "[pre-push] Running backend tests (pytest, ${SUITE_TIMEOUT_SECONDS}s limit)..."
+(cd scripts && timeout "${SUITE_TIMEOUT_SECONDS}" "$PY" -m pytest -q -x -p no:cacheprovider)
+status=$?
+if [ $status -ne 0 ]; then
+  echo ""
+  if [ $status -eq 124 ]; then
+    echo "[pre-push] ⏱  Backend tests exceeded ${SUITE_TIMEOUT_SECONDS}s and were killed."
+  else
+    echo "[pre-push] ❌ Backend tests failed. Push aborted."
+  fi
+  echo "[pre-push] Fix them, or bypass with 'git push --no-verify' (discouraged)."
+  exit 1
+fi
+
+echo "[pre-push] ✅ Backend tests passed. Proceeding with push."
+exit 0

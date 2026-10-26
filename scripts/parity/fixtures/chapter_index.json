@@ -1,0 +1,829 @@
+{
+ "module": "chapter_index",
+ "cases": {
+  "build_chapter_index": [
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     "d2"
+    ],
+    "output": "CHAPTER INDEX (all chapters in this book, by position — #4 is the fourth chapter whatever its title says; full text NOT included unless it appears in REFERENCED DOCUMENT CONTEXTS or is the active document):\n#1 \"大纲\"\n#2 \"第一章 启程\" [ACTIVE — this is the document you can edit]\n#3 \"Chapter 3: The Cat\"\n#4 \"空章节\"\n#5 \"Long\""
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     "d2",
+     {
+      "agentTools": true,
+      "markers": {
+       "d1": "in context",
+       "d3": "read this turn"
+      }
+     }
+    ],
+    "output": "CHAPTER INDEX (all chapters in this book, by position — #4 is the fourth chapter whatever its title says; full text NOT included unless it appears in REFERENCED DOCUMENT CONTEXTS or is the active document):\n#1 \"大纲\" [in context]\n#2 \"第一章 启程\" [ACTIVE — open in the editor; writes go here unless you name another chapter]\n#3 \"Chapter 3: The Cat\" [read this turn]\n#4 \"空章节\"\n#5 \"Long\""
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     null
+    ],
+    "output": "CHAPTER INDEX (all chapters in this book, by position — #4 is the fourth chapter whatever its title says; full text NOT included unless it appears in REFERENCED DOCUMENT CONTEXTS or is the active document):\n#1 \"大纲\"\n#2 \"第一章 启程\"\n#3 \"Chapter 3: The Cat\"\n#4 \"空章节\"\n#5 \"Long\""
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      }
+     ],
+     "d1"
+    ],
+    "output": ""
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "b0",
+       "title": "Ch 0",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 0</p>"
+      },
+      {
+       "id": "b1",
+       "title": "Ch 1",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 1</p>"
+      },
+      {
+       "id": "b2",
+       "title": "Ch 2",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 2</p>"
+      },
+      {
+       "id": "b3",
+       "title": "Ch 3",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 3</p>"
+      },
+      {
+       "id": "b4",
+       "title": "Ch 4",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 4</p>"
+      },
+      {
+       "id": "b5",
+       "title": "Ch 5",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 5</p>"
+      },
+      {
+       "id": "b6",
+       "title": "Ch 6",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 6</p>"
+      },
+      {
+       "id": "b7",
+       "title": "Ch 7",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 7</p>"
+      },
+      {
+       "id": "b8",
+       "title": "Ch 8",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 8</p>"
+      },
+      {
+       "id": "b9",
+       "title": "Ch 9",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 9</p>"
+      },
+      {
+       "id": "b10",
+       "title": "Ch 10",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 10</p>"
+      },
+      {
+       "id": "b11",
+       "title": "Ch 11",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 11</p>"
+      },
+      {
+       "id": "b12",
+       "title": "Ch 12",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 12</p>"
+      },
+      {
+       "id": "b13",
+       "title": "Ch 13",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 13</p>"
+      },
+      {
+       "id": "b14",
+       "title": "Ch 14",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 14</p>"
+      },
+      {
+       "id": "b15",
+       "title": "Ch 15",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 15</p>"
+      },
+      {
+       "id": "b16",
+       "title": "Ch 16",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 16</p>"
+      },
+      {
+       "id": "b17",
+       "title": "Ch 17",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 17</p>"
+      },
+      {
+       "id": "b18",
+       "title": "Ch 18",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 18</p>"
+      },
+      {
+       "id": "b19",
+       "title": "Ch 19",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 19</p>"
+      },
+      {
+       "id": "b20",
+       "title": "Ch 20",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 20</p>"
+      },
+      {
+       "id": "b21",
+       "title": "Ch 21",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 21</p>"
+      },
+      {
+       "id": "b22",
+       "title": "Ch 22",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 22</p>"
+      },
+      {
+       "id": "b23",
+       "title": "Ch 23",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 23</p>"
+      },
+      {
+       "id": "b24",
+       "title": "Ch 24",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 24</p>"
+      },
+      {
+       "id": "b25",
+       "title": "Ch 25",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 25</p>"
+      },
+      {
+       "id": "b26",
+       "title": "Ch 26",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 26</p>"
+      },
+      {
+       "id": "b27",
+       "title": "Ch 27",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 27</p>"
+      },
+      {
+       "id": "b28",
+       "title": "Ch 28",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 28</p>"
+      },
+      {
+       "id": "b29",
+       "title": "Ch 29",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 29</p>"
+      },
+      {
+       "id": "b30",
+       "title": "Ch 30",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 30</p>"
+      },
+      {
+       "id": "b31",
+       "title": "Ch 31",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 31</p>"
+      },
+      {
+       "id": "b32",
+       "title": "Ch 32",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 32</p>"
+      },
+      {
+       "id": "b33",
+       "title": "Ch 33",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 33</p>"
+      },
+      {
+       "id": "b34",
+       "title": "Ch 34",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 34</p>"
+      },
+      {
+       "id": "b35",
+       "title": "Ch 35",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 35</p>"
+      },
+      {
+       "id": "b36",
+       "title": "Ch 36",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 36</p>"
+      },
+      {
+       "id": "b37",
+       "title": "Ch 37",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 37</p>"
+      },
+      {
+       "id": "b38",
+       "title": "Ch 38",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 38</p>"
+      },
+      {
+       "id": "b39",
+       "title": "Ch 39",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 39</p>"
+      },
+      {
+       "id": "b40",
+       "title": "Ch 40",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 40</p>"
+      }
+     ],
+     "b0",
+     {
+      "agentTools": true
+     }
+    ],
+    "output": "CHAPTER INDEX (all chapters in this book, by position — #4 is the fourth chapter whatever its title says; full text NOT included unless it appears in REFERENCED DOCUMENT CONTEXTS or is the active document):\n#1 \"Ch 0\" [ACTIVE — open in the editor; writes go here unless you name another chapter]\n#2 \"Ch 1\"\n#3 \"Ch 2\"\n#4 \"Ch 3\"\n#5 \"Ch 4\"\n#6 \"Ch 5\"\n#7 \"Ch 6\"\n#8 \"Ch 7\"\n#9 \"Ch 8\"\n#10 \"Ch 9\"\n#11 \"Ch 10\"\n#12 \"Ch 11\"\n#13 \"Ch 12\"\n#14 \"Ch 13\"\n#15 \"Ch 14\"\n#16 \"Ch 15\"\n#17 \"Ch 16\"\n#18 \"Ch 17\"\n#19 \"Ch 18\"\n#20 \"Ch 19\"\n#21 \"Ch 20\"\n#22 \"Ch 21\"\n#23 \"Ch 22\"\n#24 \"Ch 23\"\n#25 \"Ch 24\"\n#26 \"Ch 25\"\n#27 \"Ch 26\"\n#28 \"Ch 27\"\n#29 \"Ch 28\"\n#30 \"Ch 29\"\n#31 \"Ch 30\"\n#32 \"Ch 31\"\n#33 \"Ch 32\"\n#34 \"Ch 33\"\n#35 \"Ch 34\"\n#36 \"Ch 35\"\n#37 \"Ch 36\"\n#38 \"Ch 37\"\n#39 \"Ch 38\"\n#40 \"Ch 39\"\n#41 \"Ch 40\""
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "b0",
+       "title": "Ch 0",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 0</p>"
+      },
+      {
+       "id": "b1",
+       "title": "Ch 1",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 1</p>"
+      },
+      {
+       "id": "b2",
+       "title": "Ch 2",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 2</p>"
+      },
+      {
+       "id": "b3",
+       "title": "Ch 3",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 3</p>"
+      },
+      {
+       "id": "b4",
+       "title": "Ch 4",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 4</p>"
+      },
+      {
+       "id": "b5",
+       "title": "Ch 5",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 5</p>"
+      },
+      {
+       "id": "b6",
+       "title": "Ch 6",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 6</p>"
+      },
+      {
+       "id": "b7",
+       "title": "Ch 7",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 7</p>"
+      },
+      {
+       "id": "b8",
+       "title": "Ch 8",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 8</p>"
+      },
+      {
+       "id": "b9",
+       "title": "Ch 9",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 9</p>"
+      },
+      {
+       "id": "b10",
+       "title": "Ch 10",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 10</p>"
+      },
+      {
+       "id": "b11",
+       "title": "Ch 11",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 11</p>"
+      },
+      {
+       "id": "b12",
+       "title": "Ch 12",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 12</p>"
+      },
+      {
+       "id": "b13",
+       "title": "Ch 13",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 13</p>"
+      },
+      {
+       "id": "b14",
+       "title": "Ch 14",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 14</p>"
+      },
+      {
+       "id": "b15",
+       "title": "Ch 15",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 15</p>"
+      },
+      {
+       "id": "b16",
+       "title": "Ch 16",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 16</p>"
+      },
+      {
+       "id": "b17",
+       "title": "Ch 17",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 17</p>"
+      },
+      {
+       "id": "b18",
+       "title": "Ch 18",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 18</p>"
+      },
+      {
+       "id": "b19",
+       "title": "Ch 19",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 19</p>"
+      },
+      {
+       "id": "b20",
+       "title": "Ch 20",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 20</p>"
+      },
+      {
+       "id": "b21",
+       "title": "Ch 21",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 21</p>"
+      },
+      {
+       "id": "b22",
+       "title": "Ch 22",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 22</p>"
+      },
+      {
+       "id": "b23",
+       "title": "Ch 23",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 23</p>"
+      },
+      {
+       "id": "b24",
+       "title": "Ch 24",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 24</p>"
+      },
+      {
+       "id": "b25",
+       "title": "Ch 25",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 25</p>"
+      },
+      {
+       "id": "b26",
+       "title": "Ch 26",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 26</p>"
+      },
+      {
+       "id": "b27",
+       "title": "Ch 27",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 27</p>"
+      },
+      {
+       "id": "b28",
+       "title": "Ch 28",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 28</p>"
+      },
+      {
+       "id": "b29",
+       "title": "Ch 29",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 29</p>"
+      },
+      {
+       "id": "b30",
+       "title": "Ch 30",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 30</p>"
+      },
+      {
+       "id": "b31",
+       "title": "Ch 31",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 31</p>"
+      },
+      {
+       "id": "b32",
+       "title": "Ch 32",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 32</p>"
+      },
+      {
+       "id": "b33",
+       "title": "Ch 33",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 33</p>"
+      },
+      {
+       "id": "b34",
+       "title": "Ch 34",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 34</p>"
+      },
+      {
+       "id": "b35",
+       "title": "Ch 35",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 35</p>"
+      },
+      {
+       "id": "b36",
+       "title": "Ch 36",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 36</p>"
+      },
+      {
+       "id": "b37",
+       "title": "Ch 37",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 37</p>"
+      },
+      {
+       "id": "b38",
+       "title": "Ch 38",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 38</p>"
+      },
+      {
+       "id": "b39",
+       "title": "Ch 39",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 39</p>"
+      },
+      {
+       "id": "b40",
+       "title": "Ch 40",
+       "content": "<p>cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc 40</p>"
+      }
+     ],
+     "b40"
+    ],
+    "output": "CHAPTER INDEX (all chapters in this book, by position — #4 is the fourth chapter whatever its title says; full text NOT included unless it appears in REFERENCED DOCUMENT CONTEXTS or is the active document):\n#1 \"Ch 0\"\n#2 \"Ch 1\"\n#3 \"Ch 2\"\n#4 \"Ch 3\"\n#5 \"Ch 4\"\n#6 \"Ch 5\"\n#7 \"Ch 6\"\n#8 \"Ch 7\"\n#9 \"Ch 8\"\n#10 \"Ch 9\"\n#11 \"Ch 10\"\n#12 \"Ch 11\"\n#13 \"Ch 12\"\n#14 \"Ch 13\"\n#15 \"Ch 14\"\n#16 \"Ch 15\"\n#17 \"Ch 16\"\n#18 \"Ch 17\"\n#19 \"Ch 18\"\n#20 \"Ch 19\"\n#21 \"Ch 20\"\n#22 \"Ch 21\"\n#23 \"Ch 22\"\n#24 \"Ch 23\"\n#25 \"Ch 24\"\n#26 \"Ch 25\"\n#27 \"Ch 26\"\n#28 \"Ch 27\"\n#29 \"Ch 28\"\n#30 \"Ch 29\"\n#31 \"Ch 30\"\n#32 \"Ch 31\"\n#33 \"Ch 32\"\n#34 \"Ch 33\"\n#35 \"Ch 34\"\n#36 \"Ch 35\"\n#37 \"Ch 36\"\n#38 \"Ch 37\"\n#39 \"Ch 38\"\n#40 \"Ch 39\"\n#41 \"Ch 40\" [ACTIVE — this is the document you can edit]"
+   }
+  ],
+  "pack_chapters_into_batches": [
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     100
+    ],
+    "output": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      }
+     ],
+     [
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      }
+     ],
+     [
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      }
+     ],
+     [
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      }
+     ],
+     [
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ]
+    ]
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     10
+    ],
+    "output": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      }
+     ],
+     [
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      }
+     ],
+     [
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      }
+     ],
+     [
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      }
+     ],
+     [
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ]
+    ]
+   },
+   {
+    "input": [
+     [],
+     50
+    ],
+    "output": []
+   },
+   {
+    "input": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ],
+     100000
+    ],
+    "output": [
+     [
+      {
+       "id": "d1",
+       "title": "大纲",
+       "content": "<h1>大纲</h1><p>全书 outline 简述。</p>"
+      },
+      {
+       "id": "d2",
+       "title": "第一章 启程",
+       "content": "<h1>第三章 风起</h1><p>阿青推开门，<strong>风</strong>从巷口灌进来。</p><p>她想：&ldquo;该走了。&rdquo;</p><blockquote><p>门外无人。</p></blockquote><ul><li>一</li><li>二 &amp; 三</li></ul><p><img src=\"data:image/png;base64,AAAA\" alt=\"x\"></p><p>{{IMAGE_PLACEHOLDER_0}}</p><p></p>   loose text here <hr><p>a&nbsp;b<br>c</p>"
+      },
+      {
+       "id": "d3",
+       "title": "Chapter 3: The Cat",
+       "content": "<h2>Title</h2><p>The cat sat on the mat.</p><p>It was <em>warm</em>, and &lt;quiet&gt; &quot;outside&quot; &#39;then&#39;.</p>"
+      },
+      {
+       "id": "d4",
+       "title": "空章节",
+       "content": "",
+       "contentLoaded": false
+      },
+      {
+       "id": "d5",
+       "title": "Long",
+       "content": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"
+      }
+     ]
+    ]
+   }
+  ],
+  "analyze_batch_tokens": [
+   {
+    "input": [],
+    "output": {
+     "gemini": 140000,
+     "anthropic": 120000,
+     "openai": 80000,
+     "grok": 140000,
+     "moonshot": 140000,
+     "ollama": 20000
+    }
+   }
+  ],
+  "analyze_batch_chars": [
+   {
+    "input": [
+     "grok",
+     1
+    ],
+    "output": 140000
+   },
+   {
+    "input": [
+     "grok",
+     0
+    ],
+    "output": 560000
+   },
+   {
+    "input": [
+     "anthropic",
+     0.5
+    ],
+    "output": 300000
+   },
+   {
+    "input": [
+     "nope",
+     0.9
+    ],
+    "output": 103999
+   },
+   {
+    "input": [
+     "ollama",
+     1.5
+    ],
+    "output": 20000
+   },
+   {
+    "input": [
+     "moonshot",
+     1
+    ],
+    "output": 140000
+   }
+  ]
+ }
+}

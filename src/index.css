@@ -1,0 +1,21 @@
+/*
+ * Single CSS entry point (imported by src/main.tsx).
+ *
+ * The stylesheet is split into section files under src/styles/. The @import
+ * order below reproduces the original concatenation order of the former
+ * monolithic index.css and is load-bearing: responsive.css contains the
+ * .layout-portrait / .layout-landscape / .layout-tablet-square overrides
+ * that must cascade AFTER the base rules they override. Do not reorder.
+ */
+@import './styles/tokens.css';
+@import './styles/base.css';
+@import './styles/editor.css';
+@import './styles/layout.css';
+@import './styles/chat.css';
+@import './styles/modals.css';
+@import './styles/sidebar.css';
+@import './styles/diff.css';
+@import './styles/settings.css';
+@import './styles/versions.css';
+@import './styles/responsive.css';
+@import './styles/chat-extras.css';
